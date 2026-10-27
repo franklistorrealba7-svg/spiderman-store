@@ -297,13 +297,12 @@ footer button:hover{color:var(--fg)}
   <canvas id="web" aria-hidden="true"></canvas>
   <div class="wrap hero-inner">
     <div>
-      <div class="label kicker">Temporada 2026 · Nuevos ingresos</div>
+      <div class="label kicker">Crocs · Máscaras · Carros</div>
       <p class="lede">Crocs de colaboración, máscaras con ojos movibles y sets de colección.</p>
     </div>
     <div class="hero-meta">
       <div><strong id="statProducts">0</strong>modelos</div>
       <div><strong>3</strong>categorías</div>
-      <div><strong>24h</strong>despacho Lima</div>
     </div>
   </div>
 
@@ -321,9 +320,9 @@ footer button:hover{color:var(--fg)}
 
 <section class="trust" aria-label="Garantías">
   <div class="wrap">
-    <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><b>Caja y regalo</b><span>En cada pedido</span></div></div>
-    <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><div><b>Envío rápido</b><span>Lima 24h · Provincias 48–72h</span></div></div>
-    <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 19v-5h5"/></svg><div><b>Cambio de talla</b><span>Hasta 7 días</span></div></div>
+    <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><div><b>Envíos a todo el Perú</b><span>Lima: motorizado · Provincias: Olva o Shalom</span></div></div>
+    <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/></svg><div><b>Atención por WhatsApp</b><span>+51 912 762 364</span></div></div>
+    <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><div><b>Síguenos en TikTok</b><span>@franklis23</span></div></div>
   </div>
 </section>
 
@@ -340,7 +339,7 @@ footer button:hover{color:var(--fg)}
   <div class="wrap">
     <div>
       <h2>¿Buscas un modelo que no ves aquí?</h2>
-      <p>Escríbenos con la talla y la colaboración. Conseguimos ediciones limitadas por pedido.</p>
+      <p>Escríbenos con el modelo y la talla, y te respondemos por WhatsApp.</p>
     </div>
     <a class="cta" id="askLink" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
   </div>
@@ -350,7 +349,7 @@ footer button:hover{color:var(--fg)}
   <div class="cols">
     <div>
       <a class="logo" href="#inicio"><span><b>SPIDERMAN <em>STORE</em></b><small>Araña Negra</small></span></a>
-      <p style="max-width:36ch;margin-top:14px">Crocs de colaboración, máscaras y sets de colección. Atención de lunes a sábado, 10:00 a 20:00.</p>
+      <p style="max-width:36ch;margin-top:14px">Crocs de colaboración, máscaras y sets de colección.</p>
     </div>
     <div><h4>Comprar</h4><ul>
       <li><button data-go-cat="crocs">Crocs</button></li><li><button data-go-cat="mascaras">Máscaras</button></li>
@@ -424,7 +423,7 @@ const CATS = [
 const CROCS_SIZES = ["M4/W6|36","M5/W7|37","M6/W8|38","M7/W9|39-40","M8/W10|41-42","M9/W11|43","M10/W12|44","M11/W13|45"];
 const sizeChip = s => { const [a,b]=s.split("|"); return b?`<b>${a}</b><small>EU ${b}</small>`:a; };
 const sizeText = s => { const [a,b]=s.split("|"); return b?`${a} (${b})`:a; };
-const CROCS_GIFT = "Incluye: shopping bag, caja de Crocs y 5 Jibbitz";
+const CROCS_GIFT = "Regalo según promoción vigente: shopping bag, caja de Crocs y 5 Jibbitz";
 const MASK_INFO  = "Ojos movibles, tela lycra spandex, faceshell incluido";
 
 /* price: null → se muestra "Consultar precio" */
@@ -433,11 +432,11 @@ const PRODUCTS = [
   {id:"m1", cat:"mascaras", name:"Máscara Tobey Maguire · Black Spider", price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-black-1.webp","tobey-black-2.webp"]},
   {id:"m2", cat:"mascaras", name:"Máscara Tobey Maguire · Red Spider",   price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-red-1.webp","tobey-red-2.webp"]},
   {id:"m3", cat:"mascaras", name:"Máscara Red Spider · Lentes dorados",  price:289, info:"Incluye caja y faceshell", imgs:["red-gold-1.webp","red-gold-2.webp","red-gold-3.webp"]},
-  {id:"m4", cat:"mascaras", name:"Máscara Black Stealth",                price:315.90, info:"Incluye caja y control", imgs:["black-stealth-1.webp","black-stealth-2.webp","black-stealth-3.webp"]},
-  {id:"m5", cat:"mascaras", name:"Máscara Red Hero",                     price:99.90, info:"Incluye caja y control", imgs:["red-hero-1.webp","red-hero-2.webp","red-hero-3.webp"]},
+  {id:"m4", cat:"mascaras", name:"Máscara Black Stealth",                price:315.90, info:"Incluye caja", imgs:["black-stealth-1.webp","black-stealth-2.webp","black-stealth-3.webp"]},
+  {id:"m5", cat:"mascaras", name:"Máscara Red Hero",                     price:99.90, info:"Incluye caja", imgs:["red-hero-1.webp","red-hero-2.webp","red-hero-3.webp"]},
   {id:"m6", cat:"mascaras", name:"Lanza Telarañas Electrónico",          price:99.90, old:139, info:"Puntas imantadas. Caja, manual, cable de carga, desarmador y guante", imgs:[]},
   /* ---------- CARROS ---------- */
-  {id:"c1", cat:"carros", name:"Set Cars · Camión Mack + 16 autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp","cars-set-2.webp","cars-set-3.webp","cars-set-4.webp"]},
+  {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp","cars-set-2.webp","cars-set-3.webp","cars-set-4.webp"]},
   /* ---------- CROCS ---------- */
   {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black",              price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:[]},
   {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red",                price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:[]},
@@ -679,9 +678,9 @@ $("#grid").onclick = e => {
 };
 
 /* ---------- Quick view (galería de ángulos) ---------- */
-let qId=null, qIdx=0;
+let qId=null, qIdx=0, qReturn=null;
 function openQuick(id){
-  const p=byId(id); qId=id; qIdx=0;
+  const p=byId(id); if(!p) return; qReturn=document.activeElement; qId=id; qIdx=0;
   $("#qName").textContent=p.name; $("#qCat").textContent=catName(p.cat);
   $("#qPrice").innerHTML=priceHTML(p); $("#qInfo").textContent=p.info||"";
   $("#qSizes").innerHTML = needsSize(p)? p.sizes.map(s=>`<button data-size="${s}" class="${picked[id]===s?'on':''}">${sizeChip(s)}</button>`).join("") : "";
@@ -700,11 +699,18 @@ function showQ(){
   [...$("#qThumbs").children].forEach((b,i)=>b.classList.toggle("on",i===qIdx));
   $("#qPrev").hidden = $("#qNext").hidden = p.imgs.length<2;
 }
-function closeQuick(){ if($("#quick").hidden) return; $("#quick").hidden=true; document.body.style.overflow=""; try{ if(location.hash.startsWith("#p-")) history.replaceState(null,"",location.pathname+location.search); }catch(e){} }
+function closeQuick(){ if($("#quick").hidden) return; $("#quick").hidden=true; document.body.style.overflow=""; if(qReturn&&qReturn.focus) qReturn.focus(); try{ if(location.hash.startsWith("#p-")) history.replaceState(null,"",location.pathname+location.search); }catch(e){} }
 function fromHash(){ const m=location.hash.match(/^#p-([a-z0-9]+)$/); if(m && byId(m[1])) openQuick(m[1]); }
 addEventListener("hashchange", fromHash);
 $("#qClose").onclick=closeQuick;
 $("#quick").addEventListener("click",e=>{ if(e.target.id==="quick") closeQuick(); });
+$("#quick").addEventListener("keydown",e=>{
+  if(e.key!=="Tab") return;
+  const f=[...$("#quick").querySelectorAll("button,a[href]")].filter(x=>!x.hidden && x.offsetParent!==null);
+  if(!f.length) return; const first=f[0], last=f[f.length-1];
+  if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+});
 $("#qPrev").onclick=()=>{ const n=byId(qId).imgs.length; qIdx=(qIdx-1+n)%n; showQ(); };
 $("#qNext").onclick=()=>{ const n=byId(qId).imgs.length; qIdx=(qIdx+1)%n; showQ(); };
 $("#qThumbs").onclick=e=>{ const b=e.target.closest("[data-qi]"); if(b){ qIdx=+b.dataset.qi; showQ(); } };
@@ -715,11 +721,19 @@ fromHash();
 
 /* ---------- Cart ---------- */
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem("sm-cart")||"[]").filter(l=>byId(l.id)); } catch(e){ cart = []; }
+try {
+  const raw = JSON.parse(localStorage.getItem("sm-cart")||"[]");
+  cart = (Array.isArray(raw)?raw:[]).filter(l=>{
+    const p = l && typeof l.id==="string" && byId(l.id); if(!p || p.price==null) return false;
+    l.q = Math.min(20, Math.max(1, parseInt(l.q,10)||1));
+    const okSize = needsSize(p) ? p.sizes.includes(l.size) : (l.size==="única");
+    return okSize;
+  }).slice(0,50);
+} catch(e){ cart = []; }
 function save(){ try{ localStorage.setItem("sm-cart", JSON.stringify(cart)); }catch(e){} }
 function addToCart(id, size){
   const l = cart.find(x=>x.id===id && x.size===size);
-  l ? l.q++ : cart.push({id,size,q:1});
+  l ? (l.q=Math.min(20,l.q+1)) : cart.push({id,size,q:1});
   save(); drawCart(); toast(`Agregado: ${byId(id).name}${byId(id).cat==="crocs"?` · ${sizeText(size)}`:""}`);
 }
 function drawCart(){
@@ -741,7 +755,7 @@ function drawCart(){
     wa.setAttribute("aria-disabled","false");
   } else { wa.href="#"; wa.setAttribute("aria-disabled","true"); }
 }
-$("#dList").onclick = e => { const b=e.target.closest("[data-q]"); if(!b) return; const l=cart[+b.dataset.i]; l.q+=+b.dataset.q; if(l.q<=0) cart.splice(+b.dataset.i,1); save(); drawCart(); };
+$("#dList").onclick = e => { const b=e.target.closest("[data-q]"); if(!b) return; const l=cart[+b.dataset.i]; l.q=Math.min(20,l.q+(+b.dataset.q)); if(l.q<=0) cart.splice(+b.dataset.i,1); save(); drawCart(); };
 function openCart(o){ $("#drawer").classList.toggle("on",o); $("#scrim").classList.toggle("on",o); $("#drawer").setAttribute("aria-hidden",!o); if(o) $("#closeCart").focus(); }
 $("#openCart").onclick = ()=>openCart(true);
 $("#closeCart").onclick = ()=>openCart(false);
