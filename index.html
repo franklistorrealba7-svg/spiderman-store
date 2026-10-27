@@ -151,6 +151,17 @@ button{font:inherit;color:inherit;cursor:pointer}
 .q-ship li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:10px;vertical-align:middle}
 @media (max-width:760px){.q-box{grid-template-columns:1fr}.q-media{border-right:0;border-bottom:1px solid var(--line)}.q-info h3{font-size:1.6rem}}
 
+
+/* Crocs sin foto: bloque de color con el nombre */
+.ph.tone,.qtone{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.12),transparent 45%),var(--tone);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:18px;color:#0b0c12;gap:2px;overflow:hidden}
+.ph.tone::before,.qtone::before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 100% 0%,transparent 0 9deg,rgba(255,255,255,.10) 9deg 10deg);pointer-events:none}
+.tone.dk{color:#fff}
+.tone .tl{position:absolute;top:16px;left:18px;font-family:var(--f-label);font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;font-weight:700;opacity:.75}
+.tone .tn{position:relative;font-family:var(--f-display);font-weight:900;font-size:2rem;line-height:.9;text-transform:uppercase}
+.tone .ts{position:relative;font-family:var(--f-label);font-weight:600;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.qtone{aspect-ratio:1/1;border-radius:10px;padding:28px}
+.qtone .tn{font-size:3.2rem}
+@media (max-width:600px){.tone .tn{font-size:1.5rem}}
 /* ---------- Trust strip ---------- */
 .trust{border-bottom:1px solid var(--line);background:var(--panel)}
 .trust .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
@@ -440,20 +451,20 @@ const PRODUCTS = [
   /* ---------- CARROS ---------- */
   {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp","cars-set-2.webp","cars-set-3.webp","cars-set-4.webp"]},
   /* ---------- CROCS ---------- */
-  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black",              price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:[]},
-  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red",                price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:[]},
-  {id:"k1",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen",            price:239.90, old:280, info:CROCS_GIFT, imgs:[]},
-  {id:"k2",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set",   price:299,    old:339, info:CROCS_GIFT+" + 4 focos y 2 alerones", imgs:[]},
-  {id:"k3",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate",                price:240,    old:279, info:CROCS_GIFT, imgs:[]},
-  {id:"k4",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids",            price:199.90, old:240, info:CROCS_GIFT, imgs:[]},
-  {id:"k5",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty",                    price:269,    old:320, info:CROCS_GIFT, imgs:[]},
-  {id:"k6",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco",           price:240,    old:290, info:CROCS_GIFT, imgs:[]},
-  {id:"k7",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons · Krusty",          price:279,    old:340, info:CROCS_GIFT, imgs:[]},
-  {id:"k8",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Chucky",                         price:269,    old:320, info:CROCS_GIFT, imgs:[]},
-  {id:"k9",  cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Súper Girls · Bombón",           price:249,    old:280, info:CROCS_GIFT, imgs:[]},
-  {id:"k10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Lotso",                          price:255,    old:289, info:CROCS_GIFT, imgs:[]},
-  {id:"k11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Barbie",                         price:259,    old:320, info:CROCS_GIFT, imgs:[]},
-  {id:"k12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Demon Slayer · Inosuke",         price:269,    old:340, info:CROCS_GIFT, imgs:[]}
+  {id:"ks1", cat:"crocs", tone:"#14151c", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black",              price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:[]},
+  {id:"ks2", cat:"crocs", tone:"#e0102b", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red",                price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:[]},
+  {id:"k1",  cat:"crocs", tone:"#d4161c", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen",            price:239.90, old:280, info:CROCS_GIFT, imgs:[]},
+  {id:"k2",  cat:"crocs", tone:"#b3121a", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set",   price:299,    old:339, info:CROCS_GIFT+" + 4 focos y 2 alerones", imgs:[]},
+  {id:"k3",  cat:"crocs", tone:"#7a5a3a", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate",                price:240,    old:279, info:CROCS_GIFT, imgs:[]},
+  {id:"k4",  cat:"crocs", tone:"#ef3b2d", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids",            price:199.90, old:240, info:CROCS_GIFT, imgs:[]},
+  {id:"k5",  cat:"crocs", tone:"#f6b6c8", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty",                    price:269,    old:320, info:CROCS_GIFT, imgs:[]},
+  {id:"k6",  cat:"crocs", tone:"#f1f1f3", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco",           price:240,    old:290, info:CROCS_GIFT, imgs:[]},
+  {id:"k7",  cat:"crocs", tone:"#f2cf3a", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons · Krusty",          price:279,    old:340, info:CROCS_GIFT, imgs:[]},
+  {id:"k8",  cat:"crocs", tone:"#3f6b3a", sizes:CROCS_SIZES, name:"Crocs x Chucky",                         price:269,    old:320, info:CROCS_GIFT, imgs:[]},
+  {id:"k9",  cat:"crocs", tone:"#ff7fb0", sizes:CROCS_SIZES, name:"Crocs x Súper Girls · Bombón",           price:249,    old:280, info:CROCS_GIFT, imgs:[]},
+  {id:"k10", cat:"crocs", tone:"#e889b8", sizes:CROCS_SIZES, name:"Crocs x Lotso",                          price:255,    old:289, info:CROCS_GIFT, imgs:[]},
+  {id:"k11", cat:"crocs", tone:"#ff3d9a", sizes:CROCS_SIZES, name:"Crocs x Barbie",                         price:259,    old:320, info:CROCS_GIFT, imgs:[]},
+  {id:"k12", cat:"crocs", tone:"#4a78b5", sizes:CROCS_SIZES, name:"Crocs x Demon Slayer · Inosuke",         price:269,    old:340, info:CROCS_GIFT, imgs:[]}
 ];
 
 /* Carrusel 3D: solo Crocs, primero las Spider-Man black y red */
@@ -472,10 +483,12 @@ const ICON_SHOE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 function photo(p, small){
   const im = p.imgs||[];
   if (im.length) return `<div class="ph has"><img src="${esc(im[0])}" alt="${esc(p.name)}" loading="lazy">${!small&&im[1]?`<img class="alt" src="${esc(im[1])}" alt="" loading="lazy">`:""}</div>`;
+  if (p.tone){ const t=p.name.replace(/^Crocs (x )?/,'').split(' · '); const light=/^#f/i.test(p.tone);
+    return `<div class="ph tone${light?'':' dk'}" style="--tone:${p.tone}">${small?'':`<span class="tl">Crocs</span><span class="tn">${esc(t[0])}</span>${t[1]?`<span class="ts">${esc(t[1])}</span>`:''}`}</div>`; }
   return `<div class="ph"><div class="tag">${ICON_SHOE}${small?'':'<span class="label">Foto próximamente</span>'}</div></div>`;
 }
 
-$("#statProducts").textContent = PRODUCTS.length;
+{ const sp=$("#statProducts"); if(sp) sp.textContent = PRODUCTS.length; }
 $("#waText").textContent = "+51 912 762 364";
 $("#askLink").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola Spiderman Store, busco un modelo: ");
 
@@ -515,8 +528,7 @@ $("#askLink").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent
 /* ---------- 3D Carousel ---------- */
 const ring = $("#ring"), stage = $("#stage"), dotsEl = $("#dots");
 /* Mientras las Crocs no tengan foto, el carrusel muestra los productos con foto */
-let feat = FEATURED.map(byId).filter(p=>p && p.imgs.length);
-if (feat.length < 3) feat = PRODUCTS.filter(p=>p.imgs.length).slice(0,8);
+let feat = FEATURED.map(byId).filter(Boolean);
 const N = feat.length, STEP = 360/N;
 let cur = 0, timer = null, paused = false;
 ring.innerHTML = feat.map((p,i)=>`
@@ -696,7 +708,7 @@ function openQuick(id){
 }
 function showQ(){
   const p=byId(qId);
-  $("#qMain").innerHTML = p.imgs.length ? `<img src="${esc(p.imgs[qIdx])}" alt="${esc(p.name)} · ángulo ${qIdx+1}">` : `<div class="tag">${ICON_SHOE}<span class="label">Foto próximamente</span></div>`;
+  $("#qMain").innerHTML = p.imgs.length ? `<img src="${esc(p.imgs[qIdx])}" alt="${esc(p.name)} · ángulo ${qIdx+1}">` : p.tone ? photo(p).replace(/^<div class="ph tone([^"]*)"([^>]*)>/,'<div class="tone$1 qtone"$2>') : `<div class="tag">${ICON_SHOE}<span class="label">Foto próximamente</span></div>`;
   $("#qMain").classList.toggle("has", !!p.imgs.length);
   [...$("#qThumbs").children].forEach((b,i)=>b.classList.toggle("on",i===qIdx));
   $("#qPrev").hidden = $("#qNext").hidden = p.imgs.length<2;
