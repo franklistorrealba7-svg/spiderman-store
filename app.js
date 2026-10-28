@@ -329,9 +329,10 @@ function setFilter(cat){ fCat = cat||"crocs"; render(); $("#catalogo").scrollInt
 $("#tabs").onclick = e => { const b=e.target.closest("[data-cat]"); if(b){ fCat=b.dataset.cat; render(); } };
 document.querySelectorAll("[data-go-cat]").forEach(b=> b.onclick = ()=> setFilter(b.dataset.goCat));
 const BASE = /^https?:/.test(location.protocol) ? location.origin + location.pathname : "";
-const prodLink = p => BASE ? BASE + "#p-" + p.id : "";
-const photoLink = p => (BASE && p.imgs.length) ? new URL(p.imgs[0], BASE).href : "";
-function itemLines(p){ return [prodLink(p)&&`  Ver producto: ${prodLink(p)}`, photoLink(p)&&`  Foto: ${photoLink(p)}`].filter(Boolean).join("\n"); }
+const SITE = /^https?:/.test(location.protocol) ? location.origin + "/" : "https://spiderman-store.vercel.app/";
+const prodLink = p => p.imgs.length ? SITE + "p/" + p.id : SITE + "#p-" + p.id;
+const photoLink = p => p.imgs.length ? SITE + "share/" + p.id + ".jpg" : "";
+function itemLines(p){ return [`Ver producto y foto: ${prodLink(p)}`, photoLink(p)&&`Imagen: ${photoLink(p)}`].filter(Boolean).join("\n"); }
 function waLink(text){ return "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(text); }
 function askLink(p){ return waLink(`Hola Spiderman Store, quiero el precio de: ${p.name}\n${itemLines(p)}`); }
 function buyLink(p, size){ return waLink(`Hola Spiderman Store, quiero comprar:\n• ${p.name}${p.cat==="crocs"&&size?` (talla ${sizeText(size)})`:""} — ${p.price!=null?fmt(p.price):"precio a consultar"}\n${itemLines(p)}`); }
@@ -362,7 +363,7 @@ function openQuick(id){
   $("#qSizes").hidden = !needsSize(p);
   $("#qAdd").hidden = p.price==null; $("#qAsk").hidden = p.price!=null; $("#qAsk").href = askLink(p);
   $("#qBuy").hidden = p.price==null; $("#qBuy").href = buyLink(p, picked[id]);
-  try{ history.replaceState(null,"","#p-"+id); }catch(e){}
+  try{ if(location.hash!=="#p-"+id) history.pushState({q:id},"","#p-"+id); }catch(e){}
   $("#qHint").textContent="";
   $("#qThumbs").innerHTML = p.imgs.length>1 ? p.imgs.map((src,i)=>`<button data-qi="${i}" aria-label="Ángulo ${i+1}"><img src="${esc(src)}" alt=""></button>`).join("") : "";
   showQ(); $("#quick").hidden=false; document.body.style.overflow="hidden"; $("#qClose").focus();
@@ -374,8 +375,10 @@ function showQ(){
   [...$("#qThumbs").children].forEach((b,i)=>b.classList.toggle("on",i===qIdx));
   $("#qPrev").hidden = $("#qNext").hidden = p.imgs.length<2;
 }
-function closeQuick(){ if($("#quick").hidden) return; $("#quick").hidden=true; document.body.style.overflow=""; if(qReturn&&qReturn.focus) qReturn.focus(); try{ if(location.hash.startsWith("#p-")) history.replaceState(null,"",location.pathname+location.search); }catch(e){} }
-function fromHash(){ const m=location.hash.match(/^#p-([a-z0-9]+)$/); if(m && byId(m[1])) openQuick(m[1]); }
+function hideQuick(){ if($("#quick").hidden) return; $("#quick").hidden=true; document.body.style.overflow=""; if(qReturn&&qReturn.focus) qReturn.focus(); }
+function closeQuick(){ if($("#quick").hidden) return; if(location.hash.startsWith("#p-") && history.state && history.state.q){ history.back(); return; } hideQuick(); try{ if(location.hash.startsWith("#p-")) history.replaceState(null,"",location.pathname+location.search); }catch(e){} }
+addEventListener("popstate", ()=>{ if(!location.hash.startsWith("#p-")) hideQuick(); });
+function fromHash(){ const m=location.hash.match(/^#p-([a-z0-9]+)$/); if(m && byId(m[1])) { if($("#quick").hidden || qId!==m[1]) openQuick(m[1]); } else hideQuick(); }
 addEventListener("hashchange", fromHash);
 $("#qClose").onclick=closeQuick;
 $("#quick").addEventListener("click",e=>{ if(e.target.id==="quick") closeQuick(); });
