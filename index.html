@@ -45,7 +45,20 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---------- Header ---------- */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(6,6,8,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.announce{background:var(--red);color:#fff;text-align:center;font-family:var(--f-label);letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;font-weight:600;padding-block:6px}
+.announce{background:#000;color:#fff;font-family:var(--f-label);letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;font-weight:600;overflow:hidden;white-space:nowrap;border-bottom:2px solid var(--red);position:relative}
+.announce .track{display:inline-flex;align-items:center;animation:marq 32s linear infinite;will-change:transform}
+.announce:hover .track{animation-play-state:paused}
+.announce .grp{display:inline-flex;align-items:center;gap:22px;padding-right:22px;height:40px}
+.announce .sep{color:var(--red)}
+.announce .van{height:32px;width:auto;display:block;animation:bump .5s ease-in-out infinite alternate;filter:drop-shadow(0 3px 2px rgba(0,0,0,.6))}
+.announce .van.v2{animation-delay:.25s}
+.announce .road{display:inline-flex;align-items:flex-end;gap:2px;height:40px;padding-bottom:3px;position:relative}
+.announce .road::after{content:"";position:absolute;left:-6px;right:-6px;bottom:2px;height:2px;background:repeating-linear-gradient(90deg,#fff 0 8px,transparent 8px 14px);opacity:.35;animation:dash .6s linear infinite}
+.announce b{color:#fff;font-weight:700}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes bump{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+@keyframes dash{to{background-position:-14px 0}}
+@media (prefers-reduced-motion:reduce){.announce .track,.announce .van,.announce .road::after{animation:none}}
 .bar{display:flex;align-items:center;gap:24px;padding-block:12px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .logo svg{width:38px;height:38px}
@@ -162,6 +175,25 @@ button{font:inherit;color:inherit;cursor:pointer}
 .qtone{aspect-ratio:1/1;border-radius:10px;padding:28px}
 .qtone .tn{font-size:3.2rem}
 @media (max-width:600px){.tone .tn{font-size:1.5rem}}
+
+/* Carrusel sin cuadros: Crocs flotando */
+.slide{background:none!important;border:0!important;box-shadow:none!important;overflow:visible;opacity:.28;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.slide.on{opacity:1}
+.slide .spin{width:100%;transform-style:preserve-3d;animation:float 3.2s ease-in-out infinite}
+.slide .spin img{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));user-select:none;-webkit-user-drag:none}
+.slide.on .spin img{filter:drop-shadow(0 22px 30px rgba(229,18,47,.35)) drop-shadow(0 10px 16px rgba(0,0,0,.6))}
+.slide .spin.go{animation:spin360 1.4s cubic-bezier(.45,.05,.25,1)}
+.slide .shadow{position:absolute;left:15%;right:15%;bottom:14%;height:18px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);animation:shad 3.2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes shad{0%,100%{transform:scaleX(1);opacity:.8}50%{transform:scaleX(.85);opacity:.5}}
+@keyframes spin360{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+.feat-cap{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;padding-inline:16px;margin-top:-20px;min-height:120px}
+.feat-cap .label{color:var(--red)}
+.feat-cap h3{margin:0;font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.4rem,3vw,2rem);line-height:1}
+.feat-cap .cap-row{display:flex;align-items:center;gap:16px;margin-top:4px}
+.feat-cap .tip{margin:2px 0 0;color:var(--mute);font-size:.8rem}
+@media (max-width:600px){.feat-cap h3{font-size:1.25rem;text-wrap:balance;max-width:78%}}
+@media (prefers-reduced-motion:reduce){.slide .spin,.slide .shadow{animation:none}}
 /* ---------- Trust strip ---------- */
 .trust{border-bottom:1px solid var(--line);background:var(--panel)}
 .trust .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
@@ -275,7 +307,7 @@ footer button:hover{color:var(--fg)}
 <body>
 
 <div class="top">
-  <div class="announce">Envíos seguros a todo el Perú</div>
+  <div class="announce" role="region" aria-label="Envíos seguros a todo el Perú. Envío el mismo día o al siguiente. Provincias: Olva o Shalom. Lima: motorizado."><div class="track" aria-hidden="true"><span class="grp"><span class="road"><img class="van" src="shalom-van.webp" alt="" width="52" height="32"></span><b>Envíos seguros a todo el Perú</b><span class="sep">✦</span>Envío el mismo día o al siguiente<span class="sep">✦</span><span class="road"><img class="van v2" src="shalom-van.webp" alt="" width="52" height="32"></span>Provincias: Olva o Shalom<span class="sep">✦</span>Lima: motorizado<span class="sep">✦</span></span><span class="grp"><span class="road"><img class="van" src="shalom-van.webp" alt="" width="52" height="32"></span><b>Envíos seguros a todo el Perú</b><span class="sep">✦</span>Envío el mismo día o al siguiente<span class="sep">✦</span><span class="road"><img class="van v2" src="shalom-van.webp" alt="" width="52" height="32"></span>Provincias: Olva o Shalom<span class="sep">✦</span>Lima: motorizado<span class="sep">✦</span></span></div></div>
   <div class="wrap bar">
     <a class="logo" href="#inicio" aria-label="Spiderman Store, inicio">
       <svg viewBox="0 0 40 40" aria-hidden="true">
@@ -322,6 +354,7 @@ footer button:hover{color:var(--fg)}
     <div class="reflect"></div>
     <canvas id="shot" aria-hidden="true"></canvas>
   </div>
+  <div class="feat-cap" id="featCap" aria-live="polite"></div>
   <div class="ctrls" id="ctrls">
     <button class="arrow" id="prev" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg></button>
     <div class="dots" id="dots"></div>
@@ -450,45 +483,45 @@ const PRODUCTS = [
   /* ---------- CARROS ---------- */
   {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp","cars-set-2.webp","cars-set-3.webp","cars-set-4.webp"]},
   /* ---------- CROCS ---------- */
-  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["c-spiderman-black-1.webp", "c-spiderman-black-2.webp"]},
-  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["c-spiderman-red-3.webp", "c-spiderman-red-4.webp", "c-spiderman-red-2.webp", "c-spiderman-red-1.webp"]},
-  {id:"ks3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Marvel", price:null, imgs:["c-spiderman-marvel-1.webp", "c-spiderman-marvel-2.webp", "c-spiderman-marvel-3.webp", "c-spiderman-marvel-4.webp", "c-spiderman-marvel-5.webp"]},
-  {id:"k1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen", price:239.9, old:280, info:CROCS_GIFT, imgs:["c-rayo-mcqueen-1.webp", "c-rayo-mcqueen-2.webp", "c-rayo-mcqueen-3.webp", "c-rayo-mcqueen-4.webp", "c-rayo-mcqueen-5.webp"]},
-  {id:"k2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set", price:299, old:339, info:CROCS_GIFT, badge:"Con alerones y luces", imgs:["c-rayo-full-set-1.webp", "c-rayo-full-set-2.webp", "c-rayo-full-set-3.webp", "c-rayo-full-set-4.webp", "c-rayo-full-set-5.webp"]},
-  {id:"k4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids", price:199.9, old:240, info:CROCS_GIFT, imgs:["c-rayo-mcqueen-1.webp", "c-rayo-mcqueen-2.webp", "c-rayo-mcqueen-3.webp", "c-rayo-mcqueen-4.webp", "c-rayo-mcqueen-5.webp"]},
-  {id:"k3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate", price:240, old:279, info:CROCS_GIFT, imgs:["c-tow-mate-1.webp", "c-tow-mate-2.webp", "c-tow-mate-3.webp"]},
-  {id:"k5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty", price:269, old:320, info:CROCS_GIFT, imgs:["c-hello-kitty-1.webp", "c-hello-kitty-2.webp"]},
-  {id:"k6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco", price:240, old:290, info:CROCS_GIFT, imgs:["c-hello-kitty-blanco-1.webp", "c-hello-kitty-blanco-2.webp", "c-hello-kitty-blanco-3.webp", "c-hello-kitty-blanco-4.webp"]},
-  {id:"k7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons · Krusty", price:279, old:340, info:CROCS_GIFT, imgs:["c-krusty-1.webp", "c-krusty-2.webp", "c-krusty-3.webp", "c-krusty-4.webp"]},
-  {id:"k8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Chucky", price:269, old:320, info:CROCS_GIFT, imgs:["c-chucky-1.webp", "c-chucky-2.webp", "c-chucky-3.webp", "c-chucky-4.webp"]},
-  {id:"k9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Súper Girls · Bombón", price:249, old:280, info:CROCS_GIFT, imgs:["c-bombon-1.webp", "c-bombon-2.webp", "c-bombon-3.webp"]},
-  {id:"k10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Lotso", price:255, old:289, info:CROCS_GIFT, imgs:["c-lotso-1.webp", "c-lotso-2.webp", "c-lotso-3.webp"]},
-  {id:"k11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Barbie", price:259, old:320, info:CROCS_GIFT, imgs:["c-barbie-1.webp", "c-barbie-2.webp", "c-barbie-3.webp", "c-barbie-4.webp"]},
-  {id:"k12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Demon Slayer · Inosuke", price:269, old:340, info:CROCS_GIFT, imgs:["c-inosuke-1.webp", "c-inosuke-2.webp", "c-inosuke-3.webp", "c-inosuke-4.webp", "c-inosuke-5.webp"]},
-  {id:"n1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Stranger Things", price:null, imgs:["c-stranger-things-1.webp", "c-stranger-things-2.webp", "c-stranger-things-3.webp", "c-stranger-things-4.webp", "c-stranger-things-5.webp"]},
-  {id:"n2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Darth Vader", price:null, imgs:["c-darth-vader-1.webp", "c-darth-vader-2.webp", "c-darth-vader-3.webp"]},
-  {id:"n3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Grogu", price:null, imgs:["c-grogu-1.webp", "c-grogu-2.webp"]},
-  {id:"n4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Batman", price:null, imgs:["c-batman-1.webp", "c-batman-2.webp", "c-batman-3.webp", "c-batman-4.webp"]},
-  {id:"n5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Toy Story · Buzz Lightyear", price:null, imgs:["c-buzz-1.webp", "c-buzz-2.webp", "c-buzz-3.webp"]},
-  {id:"n6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Monsters Inc · Mike Wazowski", price:null, imgs:["c-mike-wazowski-1.webp", "c-mike-wazowski-2.webp"]},
-  {id:"n7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons", price:null, imgs:["c-simpsons-1.webp", "c-simpsons-2.webp", "c-simpsons-3.webp"]},
-  {id:"n8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja", price:null, imgs:["c-bob-esponja-1.webp", "c-bob-esponja-2.webp"]},
-  {id:"n9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja · Patricio", price:null, imgs:["c-patricio-1.webp", "c-patricio-2.webp"]},
-  {id:"n10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Goku", price:null, imgs:["c-goku-1.webp", "c-goku-2.webp"]},
-  {id:"n11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Cell", price:null, imgs:["c-cell-1.webp", "c-cell-2.webp", "c-cell-3.webp"]},
-  {id:"n12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x One Piece · Luffy", price:null, imgs:["c-luffy-1.webp", "c-luffy-2.webp"]},
-  {id:"n13", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Kakashi", price:null, imgs:["c-kakashi-1.webp", "c-kakashi-2.webp"]},
-  {id:"n14", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Akatsuki", price:null, imgs:["c-akatsuki-1.webp", "c-akatsuki-2.webp"]},
-  {id:"n15", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Pikachu", price:null, imgs:["c-pikachu-1.webp", "c-pikachu-2.webp", "c-pikachu-3.webp"]},
-  {id:"n16", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Charizard y Blastoise", price:null, imgs:["c-pokemon-1.webp"]},
-  {id:"n17", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Negro", price:null, imgs:["c-bape-negro-1.webp", "c-bape-negro-2.webp"]},
-  {id:"n18", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Azul", price:null, imgs:["c-bape-azul-1.webp"]},
-  {id:"n19", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Rosado", price:null, imgs:["c-bape-rosado-1.webp", "c-bape-rosado-2.webp"]},
-  {id:"n20", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Morado", price:null, imgs:["c-bape-morado-1.webp", "c-bape-morado-2.webp", "c-bape-morado-3.webp", "c-bape-morado-4.webp"]},
-  {id:"n21", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Verde", price:null, imgs:["c-bape-verde-1.webp"]},
-  {id:"n22", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Sanrio · Rosado", price:null, imgs:["c-sanrio-rosado-1.webp", "c-sanrio-rosado-2.webp"]},
-  {id:"n23", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Negro", price:null, imgs:["c-crocband-negro-1.webp", "c-crocband-negro-2.webp", "c-crocband-negro-3.webp"]},
-  {id:"n24", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Blanco", price:null, imgs:["c-crocband-blanco-1.webp", "c-crocband-blanco-2.webp", "c-crocband-blanco-3.webp"]}
+  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["w-spiderman-black-1.webp"]},
+  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["w-spiderman-red-3.webp", "w-spiderman-red-4.webp", "w-spiderman-red-2.webp", "w-spiderman-red-1.webp"]},
+  {id:"ks3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Marvel", price:null, imgs:["w-spiderman-marvel-1.webp", "w-spiderman-marvel-2.webp", "w-spiderman-marvel-3.webp", "w-spiderman-marvel-4.webp", "w-spiderman-marvel-5.webp"]},
+  {id:"k1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen", price:239.9, old:280, info:CROCS_GIFT, imgs:["w-rayo-mcqueen-1.webp", "w-rayo-mcqueen-2.webp", "w-rayo-mcqueen-3.webp", "w-rayo-mcqueen-4.webp", "w-rayo-mcqueen-5.webp"]},
+  {id:"k2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set", price:299, old:339, info:CROCS_GIFT, badge:"Con alerones y luces", imgs:["w-rayo-full-set-1.webp", "w-rayo-full-set-2.webp", "w-rayo-full-set-3.webp", "w-rayo-full-set-4.webp", "w-rayo-full-set-5.webp"]},
+  {id:"k4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids", price:199.9, old:240, info:CROCS_GIFT, imgs:["w-rayo-mcqueen-1.webp", "w-rayo-mcqueen-2.webp", "w-rayo-mcqueen-3.webp", "w-rayo-mcqueen-4.webp", "w-rayo-mcqueen-5.webp"]},
+  {id:"k3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate", price:240, old:279, info:CROCS_GIFT, imgs:["w-tow-mate-1.webp", "w-tow-mate-2.webp", "w-tow-mate-3.webp"]},
+  {id:"k5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty", price:269, old:320, info:CROCS_GIFT, imgs:["w-hello-kitty-1.webp", "w-hello-kitty-2.webp"]},
+  {id:"k6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco", price:240, old:290, info:CROCS_GIFT, imgs:["w-hello-kitty-blanco-1.webp", "w-hello-kitty-blanco-2.webp", "w-hello-kitty-blanco-3.webp", "w-hello-kitty-blanco-4.webp"]},
+  {id:"k7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons · Krusty", price:279, old:340, info:CROCS_GIFT, imgs:["w-krusty-4.webp", "w-krusty-2.webp"]},
+  {id:"k8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Chucky", price:269, old:320, info:CROCS_GIFT, imgs:["w-chucky-1.webp", "w-chucky-2.webp", "w-chucky-3.webp", "w-chucky-4.webp"]},
+  {id:"k9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Súper Girls · Bombón", price:249, old:280, info:CROCS_GIFT, imgs:["w-bombon-1.webp", "w-bombon-2.webp", "w-bombon-3.webp"]},
+  {id:"k10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Lotso", price:255, old:289, info:CROCS_GIFT, imgs:["w-lotso-1.webp", "w-lotso-2.webp", "w-lotso-3.webp"]},
+  {id:"k11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Barbie", price:259, old:320, info:CROCS_GIFT, imgs:["w-barbie-1.webp", "w-barbie-2.webp", "w-barbie-3.webp", "w-barbie-4.webp"]},
+  {id:"k12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Demon Slayer · Inosuke", price:269, old:340, info:CROCS_GIFT, imgs:["w-inosuke-1.webp", "w-inosuke-2.webp", "w-inosuke-3.webp", "w-inosuke-4.webp", "w-inosuke-5.webp"]},
+  {id:"n1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Stranger Things", price:null, imgs:["w-stranger-things-1.webp", "w-stranger-things-2.webp", "w-stranger-things-3.webp", "w-stranger-things-4.webp", "w-stranger-things-5.webp"]},
+  {id:"n2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Darth Vader", price:null, imgs:["w-darth-vader-1.webp", "w-darth-vader-2.webp", "w-darth-vader-3.webp"]},
+  {id:"n3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Grogu", price:null, imgs:["w-grogu-1.webp", "w-grogu-2.webp"]},
+  {id:"n4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Batman", price:null, imgs:["w-batman-1.webp", "w-batman-2.webp", "w-batman-3.webp", "w-batman-4.webp"]},
+  {id:"n5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Toy Story · Buzz Lightyear", price:null, imgs:["w-buzz-1.webp", "w-buzz-2.webp", "w-buzz-3.webp"]},
+  {id:"n6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Monsters Inc · Mike Wazowski", price:null, imgs:["w-mike-wazowski-1.webp", "w-mike-wazowski-2.webp"]},
+  {id:"n7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons", price:null, imgs:["w-simpsons-1.webp", "w-simpsons-2.webp", "w-simpsons-3.webp"]},
+  {id:"n8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja", price:null, imgs:["w-bob-esponja-1.webp", "w-bob-esponja-2.webp"]},
+  {id:"n9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja · Patricio", price:null, imgs:["w-patricio-1.webp", "w-patricio-2.webp"]},
+  {id:"n10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Goku", price:null, imgs:["w-goku-1.webp", "w-goku-2.webp"]},
+  {id:"n11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Cell", price:null, imgs:["w-cell-3.webp"]},
+  {id:"n12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x One Piece · Luffy", price:null, imgs:["w-luffy-1.webp", "w-luffy-2.webp"]},
+  {id:"n13", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Kakashi", price:null, imgs:["w-kakashi-1.webp", "w-kakashi-2.webp"]},
+  {id:"n14", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Akatsuki", price:null, imgs:["w-akatsuki-1.webp", "w-akatsuki-2.webp"]},
+  {id:"n15", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Pikachu", price:null, imgs:["w-pikachu-1.webp", "w-pikachu-2.webp", "w-pikachu-3.webp"]},
+  {id:"n16", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Charizard y Blastoise", price:null, imgs:["w-pokemon-1.webp"]},
+  {id:"n17", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Negro", price:null, imgs:["w-bape-negro-1.webp", "w-bape-negro-2.webp"]},
+  {id:"n18", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Azul", price:null, imgs:["w-bape-azul-1.webp"]},
+  {id:"n19", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Rosado", price:null, imgs:["w-bape-rosado-1.webp", "w-bape-rosado-2.webp"]},
+  {id:"n20", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Morado", price:null, imgs:["w-bape-morado-1.webp", "w-bape-morado-2.webp", "w-bape-morado-3.webp", "w-bape-morado-4.webp"]},
+  {id:"n21", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Verde", price:null, imgs:["w-bape-verde-1.webp"]},
+  {id:"n22", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Sanrio · Rosado", price:null, imgs:["w-sanrio-rosado-1.webp", "w-sanrio-rosado-2.webp"]},
+  {id:"n23", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Negro", price:null, imgs:["w-crocband-negro-1.webp", "w-crocband-negro-2.webp", "w-crocband-negro-3.webp"]},
+  {id:"n24", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Blanco", price:null, imgs:["w-crocband-blanco-1.webp", "w-crocband-blanco-2.webp", "w-crocband-blanco-3.webp"]}
 ];
 
 /* Carrusel 3D: solo Crocs, primero las Spider-Man black y red */
@@ -557,18 +590,14 @@ const N = feat.length, STEP = 360/N;
 let cur = 0, timer = null, paused = false;
 ring.innerHTML = feat.map((p,i)=>`
   <article class="slide" data-i="${i}" aria-label="${esc(p.name)}">
-    ${photo(p)}
-    <div class="info">
-      <span class="label">${catName(p.cat)}</span>
-      <h3>${esc(p.name)}</h3>
-      <div class="row"><span class="price">${priceHTML(p)}</span>
-      <button class="add" data-view="${p.id}">Ver</button></div>
-    </div>
+    <div class="spin"><img src="cut-${p.id}.webp" alt="${esc(p.name)}" draggable="false"></div>
+    <div class="shadow"></div>
   </article>`).join("");
+const capEl=$("#featCap");
 dotsEl.innerHTML = feat.map((p,i)=>`<button aria-label="Ir a ${esc(p.name)}" data-d="${i}"></button>`).join("");
 
 function layout(){
-  const w = innerWidth < 600 ? 190 : 250;
+  const w = innerWidth < 600 ? 250 : 360;
   ring.style.setProperty("--cw", w+"px");
   const radius = Math.round((w/2) / Math.tan(Math.PI/N)) + (innerWidth<600 ? 20 : 60);
   ring.dataset.r = radius;
@@ -636,10 +665,12 @@ function spin(){
   ring.style.transform = `translateZ(${-ring.dataset.r}px) rotateY(${-cur*STEP}deg)`;
   const idx = ((cur % N) + N) % N;
   [...ring.children].forEach((s,i)=> s.classList.toggle("on", i===idx));
+  if (typeof capEl!=="undefined" && capEl){ const p=feat[idx]; capEl.innerHTML=`<span class="label">${catName(p.cat)}</span><h3>${esc(p.name)}</h3><div class="cap-row"><span class="price">${priceHTML(p)}</span><button class="add" data-view="${p.id}">Ver producto</button></div><p class="tip">Toca la Croc para girarla 360°</p>`; }
   [...dotsEl.children].forEach((d,i)=>{ d.classList.remove("on"); if(i===idx){ void d.offsetWidth; d.classList.add("on"); } });
 }
 function go(n){ cur = n; spin(); restart(); }
 function restart(){ clearInterval(timer); timer = setInterval(()=>{ if(!paused){ cur++; spin(); } }, 5000); }
+$("#featCap").addEventListener("click",e=>{ const v=e.target.closest("[data-view]"); if(v) openQuick(v.dataset.view); });
 $("#prev").onclick = ()=> go(cur-1);
 $("#next").onclick = ()=> go(cur+1);
 dotsEl.onclick = e => { const d = e.target.closest("[data-d]"); if(!d) return; const target = +d.dataset.d, idx=((cur%N)+N)%N; let diff = target-idx; if(diff>N/2)diff-=N; if(diff<-N/2)diff+=N; go(cur+diff); };
@@ -653,7 +684,9 @@ ring.addEventListener("click",e=>{
   const v = e.target.closest("[data-view]");
   if (v){ openQuick(v.dataset.view); return; }
   const s = e.target.closest(".slide"); if(!s) return;
-  const target = +s.dataset.i, idx=((cur%N)+N)%N; let diff=target-idx; if(diff>N/2)diff-=N; if(diff<-N/2)diff+=N; if(diff) go(cur+diff);
+  const target = +s.dataset.i, idx=((cur%N)+N)%N; let diff=target-idx; if(diff>N/2)diff-=N; if(diff<-N/2)diff+=N;
+  if(diff){ go(cur+diff); return; }
+  const sp=s.querySelector(".spin"); sp.classList.remove("go"); void sp.offsetWidth; sp.classList.add("go"); restart();
 });
 addEventListener("resize", layout);
 layout(); restart();
