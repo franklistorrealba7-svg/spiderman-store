@@ -463,7 +463,8 @@ drawCart();
 
 
 
-/* Texto de portada "cuadradito": elige el tamaño de letra con los espacios más parejos */
+/* Texto de portada "cuadradito": todas las líneas justificadas, también la última.
+   Elige el tamaño de letra con el que los espacios entre palabras quedan más parejos. */
 (function(){
   const el = document.querySelector(".hero p.lede");
   if (!el) return;
@@ -474,23 +475,37 @@ drawCart();
       while ((m = re.exec(n.data))) { rng.setStart(n,m.index); rng.setEnd(n,m.index+m[0].length);
         const r = rng.getClientRects()[0]; if (!r) continue; const k=Math.round(r.top/4);
         (lines[k] = lines[k] || []).push([r.left, r.right]); } }
-    const ls = Object.keys(lines).sort((a,b)=>a-b).map(k=>lines[k]); let mx = 0;
-    ls.slice(0,-1).forEach(l=>{ for (let i=1;i<l.length;i++) mx = Math.max(mx, l[i][0]-l[i-1][1]); });
+    const box = el.getBoundingClientRect(); let mx = 0;
+    Object.values(lines).forEach(l=>{
+      const right = Math.max(...l.map(w=>w[1])), left = Math.min(...l.map(w=>w[0]));
+      if (l.length < 3 || right < box.right - 3 || left > box.left + 3) mx = Infinity;
+      for (let i=1;i<l.length;i++) mx = Math.max(mx, l[i][0]-l[i-1][1]);
+    });
     return mx;
   }
   function fit(){
-    el.style.fontSize = "";
-    if (innerWidth > 600) return;
+    el.style.fontSize = ""; el.style.maxWidth = ""; el.style.letterSpacing = ""; el.style.textAlignLast = "justify";
     const base = parseFloat(getComputedStyle(el).fontSize);
-    let best = base, bestGap = maxGap();
-    for (let f = base; f >= base*0.76 && bestGap > 8; f -= 0.25) {
-      el.style.fontSize = f + "px"; const g = maxGap();
-      if (g < bestGap - 0.5) { bestGap = g; best = f; }
-      if (g <= 8) { best = f; break; }
+    const W = el.getBoundingClientRect().width;
+    const sizes = innerWidth > 600 ? [1, .97, .94] : [1, .97, .94, .91, .88, .85, .82];
+    const spacings = [0, .2, -.15, .4];
+    let best = null;
+    outer: for (const k of sizes) for (const ls of spacings) {
+      el.style.fontSize = (base*k) + "px"; el.style.letterSpacing = ls + "px";
+      for (let w = W; w >= W*0.7; w -= 2) {
+        el.style.maxWidth = w + "px"; const g = maxGap();
+        if (g < (best ? best.g : Infinity) - 0.3) best = {g, f: base*k, w, ls};
+        if (g <= 7) break outer;
+      }
     }
-    el.style.fontSize = best + "px";
+    if (best && best.g < 14) {
+      el.style.fontSize = best.f.toFixed(2) + "px"; el.style.maxWidth = best.w + "px"; el.style.letterSpacing = best.ls + "px";
+    } else {
+      el.style.fontSize = ""; el.style.maxWidth = ""; el.style.letterSpacing = ""; el.style.textAlignLast = "center";
+    }
   }
-  let t; const run = () => { clearTimeout(t); t = setTimeout(fit, 120); };
+  let t, lastW = innerWidth; const run = () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(t); t = setTimeout(fit, 150); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+  addEventListener("load", fit); setTimeout(fit, 900);
   addEventListener("resize", run);
 })();
