@@ -18,54 +18,54 @@ const MASK_INFO  = "Ojos movibles, tela lycra spandex, faceshell incluido";
 /* price: null → se muestra "Consultar precio" */
 const PRODUCTS = [
   /* ---------- MÁSCARAS ---------- */
-  {id:"m1", cat:"mascaras", name:"Máscara Tobey Maguire · Black Spider", price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-black-1.webp","tobey-black-2.webp"]},
-  {id:"m2", cat:"mascaras", name:"Máscara Tobey Maguire · Red Spider",   price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-red-1.webp","tobey-red-2.webp"]},
-  {id:"m3", cat:"mascaras", name:"Máscara Red Spider · Lentes dorados",  price:289, info:"Incluye caja y faceshell", imgs:["red-gold-1.webp","red-gold-2.webp","red-gold-3.webp"]},
-  {id:"m4", cat:"mascaras", name:"Máscara Black Stealth",                price:315.90, info:"Incluye caja", imgs:["black-stealth-1.webp","black-stealth-2.webp","black-stealth-3.webp"]},
-  {id:"m5", cat:"mascaras", name:"Máscara Red Hero",                     price:99.90, info:"Incluye caja", imgs:["red-hero-1.webp","red-hero-2.webp","red-hero-3.webp"]},
+  {id:"m1", cat:"mascaras", name:"Máscara Tobey Maguire · Black Spider", price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-black-1.webp?v=3","tobey-black-2.webp?v=3"]},
+  {id:"m2", cat:"mascaras", name:"Máscara Tobey Maguire · Red Spider",   price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-red-1.webp?v=3","tobey-red-2.webp?v=3"]},
+  {id:"m3", cat:"mascaras", name:"Máscara Red Spider · Lentes dorados",  price:289, info:"Incluye caja y faceshell", imgs:["red-gold-1.webp?v=3","red-gold-2.webp?v=3","red-gold-3.webp?v=3"]},
+  {id:"m4", cat:"mascaras", name:"Máscara Black Stealth",                price:315.90, info:"Incluye caja", imgs:["black-stealth-1.webp?v=3","black-stealth-2.webp?v=3","black-stealth-3.webp?v=3"]},
+  {id:"m5", cat:"mascaras", name:"Máscara Red Hero",                     price:99.90, info:"Incluye caja", imgs:["red-hero-1.webp?v=3","red-hero-2.webp?v=3","red-hero-3.webp?v=3"]},
   {id:"m6", cat:"mascaras", name:"Lanza Telarañas Electrónico",          price:99.90, old:139, info:"Puntas imantadas. Caja, manual, cable de carga, desarmador y guante", imgs:[]},
   /* ---------- CARROS ---------- */
-  {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp","cars-set-2.webp","cars-set-3.webp","cars-set-4.webp"]},
+  {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp?v=3","cars-set-2.webp?v=3","cars-set-3.webp?v=3","cars-set-4.webp?v=3"]},
   /* ---------- CROCS ---------- */
-  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-black-1.webp", "o-spiderman-black-2.webp"]},
-  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-red-1.webp", "o-spiderman-red-2.webp", "o-spiderman-red-3.webp", "o-spiderman-red-4.webp"]},
-  {id:"ks3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Marvel", price:null, imgs:["o-spiderman-marvel-1.webp", "o-spiderman-marvel-2.webp", "o-spiderman-marvel-3.webp", "o-spiderman-marvel-4.webp", "o-spiderman-marvel-5.webp"]},
-  {id:"k1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen", price:239.9, old:280, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp", "o-rayo-mcqueen-2.webp", "o-rayo-mcqueen-3.webp", "o-rayo-mcqueen-4.webp", "o-rayo-mcqueen-5.webp"]},
-  {id:"k2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set", price:299, old:339, info:CROCS_GIFT, badge:"Con alerones y luces", imgs:["o-rayo-full-set-1.webp", "o-rayo-full-set-2.webp", "o-rayo-full-set-3.webp", "o-rayo-full-set-4.webp", "o-rayo-full-set-5.webp"]},
-  {id:"k4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids", price:199.9, old:240, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp", "o-rayo-mcqueen-2.webp", "o-rayo-mcqueen-3.webp", "o-rayo-mcqueen-4.webp", "o-rayo-mcqueen-5.webp"]},
-  {id:"k3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate", price:240, old:279, info:CROCS_GIFT, imgs:["o-tow-mate-1.webp", "o-tow-mate-2.webp", "o-tow-mate-3.webp"]},
-  {id:"k5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty", price:269, old:320, info:CROCS_GIFT, imgs:["o-hello-kitty-1.webp", "o-hello-kitty-2.webp"]},
-  {id:"k6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco", price:240, old:290, info:CROCS_GIFT, imgs:["o-hello-kitty-blanco-1.webp", "o-hello-kitty-blanco-2.webp", "o-hello-kitty-blanco-3.webp", "o-hello-kitty-blanco-4.webp"]},
-  {id:"k7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons · Krusty", price:279, old:340, info:CROCS_GIFT, imgs:["o-krusty-4.webp", "o-krusty-2.webp", "o-krusty-1.webp", "o-krusty-3.webp"]},
-  {id:"k8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Chucky", price:269, old:320, info:CROCS_GIFT, imgs:["o-chucky-1.webp", "o-chucky-2.webp", "o-chucky-3.webp", "o-chucky-4.webp"]},
-  {id:"k9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Súper Girls · Bombón", price:249, old:280, info:CROCS_GIFT, imgs:["o-bombon-1.webp", "o-bombon-2.webp", "o-bombon-3.webp"]},
-  {id:"k10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Lotso", price:255, old:289, info:CROCS_GIFT, imgs:["o-lotso-1.webp", "o-lotso-2.webp", "o-lotso-3.webp"]},
-  {id:"k11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Barbie", price:259, old:320, info:CROCS_GIFT, imgs:["o-barbie-1.webp", "o-barbie-2.webp", "o-barbie-3.webp", "o-barbie-4.webp"]},
-  {id:"k12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Demon Slayer · Inosuke", price:269, old:340, info:CROCS_GIFT, imgs:["o-inosuke-1.webp", "o-inosuke-2.webp", "o-inosuke-3.webp", "o-inosuke-4.webp", "o-inosuke-5.webp"]},
-  {id:"n1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Stranger Things", price:null, imgs:["o-stranger-things-1.webp", "o-stranger-things-2.webp", "o-stranger-things-3.webp", "o-stranger-things-4.webp", "o-stranger-things-5.webp"]},
-  {id:"n2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Darth Vader", price:null, imgs:["o-darth-vader-1.webp", "o-darth-vader-2.webp", "o-darth-vader-3.webp"]},
-  {id:"n3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Grogu", price:null, imgs:["o-grogu-1.webp", "o-grogu-2.webp"]},
-  {id:"n4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Batman", price:null, imgs:["o-batman-1.webp", "o-batman-2.webp", "o-batman-3.webp", "o-batman-4.webp"]},
-  {id:"n5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Toy Story · Buzz Lightyear", price:null, imgs:["o-buzz-1.webp", "o-buzz-2.webp", "o-buzz-3.webp"]},
-  {id:"n6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Monsters Inc · Mike Wazowski", price:null, imgs:["o-mike-wazowski-1.webp", "o-mike-wazowski-2.webp"]},
-  {id:"n7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons", price:null, imgs:["o-simpsons-1.webp", "o-simpsons-2.webp", "o-simpsons-3.webp"]},
-  {id:"n8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja", price:null, imgs:["o-bob-esponja-1.webp", "o-bob-esponja-2.webp"]},
-  {id:"n9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja · Patricio", price:null, imgs:["o-patricio-1.webp", "o-patricio-2.webp"]},
-  {id:"n10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Goku", price:null, imgs:["o-goku-1.webp", "o-goku-2.webp"]},
-  {id:"n11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Cell", price:null, imgs:["o-cell-3.webp", "o-cell-2.webp", "o-cell-1.webp"]},
-  {id:"n12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x One Piece · Luffy", price:null, imgs:["o-luffy-1.webp", "o-luffy-2.webp"]},
-  {id:"n13", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Kakashi", price:null, imgs:["o-kakashi-1.webp", "o-kakashi-2.webp"]},
-  {id:"n14", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Akatsuki", price:null, imgs:["o-akatsuki-1.webp", "o-akatsuki-2.webp"]},
-  {id:"n15", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Pikachu", price:null, imgs:["o-pikachu-1.webp", "o-pikachu-2.webp", "o-pikachu-3.webp"]},
-  {id:"n16", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Charizard y Blastoise", price:null, imgs:["o-pokemon-1.webp"]},
-  {id:"n17", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Negro", price:null, imgs:["o-bape-negro-1.webp", "o-bape-negro-2.webp"]},
-  {id:"n18", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Azul", price:null, imgs:["o-bape-azul-1.webp"]},
-  {id:"n19", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Rosado", price:null, imgs:["o-bape-rosado-1.webp", "o-bape-rosado-2.webp"]},
-  {id:"n20", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Morado", price:null, imgs:["o-bape-morado-1.webp", "o-bape-morado-2.webp", "o-bape-morado-3.webp", "o-bape-morado-4.webp"]},
-  {id:"n21", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Verde", price:null, imgs:["o-bape-verde-1.webp"]},
-  {id:"n22", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Sanrio · Rosado", price:null, imgs:["o-sanrio-rosado-1.webp", "o-sanrio-rosado-2.webp"]},
-  {id:"n23", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Negro", price:null, imgs:["o-crocband-negro-1.webp", "o-crocband-negro-2.webp", "o-crocband-negro-3.webp"]},
-  {id:"n24", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Blanco", price:null, imgs:["o-crocband-blanco-1.webp", "o-crocband-blanco-2.webp", "o-crocband-blanco-3.webp"]}
+  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-black-1.webp?v=3", "o-spiderman-black-2.webp?v=3"]},
+  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-red-1.webp?v=3", "o-spiderman-red-2.webp?v=3", "o-spiderman-red-3.webp?v=3", "o-spiderman-red-4.webp?v=3"]},
+  {id:"ks3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Marvel", price:null, imgs:["o-spiderman-marvel-1.webp?v=3", "o-spiderman-marvel-2.webp?v=3", "o-spiderman-marvel-3.webp?v=3", "o-spiderman-marvel-4.webp?v=3", "o-spiderman-marvel-5.webp?v=3"]},
+  {id:"k1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen", price:239.9, old:280, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp?v=3", "o-rayo-mcqueen-2.webp?v=3", "o-rayo-mcqueen-3.webp?v=3", "o-rayo-mcqueen-4.webp?v=3", "o-rayo-mcqueen-5.webp?v=3"]},
+  {id:"k2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set", price:299, old:339, info:CROCS_GIFT, badge:"Con alerones y luces", imgs:["o-rayo-full-set-1.webp?v=3", "o-rayo-full-set-2.webp?v=3", "o-rayo-full-set-3.webp?v=3", "o-rayo-full-set-4.webp?v=3", "o-rayo-full-set-5.webp?v=3"]},
+  {id:"k4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids", price:199.9, old:240, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp?v=3", "o-rayo-mcqueen-2.webp?v=3", "o-rayo-mcqueen-3.webp?v=3", "o-rayo-mcqueen-4.webp?v=3", "o-rayo-mcqueen-5.webp?v=3"]},
+  {id:"k3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate", price:240, old:279, info:CROCS_GIFT, imgs:["o-tow-mate-1.webp?v=3", "o-tow-mate-2.webp?v=3", "o-tow-mate-3.webp?v=3"]},
+  {id:"k5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty", price:269, old:320, info:CROCS_GIFT, imgs:["o-hello-kitty-1.webp?v=3", "o-hello-kitty-2.webp?v=3"]},
+  {id:"k6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco", price:240, old:290, info:CROCS_GIFT, imgs:["o-hello-kitty-blanco-1.webp?v=3", "o-hello-kitty-blanco-2.webp?v=3", "o-hello-kitty-blanco-3.webp?v=3", "o-hello-kitty-blanco-4.webp?v=3"]},
+  {id:"k7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons · Krusty", price:279, old:340, info:CROCS_GIFT, imgs:["o-krusty-4.webp?v=3", "o-krusty-2.webp?v=3", "o-krusty-1.webp?v=3", "o-krusty-3.webp?v=3"]},
+  {id:"k8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Chucky", price:269, old:320, info:CROCS_GIFT, imgs:["o-chucky-1.webp?v=3", "o-chucky-2.webp?v=3", "o-chucky-3.webp?v=3", "o-chucky-4.webp?v=3"]},
+  {id:"k9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Súper Girls · Bombón", price:249, old:280, info:CROCS_GIFT, imgs:["o-bombon-1.webp?v=3", "o-bombon-2.webp?v=3", "o-bombon-3.webp?v=3"]},
+  {id:"k10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Lotso", price:255, old:289, info:CROCS_GIFT, imgs:["o-lotso-1.webp?v=3", "o-lotso-2.webp?v=3", "o-lotso-3.webp?v=3"]},
+  {id:"k11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Barbie", price:259, old:320, info:CROCS_GIFT, imgs:["o-barbie-1.webp?v=3", "o-barbie-2.webp?v=3", "o-barbie-3.webp?v=3", "o-barbie-4.webp?v=3"]},
+  {id:"k12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Demon Slayer · Inosuke", price:269, old:340, info:CROCS_GIFT, imgs:["o-inosuke-1.webp?v=3", "o-inosuke-2.webp?v=3", "o-inosuke-3.webp?v=3", "o-inosuke-4.webp?v=3", "o-inosuke-5.webp?v=3"]},
+  {id:"n1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Stranger Things", price:null, imgs:["o-stranger-things-1.webp?v=3", "o-stranger-things-2.webp?v=3", "o-stranger-things-3.webp?v=3", "o-stranger-things-4.webp?v=3", "o-stranger-things-5.webp?v=3"]},
+  {id:"n2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Darth Vader", price:null, imgs:["o-darth-vader-1.webp?v=3", "o-darth-vader-2.webp?v=3", "o-darth-vader-3.webp?v=3"]},
+  {id:"n3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Star Wars · Grogu", price:null, imgs:["o-grogu-1.webp?v=3", "o-grogu-2.webp?v=3"]},
+  {id:"n4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Batman", price:null, imgs:["o-batman-1.webp?v=3", "o-batman-2.webp?v=3", "o-batman-3.webp?v=3", "o-batman-4.webp?v=3"]},
+  {id:"n5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Toy Story · Buzz Lightyear", price:null, imgs:["o-buzz-1.webp?v=3", "o-buzz-2.webp?v=3", "o-buzz-3.webp?v=3"]},
+  {id:"n6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Monsters Inc · Mike Wazowski", price:null, imgs:["o-mike-wazowski-1.webp?v=3", "o-mike-wazowski-2.webp?v=3"]},
+  {id:"n7", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Los Simpsons", price:null, imgs:["o-simpsons-1.webp?v=3", "o-simpsons-2.webp?v=3", "o-simpsons-3.webp?v=3"]},
+  {id:"n8", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja", price:null, imgs:["o-bob-esponja-1.webp?v=3", "o-bob-esponja-2.webp?v=3"]},
+  {id:"n9", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Bob Esponja · Patricio", price:null, imgs:["o-patricio-1.webp?v=3", "o-patricio-2.webp?v=3"]},
+  {id:"n10", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Goku", price:null, imgs:["o-goku-1.webp?v=3", "o-goku-2.webp?v=3"]},
+  {id:"n11", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Dragon Ball · Cell", price:null, imgs:["o-cell-3.webp?v=3", "o-cell-2.webp?v=3", "o-cell-1.webp?v=3"]},
+  {id:"n12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x One Piece · Luffy", price:null, imgs:["o-luffy-1.webp?v=3", "o-luffy-2.webp?v=3"]},
+  {id:"n13", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Kakashi", price:null, imgs:["o-kakashi-1.webp?v=3", "o-kakashi-2.webp?v=3"]},
+  {id:"n14", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Akatsuki", price:null, imgs:["o-akatsuki-1.webp?v=3", "o-akatsuki-2.webp?v=3"]},
+  {id:"n15", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Pikachu", price:null, imgs:["o-pikachu-1.webp?v=3", "o-pikachu-2.webp?v=3", "o-pikachu-3.webp?v=3"]},
+  {id:"n16", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Charizard y Blastoise", price:null, imgs:["o-pokemon-1.webp?v=3"]},
+  {id:"n17", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Negro", price:null, imgs:["o-bape-negro-1.webp?v=3", "o-bape-negro-2.webp?v=3"]},
+  {id:"n18", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Azul", price:null, imgs:["o-bape-azul-1.webp?v=3"]},
+  {id:"n19", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Rosado", price:null, imgs:["o-bape-rosado-1.webp?v=3", "o-bape-rosado-2.webp?v=3"]},
+  {id:"n20", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Morado", price:null, imgs:["o-bape-morado-1.webp?v=3", "o-bape-morado-2.webp?v=3", "o-bape-morado-3.webp?v=3", "o-bape-morado-4.webp?v=3"]},
+  {id:"n21", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Camo Verde", price:null, imgs:["o-bape-verde-1.webp?v=3"]},
+  {id:"n22", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Sanrio · Rosado", price:null, imgs:["o-sanrio-rosado-1.webp?v=3", "o-sanrio-rosado-2.webp?v=3"]},
+  {id:"n23", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Negro", price:null, imgs:["o-crocband-negro-1.webp?v=3", "o-crocband-negro-2.webp?v=3", "o-crocband-negro-3.webp?v=3"]},
+  {id:"n24", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Crocband · Blanco", price:null, imgs:["o-crocband-blanco-1.webp?v=3", "o-crocband-blanco-2.webp?v=3", "o-crocband-blanco-3.webp?v=3"]}
 ];
 
 /* Carrusel 3D: solo Crocs, primero las Spider-Man black y red */
@@ -214,7 +214,7 @@ function spin(){
 }
 function go(n){ cur = n; spin(); restart(); }
 let spinning = false;
-function restart(){ clearInterval(timer); timer = setInterval(()=>{ if(!paused && !spinning){ cur++; spin(); } }, 5000); }
+function restart(){ clearInterval(timer); timer = setInterval(()=>{ if(!paused && !spinning){ cur++; spin(); } }, 3000); }
 $("#featCap").addEventListener("click",e=>{ const v=e.target.closest("[data-view]"); if(v) openQuick(v.dataset.view); });
 $("#prev").onclick = ()=> go(cur-1);
 $("#next").onclick = ()=> go(cur+1);
@@ -349,7 +349,7 @@ $("#grid").onclick = e => {
   const sz = e.target.closest("[data-size]");
   if (sz){ picked[id] = sz.dataset.size; card.querySelectorAll("[data-size]").forEach(b=>b.classList.toggle("on", b===sz)); card.querySelector(".hint").textContent=""; return; }
   const add = e.target.closest("[data-add]");
-  if (add){ const p=byId(id); if(p.price==null){ const a=document.createElement("a"); a.href=askLink(p); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove(); return; } tryAdd(id, add, card.querySelector(".hint")); }
+  if (add){ const p=byId(id); if(p.price!=null && needsSize(p) && !picked[id]){ openQuick(id); return; } if(p.price==null){ const a=document.createElement("a"); a.href=askLink(p); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove(); return; } tryAdd(id, add, card.querySelector(".hint")); }
 };
 
 /* ---------- Quick view (galería de ángulos) ---------- */
@@ -438,3 +438,9 @@ $("#scrim").onclick = ()=>openCart(false);
 addEventListener("keydown", e=>{ if(e.key==="Escape"){ openCart(false); closeQuick(); } });
 let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("on"),2200); }
 drawCart();
+
+/* Volver arriba */
+(function(){ const b=document.createElement("button"); b.className="to-top"; b.type="button"; b.setAttribute("aria-label","Volver arriba");
+  b.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 15l6-6 6 6"/></svg>';
+  b.onclick=()=>scrollTo({top:0,behavior:RM.matches?"auto":"smooth"}); document.body.appendChild(b);
+  const t=()=>b.classList.toggle("on", scrollY>innerHeight*0.8); addEventListener("scroll",t,{passive:true}); t(); })();

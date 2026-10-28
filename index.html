@@ -117,7 +117,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .dots{display:flex;gap:8px}
 .dots button{width:26px;height:4px;border:0;border-radius:2px;background:var(--line);padding:0;position:relative;overflow:hidden}
 .dots button.on{background:var(--panel-2)}
-.dots button.on::after{content:"";position:absolute;inset:0;background:var(--red);transform-origin:left;animation:fill 5s linear forwards}
+.dots button.on::after{content:"";position:absolute;inset:0;background:var(--red);transform-origin:left;animation:fill 3s linear forwards}
 .paused .dots button.on::after{animation-play-state:paused}
 @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (max-width:600px){.stage{height:420px;perspective:1000px}.ring{height:330px}.slide .info h3{font-size:1.1rem}.slide .price s{display:none}.slide .info{padding:10px 12px 12px}}
@@ -318,6 +318,20 @@ footer button:hover{color:var(--fg)}
   .dots button.on::after{animation:none;transform:scaleX(1)}
 }
 .slide .spin img{border-radius:14px;aspect-ratio:1/1;object-fit:cover}
+.to-top{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:70;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);display:grid;place-items:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s}
+.to-top.on{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{border-color:var(--red)}
+@media (max-width:600px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .card .sizes,.card .info,.card .hint,.card .meta{display:none!important}
+  .card .body{padding:10px 10px 12px;gap:6px}
+  .card h3{font-size:.86rem;line-height:1.25}
+  .card .foot{flex-direction:column;align-items:stretch;gap:6px;padding-top:2px}
+  .card .price{font-size:1.1rem}
+  .card .add{width:100%;padding:9px 8px}
+  .badge{font-size:.6rem;padding:2px 6px}
+  .angles{display:none}
+}
 </style>
 </head>
 <body>
