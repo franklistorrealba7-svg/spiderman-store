@@ -74,7 +74,7 @@ const FEATURED = ["ks1", "ks2", "ks3", "k2", "k1", "k5", "k8", "k12", "k7", "n4"
 /* ========================================================= */
 const $ = s => document.querySelector(s);
 const fmt = n => "S/ " + n.toLocaleString("es-PE",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});
-const priceHTML = (p,short) => p.price==null ? `<span class="ask">${short?"A consultar":"Consultar precio"}</span>` : `${fmt(p.price)}${p.old?`<s>${fmt(p.old)}</s>`:""}`;
+const priceHTML = (p,short) => p.price==null ? `<span class="ask">${short?"Precio por WhatsApp":"Precio por WhatsApp"}</span>` : `${fmt(p.price)}${p.old?`<s>${fmt(p.old)}</s>`:""}`;
 const catName = c => (CATS.find(x=>x.id===c)||{}).name||"";
 const RM = matchMedia("(prefers-reduced-motion: reduce)");
 const byId = id => PRODUCTS.find(p => p.id === id);
@@ -321,7 +321,7 @@ function render(){
         ${p.info?`<p class="info">${esc(p.info)}</p>`:""}
         ${needsSize(p)?`<div class="sizes" aria-label="Talla">${p.sizes.map(s=>`<button data-size="${s}" class="${picked[p.id]===s?'on':''}">${sizeChip(s)}</button>`).join("")}</div>`:""}
         <p class="hint" aria-live="polite"></p>
-        <div class="foot"><span class="price">${priceHTML(p,true)}</span><button class="add" data-add>${p.price==null?"Consultar":"Agregar"}</button></div>
+        <div class="foot"><span class="price">${priceHTML(p,true)}</span></div><button class="wa-cta" data-wa><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Pedir por WhatsApp</button>
       </div>
     </article>`).join("");
 }
@@ -336,6 +336,15 @@ function itemLines(p){ return [`Ver producto y foto: ${prodLink(p)}`, photoLink(
 function waLink(text){ return "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(text); }
 function askLink(p){ return waLink(`Hola Spiderman Store, quiero el precio de: ${p.name}\n${itemLines(p)}`); }
 function buyLink(p, size){ return waLink(`Hola Spiderman Store, quiero comprar:\n• ${p.name}${p.cat==="crocs"&&size?` (talla ${sizeText(size)})`:""} — ${p.price!=null?fmt(p.price):"precio a consultar"}\n${itemLines(p)}`); }
+function openWA(url){ const a=document.createElement("a"); a.href=url; a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove(); }
+function orderNow(id, el, hintEl){
+  const p=byId(id);
+  if (needsSize(p) && !picked[id]){
+    if (innerWidth<=600 || !hintEl || !hintEl.offsetParent){ openQuick(id); $("#qHint").textContent="Elige tu talla para pedir"; return; }
+    hintEl.textContent="Elige tu talla"; el.classList.remove("need"); void el.offsetWidth; el.classList.add("need"); return;
+  }
+  openWA(buyLink(p, picked[id]));
+}
 function tryAdd(id, el, hintEl){
   const p = byId(id);
   if (p.price==null) return true; /* el botón es un enlace a WhatsApp */
@@ -349,6 +358,8 @@ $("#grid").onclick = e => {
   if (e.target.closest("[data-quick]")){ openQuick(id); return; }
   const sz = e.target.closest("[data-size]");
   if (sz){ picked[id] = sz.dataset.size; card.querySelectorAll("[data-size]").forEach(b=>b.classList.toggle("on", b===sz)); card.querySelector(".hint").textContent=""; return; }
+  const wa = e.target.closest("[data-wa]");
+  if (wa){ orderNow(id, wa, card.querySelector(".hint")); return; }
   const add = e.target.closest("[data-add]");
   if (add){ const p=byId(id); if(p.price!=null && needsSize(p) && !picked[id]){ openQuick(id); return; } if(p.price==null){ const a=document.createElement("a"); a.href=askLink(p); a.target="_blank"; a.rel="noopener"; document.body.appendChild(a); a.click(); a.remove(); return; } tryAdd(id, add, card.querySelector(".hint")); }
 };
@@ -361,8 +372,8 @@ function openQuick(id){
   $("#qPrice").innerHTML=priceHTML(p); $("#qInfo").textContent=p.info||"";
   $("#qSizes").innerHTML = needsSize(p)? p.sizes.map(s=>`<button data-size="${s}" class="${picked[id]===s?'on':''}">${sizeChip(s)}</button>`).join("") : "";
   $("#qSizes").hidden = !needsSize(p);
-  $("#qAdd").hidden = p.price==null; $("#qAsk").hidden = p.price!=null; $("#qAsk").href = askLink(p);
-  $("#qBuy").hidden = p.price==null; $("#qBuy").href = buyLink(p, picked[id]);
+  $("#qAdd").hidden = p.price==null; $("#qAsk").hidden = true;
+  $("#qBuy").hidden = false;
   try{ if(location.hash!=="#p-"+id) history.pushState({q:id},"","#p-"+id); }catch(e){}
   $("#qHint").textContent="";
   $("#qThumbs").innerHTML = p.imgs.length>1 ? p.imgs.map((src,i)=>`<button data-qi="${i}" aria-label="Ángulo ${i+1}"><img src="${esc(src)}" alt=""></button>`).join("") : "";
@@ -392,7 +403,8 @@ $("#quick").addEventListener("keydown",e=>{
 $("#qPrev").onclick=()=>{ const n=byId(qId).imgs.length; qIdx=(qIdx-1+n)%n; showQ(); };
 $("#qNext").onclick=()=>{ const n=byId(qId).imgs.length; qIdx=(qIdx+1)%n; showQ(); };
 $("#qThumbs").onclick=e=>{ const b=e.target.closest("[data-qi]"); if(b){ qIdx=+b.dataset.qi; showQ(); } };
-$("#qSizes").onclick=e=>{ const b=e.target.closest("[data-size]"); if(!b) return; picked[qId]=b.dataset.size; [...$("#qSizes").children].forEach(x=>x.classList.toggle("on",x===b)); $("#qHint").textContent=""; $("#qBuy").href=buyLink(byId(qId),picked[qId]); render(); };
+$("#qSizes").onclick=e=>{ const b=e.target.closest("[data-size]"); if(!b) return; picked[qId]=b.dataset.size; [...$("#qSizes").children].forEach(x=>x.classList.toggle("on",x===b)); $("#qHint").textContent="";  render(); };
+$("#qBuy").onclick=e=>{ e.preventDefault(); orderNow(qId, $("#qBuy"), $("#qHint")); };
 $("#qAdd").onclick=()=>{ if(tryAdd(qId, $("#qAdd"), $("#qHint"))) closeQuick(); };
 render();
 fromHash();

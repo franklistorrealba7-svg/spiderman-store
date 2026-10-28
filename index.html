@@ -355,6 +355,13 @@ a.t-link:hover .t-btn.ghost{border-color:var(--red);color:#fff}
   .bar .cart-btn{grid-column:3;grid-row:1;justify-self:end;margin-left:0!important}
   .snd-btn .t{display:none}.snd-btn{padding:9px 11px}
 }
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:6px;border:0;border-radius:8px;background:#25d366;color:#04150b;padding:11px 12px;font-family:var(--f-label);text-transform:uppercase;letter-spacing:.08em;font-weight:800;font-size:.86rem;cursor:pointer;transition:transform .15s,filter .15s;box-shadow:0 6px 18px -8px rgba(37,211,102,.6)}
+.wa-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.wa-cta.big{padding:15px;font-size:1rem}
+.wa-cta.need{animation:shake .35s}
+.ghost-add{background:transparent!important;border:1px solid var(--line)!important;color:var(--fg)!important}
+.card .ask{font-size:.8rem;color:var(--mute)}
+@media (max-width:600px){.wa-cta{font-size:.72rem;padding:10px 6px;gap:6px;letter-spacing:.04em}.wa-cta svg{width:15px;height:15px}}
 </style>
 </head>
 <body>
@@ -499,9 +506,9 @@ a.t-link:hover .t-btn.ghost{border-color:var(--red);color:#fff}
       <p id="qInfo"></p>
       <div class="sizes" id="qSizes"></div>
       <p class="hint" id="qHint" aria-live="polite"></p>
-      <button class="add big" id="qAdd">Agregar al carrito</button>
-      <a class="wa" id="qAsk" href="#" target="_blank" rel="noopener" hidden>Consultar precio por WhatsApp</a>
-      <a class="wa ghost" id="qBuy" href="#" target="_blank" rel="noopener">Comprar directo por WhatsApp</a>
+      <button class="wa-cta big" id="qBuy" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Pedir por WhatsApp</button>
+      <button class="add big ghost-add" id="qAdd">Agregar al carrito</button>
+      <a class="wa" id="qAsk" href="#" hidden>Consultar</a>
       <ul class="q-ship"><li>Incluye caja</li><li>Envío el mismo día o al día siguiente</li><li>Lima: motorizado · Provincias: Olva o Shalom</li></ul>
     </div>
   </div>
