@@ -251,7 +251,7 @@ function startSmoke(slide){
   const st = smoke.getBoundingClientRect(), im = slide.querySelector("img").getBoundingClientRect();
   emitBox = { x: im.left - st.left + im.width*.5, y: im.top - st.top + im.height*.8, w: im.width*.62 };
   sizeSmoke();
-  smokeEnd = performance.now() + 1500; // emite mientras gira
+  smokeEnd = performance.now() + 1700; // emite mientras gira
   if (!smokeRaf){ smokeLast = performance.now(); smokeRaf = requestAnimationFrame(smokeFrame); }
 }
 function smokeFrame(now){
@@ -283,12 +283,12 @@ function tapSpin(s){
   if (spinning) return;
   const cls = RM.matches ? "fade" : "go";
   spinning = true; document.querySelector(".hero").classList.add("paused");
-  sp.classList.remove("go","fade"); void sp.offsetWidth; sp.classList.add(cls);
+  sp.classList.remove("go","fade"); void sp.offsetWidth; sp.classList.add(cls); if (cls==="go"){ s.classList.add("zooming"); ring.classList.add("zoom"); }
   startSmoke(s);
   sp.addEventListener("animationend", function done(e){
     if (e.target !== sp) return;
     sp.removeEventListener("animationend", done);
-    sp.classList.remove(cls); spinning = false;
+    sp.classList.remove(cls); s.classList.remove("zooming"); ring.classList.remove("zoom"); spinning = false;
     if (!paused) document.querySelector(".hero").classList.remove("paused");
     restart();
   });

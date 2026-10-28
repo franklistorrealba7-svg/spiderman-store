@@ -182,15 +182,23 @@ button{font:inherit;color:inherit;cursor:pointer}
 .slide .spin{width:100%;transform-style:preserve-3d;animation:float 3.2s ease-in-out infinite}
 .slide .spin img{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));user-select:none;-webkit-user-drag:none}
 .slide.on .spin img{filter:drop-shadow(0 22px 30px rgba(229,18,47,.35)) drop-shadow(0 10px 16px rgba(0,0,0,.6))}
-.slide .spin.go{animation:spin360 1.8s linear}
+.slide{--zoom:1.6;--lift:140px}
+.slide.zooming{z-index:3}
+.ring.zoom .slide:not(.zooming){opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.slide .spin.go{animation:spin360 2.3s linear}
+.slide .shadow{transition:transform .4s ease,opacity .4s ease}
+.slide.zooming .shadow{animation:none;transform:scaleX(1.45);opacity:.9}
+@media (max-width:600px){.slide{--zoom:1.4;--lift:100px}}
+.slide .spin.go{transform-origin:50% 30%}
 .slide .shadow{position:absolute;left:15%;right:15%;bottom:14%;height:18px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);animation:shad 3.2s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes shad{0%,100%{transform:scaleX(1);opacity:.8}50%{transform:scaleX(.85);opacity:.5}}
 @keyframes spin360{
-  0%{transform:scale(1) rotateY(0);animation-timing-function:cubic-bezier(.3,0,.3,1)}
-  12%{transform:scale(1.25) rotateY(0);animation-timing-function:ease-in-out}
-  88%{transform:scale(1.25) rotateY(360deg);animation-timing-function:cubic-bezier(.3,0,.3,1)}
-  100%{transform:scale(1) rotateY(360deg)}}
+  0%{transform:translateZ(0) scale(1) rotateY(0);animation-timing-function:cubic-bezier(.25,.1,.25,1)}
+  12%{transform:translateZ(var(--lift)) scale(var(--zoom)) rotateY(0);animation-timing-function:ease-in-out}
+  72%{transform:translateZ(var(--lift)) scale(var(--zoom)) rotateY(360deg)}
+  88%{transform:translateZ(var(--lift)) scale(var(--zoom)) rotateY(360deg);animation-timing-function:cubic-bezier(.3,0,.3,1)}
+  100%{transform:translateZ(0) scale(1) rotateY(360deg)}}
 #smoke{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
 .slide .spin.fade{animation:tapFade .6s ease}
 @keyframes tapFade{0%,100%{opacity:1}50%{opacity:.35}}
