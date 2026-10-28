@@ -9,6 +9,7 @@ const CATS = [
   {id:"mascaras", name:"Máscaras"},
   {id:"carros",   name:"Carros"}
 ];
+const KIDS_SIZES = ["C8|25","C9|26","C10|27-28","C11|29","C12|30","C13|31","J1|32-33","J2|34","J3|35"];
 const CROCS_SIZES = ["M4/W6|36","M5/W7|37","M6/W8|38","M7/W9|39-40","M8/W10|41-42","M9/W11|43","M10/W12|44","M11/W13|45"];
 const sizeChip = s => { const [a,b]=s.split("|"); return b?`<b>${a}</b><small>EU ${b}</small>`:a; };
 const sizeText = s => { const [a,b]=s.split("|"); return b?`${a} (${b})`:a; };
@@ -32,7 +33,7 @@ const PRODUCTS = [
   {id:"ks3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Marvel", price:null, imgs:["o-spiderman-marvel-1.webp?v=3", "o-spiderman-marvel-2.webp?v=3", "o-spiderman-marvel-3.webp?v=3", "o-spiderman-marvel-4.webp?v=3", "o-spiderman-marvel-5.webp?v=3"]},
   {id:"k1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen", price:239.9, old:280, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp?v=3", "o-rayo-mcqueen-2.webp?v=3", "o-rayo-mcqueen-3.webp?v=3", "o-rayo-mcqueen-4.webp?v=3", "o-rayo-mcqueen-5.webp?v=3"]},
   {id:"k2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set", price:299, old:339, info:CROCS_GIFT, badge:"Con alerones y luces", imgs:["o-rayo-full-set-1.webp?v=3", "o-rayo-full-set-2.webp?v=3", "o-rayo-full-set-3.webp?v=3", "o-rayo-full-set-4.webp?v=3", "o-rayo-full-set-5.webp?v=3"]},
-  {id:"k4", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Rayo McQueen · Kids", price:199.9, old:240, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp?v=3", "o-rayo-mcqueen-2.webp?v=3", "o-rayo-mcqueen-3.webp?v=3", "o-rayo-mcqueen-4.webp?v=3", "o-rayo-mcqueen-5.webp?v=3"]},
+  {id:"k4", cat:"crocs", sizes:KIDS_SIZES, name:"Crocs x Rayo McQueen · Kids", price:199.9, old:240, info:CROCS_GIFT, imgs:[]},
   {id:"k3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Tow Mate", price:240, old:279, info:CROCS_GIFT, imgs:["o-tow-mate-1.webp?v=3", "o-tow-mate-2.webp?v=3", "o-tow-mate-3.webp?v=3"]},
   {id:"k5", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty", price:269, old:320, info:CROCS_GIFT, imgs:["o-hello-kitty-1.webp?v=3", "o-hello-kitty-2.webp?v=3"]},
   {id:"k6", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Hello Kitty · Blanco", price:240, old:290, info:CROCS_GIFT, imgs:["o-hello-kitty-blanco-1.webp?v=3", "o-hello-kitty-blanco-2.webp?v=3", "o-hello-kitty-blanco-3.webp?v=3", "o-hello-kitty-blanco-4.webp?v=3"]},
