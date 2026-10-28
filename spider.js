@@ -49,7 +49,7 @@
   }
 
   let last=performance.now(), visits=0, jumpClock=0, fx=null;
-  const JUMP_EVERY=10, JUMP_T=0.55, WEB_IN=0.7, WEB_HOLD=1.3, WEB_OUT=0.7;
+  const JUMP_EVERY=30, JUMP_T=0.55, WEB_IN=0.7, WEB_HOLD=1.3, WEB_OUT=0.7;
   function startJump(){
     if (sp.state==="gone"){ spawn(); }
     fx={t:0, sx:sp.x, sy:sp.y, cx:W/2, cy:H*0.45, spokes:Array.from({length:22},(_,i)=>i/22*Math.PI*2+(Math.random()-.5)*.12)};
