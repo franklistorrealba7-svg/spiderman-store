@@ -27,8 +27,8 @@ const PRODUCTS = [
   /* ---------- CARROS ---------- */
   {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp?v=3","cars-set-2.webp?v=3","cars-set-3.webp?v=3","cars-set-4.webp?v=3"]},
   /* ---------- CROCS ---------- */
-  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Black", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-black-1.webp?v=3", "o-spiderman-black-2.webp?v=3"]},
-  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Red", price:319, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-red-1.webp?v=3", "o-spiderman-red-2.webp?v=3", "o-spiderman-red-3.webp?v=3", "o-spiderman-red-4.webp?v=3"]},
+  {id:"ks1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man Neo · Black", price:289, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-black-1.webp?v=3", "o-spiderman-black-2.webp?v=3"]},
+  {id:"ks2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man Neo · Red", price:319.50, info:CROCS_GIFT, badge:"Más vendido", imgs:["o-spiderman-red-1.webp?v=3", "o-spiderman-red-2.webp?v=3", "o-spiderman-red-3.webp?v=3", "o-spiderman-red-4.webp?v=3"]},
   {id:"ks3", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Spider-Man · Marvel", price:null, imgs:["o-spiderman-marvel-1.webp?v=3", "o-spiderman-marvel-2.webp?v=3", "o-spiderman-marvel-3.webp?v=3", "o-spiderman-marvel-4.webp?v=3", "o-spiderman-marvel-5.webp?v=3"]},
   {id:"k1", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen", price:239.9, old:280, info:CROCS_GIFT, imgs:["o-rayo-mcqueen-1.webp?v=3", "o-rayo-mcqueen-2.webp?v=3", "o-rayo-mcqueen-3.webp?v=3", "o-rayo-mcqueen-4.webp?v=3", "o-rayo-mcqueen-5.webp?v=3"]},
   {id:"k2", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Cars · Rayo McQueen Full Set", price:299, old:339, info:CROCS_GIFT, badge:"Con alerones y luces", imgs:["o-rayo-full-set-1.webp?v=3", "o-rayo-full-set-2.webp?v=3", "o-rayo-full-set-3.webp?v=3", "o-rayo-full-set-4.webp?v=3", "o-rayo-full-set-5.webp?v=3"]},
