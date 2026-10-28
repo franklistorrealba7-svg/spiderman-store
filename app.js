@@ -205,11 +205,12 @@ function webShot(){
   webRaf = requestAnimationFrame(frame);
 }
 function spin(){
+  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin")); if (typeof spinning!=="undefined") spinning=false;
   if (firstSpin) firstSpin = false;
   ring.style.transform = `translateZ(${-ring.dataset.r}px) rotateY(${-cur*STEP}deg)`;
   const idx = ((cur % N) + N) % N;
   [...ring.children].forEach((s,i)=> s.classList.toggle("on", i===idx));
-  if (typeof capEl!=="undefined" && capEl){ const p=feat[idx]; capEl.innerHTML=`<span class="label">${catName(p.cat)}</span><h3>${esc(p.name)}</h3><div class="cap-row"><span class="price">${priceHTML(p)}</span><button class="add" data-view="${p.id}">Ver producto</button></div><p class="tip">Toca la Croc para verla de cerca</p>`; }
+  if (typeof capEl!=="undefined" && capEl){ const p=feat[idx]; capEl.innerHTML=`<span class="label">${catName(p.cat)}</span><h3>${esc(p.name)}</h3><div class="cap-row"><span class="price">${priceHTML(p)}</span><button class="add" data-view="${p.id}">Ver producto</button></div><p class="tip">Toca la Croc para acercar o alejar</p>`; }
   [...dotsEl.children].forEach((d,i)=>{ d.classList.remove("on"); if(i===idx){ void d.offsetWidth; d.classList.add("on"); } });
 }
 function go(n){ cur = n; spin(); restart(); }
@@ -280,17 +281,10 @@ function smokeFrame(now){
 }
 function tapSpin(s){
   const sp = s.querySelector(".spin");
-  if (spinning) return;
-  const cls = RM.matches ? "fade" : "go";
-  spinning = true; document.querySelector(".hero").classList.add("paused");
-  sp.classList.remove("go","fade"); void sp.offsetWidth; sp.classList.add(cls); if (cls==="go"){ s.classList.add("zooming"); ring.classList.add("zoom"); }
-  sp.addEventListener("animationend", function done(e){
-    if (e.target !== sp) return;
-    sp.removeEventListener("animationend", done);
-    sp.classList.remove(cls); s.classList.remove("zooming"); ring.classList.remove("zoom"); spinning = false;
-    if (!paused) document.querySelector(".hero").classList.remove("paused");
-    restart();
-  });
+  const on = !sp.classList.contains("zin");
+  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin"));
+  if (on){ sp.classList.add("zin"); spinning = true; document.querySelector(".hero").classList.add("paused"); }
+  else { spinning = false; if (!paused) document.querySelector(".hero").classList.remove("paused"); restart(); }
 }
 addEventListener("resize", layout);
 layout(); restart();
@@ -466,11 +460,4 @@ drawCart();
   au.addEventListener("pause",()=>{ b.classList.remove("on"); b.setAttribute("aria-pressed","false"); b.setAttribute("aria-label","Reproducir música"); });
 })();
 
-/* Super zoom al pasar el cursor por la Croc del carrusel */
-(function(){ if(!matchMedia("(hover:hover) and (pointer:fine)").matches) return;
-  ring.addEventListener("mousemove",e=>{ const sp=e.target.closest(".slide.on .spin"); ring.querySelectorAll(".spin.mag").forEach(x=>{ if(x!==sp) x.classList.remove("mag"); }); if(!sp) return;
-    const img=sp.querySelector("img"), r=sp.getBoundingClientRect();
-    img.style.transformOrigin=`${((e.clientX-r.left)/r.width*100).toFixed(1)}% ${((e.clientY-r.top)/r.height*100).toFixed(1)}%`;
-    sp.classList.add("mag"); });
-  ring.addEventListener("mouseleave",()=>ring.querySelectorAll(".spin.mag").forEach(x=>x.classList.remove("mag")));
-})();
+
