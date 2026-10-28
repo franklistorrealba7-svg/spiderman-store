@@ -57,14 +57,14 @@ const PRODUCTS = [
   {id:"n12", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x One Piece · Luffy", price:239, old:289, info:CROCS_GIFT, imgs:["o-luffy-1.webp?v=3", "o-luffy-2.webp?v=3"]},
   {id:"n13", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Kakashi", price:249, old:279, info:CROCS_GIFT, imgs:["o-kakashi-1.webp?v=3", "o-kakashi-2.webp?v=3"]},
   {id:"n14", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Naruto · Itachi", price:259, old:299, info:CROCS_GIFT, imgs:["o-akatsuki-1.webp?v=3", "o-akatsuki-2.webp?v=3"]},
-  {id:"n15", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Pikachu", price:null, imgs:["o-pikachu-1.webp?v=3", "o-pikachu-2.webp?v=3", "o-pikachu-3.webp?v=3"]},
+  {id:"n15", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · Pikachu", price:245, info:CROCS_GIFT, imgs:["o-pikachu-1.webp?v=3", "o-pikachu-2.webp?v=3", "o-pikachu-3.webp?v=3"]},
   {id:"n16", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Pokémon · VS", price:249, old:329, info:CROCS_GIFT, imgs:["o-pokemon-1.webp?v=3"]},
   {id:"n17", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Negro", price:240, old:320, info:CROCS_GIFT, imgs:["o-bape-negro-1.webp?v=3", "o-bape-negro-2.webp?v=3"]},
   {id:"n18", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Azul", price:240, old:320, info:CROCS_GIFT, imgs:["o-bape-azul-1.webp?v=3"]},
   {id:"n19", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Rosado", price:240, old:320, info:CROCS_GIFT, imgs:["o-bape-rosado-1.webp?v=3", "o-bape-rosado-2.webp?v=3"]},
   {id:"n20", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Morado", price:249, old:320, info:CROCS_GIFT, imgs:["o-bape-morado-1.webp?v=3", "o-bape-morado-2.webp?v=3", "o-bape-morado-3.webp?v=3", "o-bape-morado-4.webp?v=3"]},
   {id:"n21", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x BAPE · Verde", price:240, old:320, info:CROCS_GIFT, imgs:["o-bape-verde-1.webp?v=3"]},
-  {id:"n22", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Sanrio · Rosado", price:null, imgs:["o-sanrio-rosado-1.webp?v=3", "o-sanrio-rosado-2.webp?v=3"]},
+  {id:"n22", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs x Sanrio · Rosado", price:248.50, info:CROCS_GIFT, imgs:["o-sanrio-rosado-1.webp?v=3", "o-sanrio-rosado-2.webp?v=3"]},
   {id:"n23", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Bayaband · Negro", price:239, old:259, info:CROCS_GIFT, imgs:["o-crocband-negro-1.webp?v=3", "o-crocband-negro-2.webp?v=3", "o-crocband-negro-3.webp?v=3"]},
   {id:"n24", cat:"crocs", sizes:CROCS_SIZES, name:"Crocs Bayaband · Blanco", price:239, old:259, info:CROCS_GIFT, imgs:["o-crocband-blanco-1.webp?v=3", "o-crocband-blanco-2.webp?v=3", "o-crocband-blanco-3.webp?v=3"]}
 ];
