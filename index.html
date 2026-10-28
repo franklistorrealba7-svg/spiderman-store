@@ -194,11 +194,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes shad{0%,100%{transform:scaleX(1);opacity:.8}50%{transform:scaleX(.85);opacity:.5}}
 @keyframes spin360{
-  0%{transform:translateZ(0) scale(1) rotateY(0);animation-timing-function:cubic-bezier(.25,.1,.25,1)}
-  12%{transform:translateZ(var(--lift)) scale(var(--zoom)) rotateY(0);animation-timing-function:ease-in-out}
-  72%{transform:translateZ(var(--lift)) scale(var(--zoom)) rotateY(360deg)}
-  88%{transform:translateZ(var(--lift)) scale(var(--zoom)) rotateY(360deg);animation-timing-function:cubic-bezier(.3,0,.3,1)}
-  100%{transform:translateZ(0) scale(1) rotateY(360deg)}}
+  0%{transform:translateZ(0) scale(1);animation-timing-function:cubic-bezier(.25,.1,.25,1)}
+  20%{transform:translateZ(var(--lift)) scale(var(--zoom))}
+  80%{transform:translateZ(var(--lift)) scale(var(--zoom));animation-timing-function:cubic-bezier(.3,0,.3,1)}
+  100%{transform:translateZ(0) scale(1)}}
 #smoke{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
 .slide .spin.fade{animation:tapFade .6s ease}
 @keyframes tapFade{0%,100%{opacity:1}50%{opacity:.35}}
@@ -472,5 +471,6 @@ footer button:hover{color:var(--fg)}
 <div class="toast" id="toast" role="status"></div>
 
 <script src="app.js" defer></script>
+<script src="spider.js" defer></script>
 </body>
 </html>

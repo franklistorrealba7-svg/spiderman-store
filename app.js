@@ -205,11 +205,11 @@ function webShot(){
   webRaf = requestAnimationFrame(frame);
 }
 function spin(){
-  if (firstSpin) firstSpin = false; else if (!spin.silent) webShot();
+  if (firstSpin) firstSpin = false;
   ring.style.transform = `translateZ(${-ring.dataset.r}px) rotateY(${-cur*STEP}deg)`;
   const idx = ((cur % N) + N) % N;
   [...ring.children].forEach((s,i)=> s.classList.toggle("on", i===idx));
-  if (typeof capEl!=="undefined" && capEl){ const p=feat[idx]; capEl.innerHTML=`<span class="label">${catName(p.cat)}</span><h3>${esc(p.name)}</h3><div class="cap-row"><span class="price">${priceHTML(p)}</span><button class="add" data-view="${p.id}">Ver producto</button></div><p class="tip">Toca la Croc para girarla 360°</p>`; }
+  if (typeof capEl!=="undefined" && capEl){ const p=feat[idx]; capEl.innerHTML=`<span class="label">${catName(p.cat)}</span><h3>${esc(p.name)}</h3><div class="cap-row"><span class="price">${priceHTML(p)}</span><button class="add" data-view="${p.id}">Ver producto</button></div><p class="tip">Toca la Croc para verla de cerca</p>`; }
   [...dotsEl.children].forEach((d,i)=>{ d.classList.remove("on"); if(i===idx){ void d.offsetWidth; d.classList.add("on"); } });
 }
 function go(n){ cur = n; spin(); restart(); }
@@ -284,7 +284,6 @@ function tapSpin(s){
   const cls = RM.matches ? "fade" : "go";
   spinning = true; document.querySelector(".hero").classList.add("paused");
   sp.classList.remove("go","fade"); void sp.offsetWidth; sp.classList.add(cls); if (cls==="go"){ s.classList.add("zooming"); ring.classList.add("zoom"); }
-  startSmoke(s);
   sp.addEventListener("animationend", function done(e){
     if (e.target !== sp) return;
     sp.removeEventListener("animationend", done);
