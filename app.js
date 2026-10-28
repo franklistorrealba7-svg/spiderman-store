@@ -324,7 +324,7 @@ function setFilter(cat){ fCat = cat||"crocs"; render(); $("#catalogo").scrollInt
 $("#tabs").onclick = e => { const b=e.target.closest("[data-cat]"); if(b){ fCat=b.dataset.cat; render(); } };
 document.querySelectorAll("[data-go-cat]").forEach(b=> b.onclick = ()=> setFilter(b.dataset.goCat));
 const BASE = /^https?:/.test(location.protocol) ? location.origin + location.pathname : "";
-const SITE = /^https?:/.test(location.protocol) ? location.origin + "/" : "https://spiderman-store.vercel.app/";
+const SITE = /^https?:/.test(location.protocol) ? location.origin + "/" : "https://spidermanstoreperu.com/";
 const prodLink = p => p.imgs.length ? SITE + "p/" + p.id : SITE + "#p-" + p.id;
 const photoLink = p => p.imgs.length ? SITE + "share/" + p.id + ".jpg" : "";
 function itemLines(p){ return [`Ver producto y foto: ${prodLink(p)}`, photoLink(p)&&`Imagen: ${photoLink(p)}`].filter(Boolean).join("\n"); }
