@@ -10,7 +10,7 @@
   function size(){ D=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight; cv.width=W*D; cv.height=H*D; x.setTransform(D,0,0,D,0,0); }
   size(); addEventListener("resize", size);
 
-  const S = innerWidth < 600 ? 0.6 : 0.85;          // escala
+  const S = innerWidth < 600 ? 0.42 : 0.6;          // escala
   const L1 = 36*S, L2 = 46*S;                          // largo de segmentos de pata
   // ángulo de cadera (rad, relativo al frente) y alcance de reposo
   const HIPS = [-0.55,-1.15,-1.85,-2.45, 0.55,1.15,1.85,2.45];
