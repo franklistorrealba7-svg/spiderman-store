@@ -462,3 +462,34 @@ drawCart();
 })();
 
 
+
+/* Texto de portada "cuadradito": elige el tamaño de letra con los espacios más parejos */
+(function(){
+  const el = document.querySelector(".hero p.lede");
+  if (!el) return;
+  const rng = document.createRange();
+  function maxGap(){
+    const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); const lines = {}; let n;
+    while ((n = tw.nextNode())) { const re=/\S+/g; let m;
+      while ((m = re.exec(n.data))) { rng.setStart(n,m.index); rng.setEnd(n,m.index+m[0].length);
+        const r = rng.getClientRects()[0]; if (!r) continue; const k=Math.round(r.top/4);
+        (lines[k] = lines[k] || []).push([r.left, r.right]); } }
+    const ls = Object.keys(lines).sort((a,b)=>a-b).map(k=>lines[k]); let mx = 0;
+    ls.slice(0,-1).forEach(l=>{ for (let i=1;i<l.length;i++) mx = Math.max(mx, l[i][0]-l[i-1][1]); });
+    return mx;
+  }
+  function fit(){
+    el.style.fontSize = "";
+    if (innerWidth > 600) return;
+    const base = parseFloat(getComputedStyle(el).fontSize);
+    let best = base, bestGap = maxGap();
+    for (let f = base*0.84; f <= base*1.001; f += 0.25) {
+      el.style.fontSize = f + "px"; const g = maxGap();
+      if (g < bestGap - 0.5) { bestGap = g; best = f; }
+    }
+    el.style.fontSize = best + "px";
+  }
+  let t; const run = () => { clearTimeout(t); t = setTimeout(fit, 120); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+  addEventListener("resize", run);
+})();

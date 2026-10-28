@@ -1,4 +1,4 @@
-# Spiderman Store · Araña Negra
+# Spiderman Store
 
 Crocs de colaboración, máscaras y sets de colección.
 
