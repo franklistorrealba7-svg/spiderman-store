@@ -483,9 +483,10 @@ drawCart();
     if (innerWidth > 600) return;
     const base = parseFloat(getComputedStyle(el).fontSize);
     let best = base, bestGap = maxGap();
-    for (let f = base*0.84; f <= base*1.001; f += 0.25) {
+    for (let f = base; f >= base*0.76 && bestGap > 8; f -= 0.25) {
       el.style.fontSize = f + "px"; const g = maxGap();
       if (g < bestGap - 0.5) { bestGap = g; best = f; }
+      if (g <= 8) { best = f; break; }
     }
     el.style.fontSize = best + "px";
   }

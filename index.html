@@ -378,6 +378,28 @@ a.t-link:hover .t-btn.ghost{border-color:var(--red);color:#fff}
 .brand-logo{margin:0 auto 14px;line-height:0;max-width:620px}.brand-logo img{width:100%;height:auto;display:block}@media (max-width:600px){.brand-logo{max-width:94%;margin-bottom:10px}}
 .logo-img{height:46px;width:auto;display:block}@media (max-width:480px){.logo-img{height:34px}}
 .reg{font-size:.7em;vertical-align:super;line-height:0;margin-left:1px}
+footer .f-tag{max-width:36ch;margin:12px 0 0;line-height:1.5}
+footer .f-logo .logo-img{height:44px}
+footer .cols > div:not(:first-child){border-left:1px solid var(--line);padding-left:22px}
+footer ul li{line-height:1.45}
+@media (max-width:760px){
+  footer{text-align:center;padding-block:36px 26px}
+  footer .cols{grid-template-columns:1fr;gap:0}
+  footer .cols > div{padding:18px 0;border-top:1px solid var(--line)}
+  footer .cols > div:first-child{border-top:0;padding-top:0}
+  footer .cols > div:not(:first-child){border-left:0;padding-left:0}
+  footer .f-logo{justify-content:center}
+  footer .f-logo .logo-img{height:40px}
+  footer .f-tag{margin:10px auto 0}
+  footer h4{margin-bottom:10px}
+  footer ul{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:6px 0}
+  footer ul li{display:flex;align-items:center}
+  footer ul li + li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--red);margin:0 12px;flex:none}
+  footer button{text-align:center}
+  footer ul.f-contact{flex-direction:column;align-items:center;gap:8px}
+  footer ul.f-contact li{display:block}
+  footer ul.f-contact li::before{display:none}
+}
 </style>
 </head>
 <body>
@@ -461,15 +483,15 @@ a.t-link:hover .t-btn.ghost{border-color:var(--red);color:#fff}
 <footer class="wrap">
   <div class="cols">
     <div>
-      <a class="logo" href="#inicio"><span><b>SPIDERMAN <em>STORE</em></b></span></a>
-      <p style="max-width:36ch;margin-top:14px">Crocs de colaboración, máscaras y sets de colección.</p>
+      <a class="logo f-logo" href="#inicio"><img class="logo-img" src="logo-sm.webp?v=1" alt="Spiderman Store" width="480" height="126"></a>
+      <p class="f-tag">Crocs de colaboración, máscaras y sets de colección.</p>
     </div>
     <div><h4>Comprar</h4><ul>
       <li><button data-go-cat="crocs">Crocs</button></li><li><button data-go-cat="mascaras">Máscaras</button></li>
       <li><button data-go-cat="carros">Carros</button></li></ul></div>
     <div><h4>Envíos</h4><ul>
       <li>Lima: motorizado</li><li>Provincias: Olva o Shalom</li></ul></div>
-    <div><h4>Contacto</h4><ul>
+    <div><h4>Contacto</h4><ul class="f-contact">
       <li>WhatsApp: <span id="waText" style="user-select:all;color:var(--fg)"></span></li>
       <li><a href="https://www.tiktok.com/@franklis23" target="_blank" rel="noopener">TikTok: @franklis23</a></li>
       <li>Correo: <span style="user-select:all;color:var(--fg)">soporte@spidermanstore.com</span></li>
