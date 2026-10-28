@@ -205,7 +205,7 @@ function webShot(){
   webRaf = requestAnimationFrame(frame);
 }
 function spin(){
-  stage.classList.remove("zin"); if (typeof spinning!=="undefined") spinning=false;
+  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin")); if (typeof spinning!=="undefined") spinning=false;
   if (firstSpin) firstSpin = false;
   ring.style.transform = `translateZ(${-ring.dataset.r}px) rotateY(${-cur*STEP}deg)`;
   const idx = ((cur % N) + N) % N;
@@ -280,9 +280,10 @@ function smokeFrame(now){
   else { smokeRaf = null; smx.clearRect(0,0,W,H); }
 }
 function tapSpin(s){
-  const on = !stage.classList.contains("zin");
-  stage.classList.toggle("zin", on);
-  if (on){ spinning = true; document.querySelector(".hero").classList.add("paused"); }
+  const sp = s.querySelector(".spin");
+  const on = !sp.classList.contains("zin");
+  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin"));
+  if (on){ sp.classList.add("zin"); spinning = true; document.querySelector(".hero").classList.add("paused"); }
   else { spinning = false; if (!paused) document.querySelector(".hero").classList.remove("paused"); restart(); }
 }
 addEventListener("resize", layout);
