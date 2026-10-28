@@ -447,3 +447,9 @@ drawCart();
   b.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 15l6-6 6 6"/></svg>';
   b.onclick=()=>scrollTo({top:0,behavior:RM.matches?"auto":"smooth"}); document.body.appendChild(b);
   const t=()=>b.classList.toggle("on", scrollY>innerHeight*0.8); addEventListener("scroll",t,{passive:true}); t(); })();
+
+/* Música de fondo (solo al pulsar) */
+(function(){ const b=$("#sndBtn"), au=$("#bgm"); if(!b||!au) return; au.volume=0.6;
+  b.addEventListener("click",()=>{ if(au.paused){ au.play().then(()=>{ b.classList.add("on"); b.setAttribute("aria-pressed","true"); b.setAttribute("aria-label","Pausar música"); }).catch(()=>{}); } else { au.pause(); } });
+  au.addEventListener("pause",()=>{ b.classList.remove("on"); b.setAttribute("aria-pressed","false"); b.setAttribute("aria-label","Reproducir música"); });
+})();
