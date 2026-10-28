@@ -10,7 +10,7 @@
   function size(){ D=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight; cv.width=W*D; cv.height=H*D; x.setTransform(D,0,0,D,0,0); }
   size(); addEventListener("resize", size);
 
-  const S = innerWidth < 600 ? 0.8 : 1.2;          // escala
+  const S = innerWidth < 600 ? 0.6 : 0.85;          // escala
   const L1 = 36*S, L2 = 46*S;                          // largo de segmentos de pata
   // ángulo de cadera (rad, relativo al frente) y alcance de reposo
   const HIPS = [-0.55,-1.15,-1.85,-2.45, 0.55,1.15,1.85,2.45];
@@ -48,10 +48,55 @@
              y: sp.y+Math.sin(sp.a)*off + Math.sin(sp.a+side*Math.PI/2)*5*S };
   }
 
-  let last=performance.now(), visits=0;
+  let last=performance.now(), visits=0, jumpClock=0, fx=null;
+  const JUMP_EVERY=10, JUMP_T=0.55, WEB_IN=0.7, WEB_HOLD=1.3, WEB_OUT=0.7;
+  function startJump(){
+    if (sp.state==="gone"){ spawn(); }
+    fx={t:0, sx:sp.x, sy:sp.y, cx:W/2, cy:H*0.45, spokes:Array.from({length:22},(_,i)=>i/22*Math.PI*2+(Math.random()-.5)*.12)};
+    sp.state="jump";
+  }
+  function drawWeb(cx,cy,prog,alpha,spokes){
+    const R=Math.hypot(W,H)*0.75*prog;
+    x.save(); x.globalAlpha=alpha; x.lineCap="round";
+    x.shadowColor="rgba(255,255,255,.55)"; x.shadowBlur=6;
+    x.strokeStyle="rgba(245,245,250,.9)"; x.lineWidth=1.6;
+    spokes.forEach(a=>{ x.beginPath(); x.moveTo(cx,cy); x.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R); x.stroke(); });
+    x.lineWidth=1.1;
+    for(let k=1;k<40;k++){
+      const rr=k*k*2.2+k*22; if(rr>R) break;
+      x.strokeStyle=`rgba(245,245,250,${Math.max(.25,.9-k*.02)})`;
+      x.beginPath();
+      spokes.forEach((a,i)=>{ const a2=spokes[(i+1)%spokes.length]+(i+1===spokes.length?Math.PI*2:0);
+        const p1=[cx+Math.cos(a)*rr,cy+Math.sin(a)*rr], p2=[cx+Math.cos(a2)*rr,cy+Math.sin(a2)*rr], am=(a+a2)/2;
+        if(i===0) x.moveTo(p1[0],p1[1]); x.quadraticCurveTo(cx+Math.cos(am)*rr*.9,cy+Math.sin(am)*rr*.9,p2[0],p2[1]); });
+      x.stroke();
+    }
+    x.restore();
+  }
   spawn();
   function tick(now){
-    const dt=Math.min(0.05,(now-last)/1000); last=now;
+    const raw=(now-last)/1000; const dt=Math.min(0.05,raw); last=now;
+    jumpClock+=Math.min(raw,0.5);
+    if (!fx && jumpClock>=JUMP_EVERY){ jumpClock=0; startJump(); }
+    if (fx){
+      fx.t+=Math.min(raw,0.1); const t=fx.t;
+      x.clearRect(0,0,W,H);
+      if (t<JUMP_T){
+        const e=t/JUMP_T, ee=e*e*(3-2*e);
+        sp.x=fx.sx+(fx.cx-fx.sx)*ee; sp.y=fx.sy+(fx.cy-fx.sy)*ee - Math.sin(e*Math.PI)*60;
+        sp.a+= (Math.atan2(fx.cy-fx.sy,fx.cx-fx.sx)-sp.a)*Math.min(1,dt*8);
+        feet.forEach((f,i)=>{ const r=rest(i); f.x=r.x; f.y=r.y; f.t=1; f.lift=0; });
+        draw(now, 1+ee*5);
+      } else {
+        const w=t-JUMP_T;
+        let prog=Math.min(1,w/WEB_IN), alpha=1;
+        if (w>WEB_IN+WEB_HOLD) alpha=Math.max(0,1-(w-WEB_IN-WEB_HOLD)/WEB_OUT);
+        drawWeb(fx.cx,fx.cy,1-Math.pow(1-prog,3),alpha,fx.spokes);
+        if (w<WEB_IN*0.6) draw(now, 6*(1-w/(WEB_IN*0.6))+0.01);
+        if (alpha<=0){ fx=null; jumpClock=0; spawn(); }
+      }
+      requestAnimationFrame(tick); return;
+    }
     // movimiento del cuerpo
     if (sp.state==="walk" || sp.state==="leave"){
       const dx=sp.tx-sp.x, dy=sp.ty-sp.y, d=Math.hypot(dx,dy);
@@ -114,9 +159,9 @@
       x.beginPath(); x.moveTo(px-nx*w,py-ny*w); x.lineTo(px-nx*(w+2.2*S)+Math.cos(ang)*1.5,py-ny*(w+2.2*S)+Math.sin(ang)*1.5); x.stroke(); }
   }
 
-  function draw(now){
-    x.clearRect(0,0,W,H);
-    if (sp.x<-200||sp.x>W+200||sp.y<-200||sp.y>H+200) return;
+  function draw(now,k){
+    if(!k){ x.clearRect(0,0,W,H); if (sp.x<-200||sp.x>W+200||sp.y<-200||sp.y>H+200) return; }
+    x.save(); if(k&&k!==1){ x.translate(sp.x,sp.y); x.scale(k,k); x.translate(-sp.x,-sp.y); }
     const legs=HIPS.map((_,i)=>leg(i));
     const bob=Math.sin(now/90)*0.8*Math.min(1,sp.speed/40);
     // sombras
@@ -157,6 +202,7 @@
     });
     g=x.createRadialGradient(3*S,-5*S,0,3*S,-5*S,7*S); g.addColorStop(0,"rgba(255,255,255,.35)"); g.addColorStop(1,"rgba(255,255,255,0)");
     x.fillStyle=g; x.beginPath(); x.ellipse(3*S,-5*S,7*S,4*S,-0.2,0,Math.PI*2); x.fill();
+    x.restore();
     x.restore();
   }
   setTimeout(()=>requestAnimationFrame(t=>{ last=t; tick(t); }), 1500);
