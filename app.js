@@ -509,3 +509,20 @@ drawCart();
   addEventListener("load", fit); setTimeout(fit, 900);
   addEventListener("resize", run);
 })();
+
+/* Referencias: navegación y foto ampliada */
+document.querySelectorAll("[data-go-sec]").forEach(b=> b.addEventListener("click", ()=>{ const t=document.getElementById(b.dataset.goSec); if(t) t.scrollIntoView({behavior:"smooth"}); }));
+(function(){
+  const lb=document.getElementById("refLb"), img=document.getElementById("refImg");
+  if(!lb) return;
+  let pushed=false;
+  const close=()=>{ if(lb.hidden) return; lb.hidden=true; img.removeAttribute("src"); document.body.style.overflow=""; if(pushed){ pushed=false; history.back(); } };
+  document.querySelectorAll("[data-ref]").forEach(b=> b.addEventListener("click", ()=>{
+    img.src=b.dataset.ref; img.alt=b.querySelector("img").alt; lb.hidden=false; document.body.style.overflow="hidden";
+    history.pushState({ref:1},"" ); pushed=true;
+  }));
+  document.getElementById("refX").addEventListener("click", close);
+  lb.addEventListener("click", e=>{ if(e.target===lb) close(); });
+  addEventListener("keydown", e=>{ if(e.key==="Escape") close(); });
+  addEventListener("popstate", ()=>{ if(!lb.hidden){ pushed=false; lb.hidden=true; img.removeAttribute("src"); document.body.style.overflow=""; } });
+})();
