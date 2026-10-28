@@ -362,6 +362,11 @@ a.t-link:hover .t-btn.ghost{border-color:var(--red);color:#fff}
 .ghost-add{background:transparent!important;border:1px solid var(--line)!important;color:var(--fg)!important}
 .card .ask{font-size:.8rem;color:var(--mute)}
 @media (max-width:600px){.wa-cta{font-size:.72rem;padding:10px 6px;gap:6px;letter-spacing:.04em}.wa-cta svg{width:15px;height:15px}}
+@media (hover:hover) and (pointer:fine){
+  .slide.on .spin{overflow:hidden;border-radius:14px;cursor:zoom-in}
+  .slide.on .spin img{transition:transform .35s ease;will-change:transform}
+  .slide.on .spin.mag img{transform:scale(2.4);transition:transform .2s ease}
+}
 </style>
 </head>
 <body>

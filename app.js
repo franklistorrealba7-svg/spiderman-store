@@ -465,3 +465,12 @@ drawCart();
   b.addEventListener("click",()=>{ if(au.paused){ au.play().then(()=>{ b.classList.add("on"); b.setAttribute("aria-pressed","true"); b.setAttribute("aria-label","Pausar música"); }).catch(()=>{}); } else { au.pause(); } });
   au.addEventListener("pause",()=>{ b.classList.remove("on"); b.setAttribute("aria-pressed","false"); b.setAttribute("aria-label","Reproducir música"); });
 })();
+
+/* Super zoom al pasar el cursor por la Croc del carrusel */
+(function(){ if(!matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  ring.addEventListener("mousemove",e=>{ const sp=e.target.closest(".slide.on .spin"); ring.querySelectorAll(".spin.mag").forEach(x=>{ if(x!==sp) x.classList.remove("mag"); }); if(!sp) return;
+    const img=sp.querySelector("img"), r=sp.getBoundingClientRect();
+    img.style.transformOrigin=`${((e.clientX-r.left)/r.width*100).toFixed(1)}% ${((e.clientY-r.top)/r.height*100).toFixed(1)}%`;
+    sp.classList.add("mag"); });
+  ring.addEventListener("mouseleave",()=>ring.querySelectorAll(".spin.mag").forEach(x=>x.classList.remove("mag")));
+})();
