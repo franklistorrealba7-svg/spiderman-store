@@ -19,11 +19,11 @@ const MASK_INFO  = "Ojos movibles, tela lycra spandex, faceshell incluido";
 /* price: null → se muestra "Consultar precio" */
 const PRODUCTS = [
   /* ---------- MÁSCARAS ---------- */
-  {id:"m1", cat:"mascaras", name:"Máscara Tobey Maguire · Black Spider", price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-black-1.webp?v=3","tobey-black-2.webp?v=3"]},
-  {id:"m2", cat:"mascaras", name:"Máscara Tobey Maguire · Red Spider",   price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-red-1.webp?v=3","tobey-red-2.webp?v=3"]},
-  {id:"m3", cat:"mascaras", name:"Máscara Red Spider · Lentes dorados",  price:289, info:"Incluye caja y faceshell", imgs:["red-gold-1.webp?v=3","red-gold-2.webp?v=3","red-gold-3.webp?v=3"]},
-  {id:"m4", cat:"mascaras", name:"Máscara Black Stealth",                price:315.90, info:"Incluye caja", imgs:["black-stealth-1.webp?v=3","black-stealth-2.webp?v=3","black-stealth-3.webp?v=3"]},
-  {id:"m5", cat:"mascaras", name:"Máscara Tom Holland (red) · Ojos movibles", price:99.90, old:130, info:"Incluye caja", imgs:["red-hero-1.webp?v=3","red-hero-2.webp?v=3","red-hero-3.webp?v=3"]},
+  {id:"m1", cat:"mascaras", name:"Máscara Tobey Maguire · Black Spider (ojos movibles)", price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-black-1.webp?v=3","tobey-black-2.webp?v=3"]},
+  {id:"m2", cat:"mascaras", name:"Máscara Tobey Maguire · Red Spider (ojos movibles)", price:269, old:320, info:MASK_INFO, badge:"Ojos movibles", imgs:["tobey-red-1.webp?v=3","tobey-red-2.webp?v=3"]},
+  {id:"m3", cat:"mascaras", name:"Máscara The Amazing Spider-Man · Red (ojos imantados)", price:299, old:350, info:"Incluye caja y faceshell", imgs:["red-gold-1.webp?v=3","red-gold-2.webp?v=3","red-gold-3.webp?v=3"]},
+  {id:"m4", cat:"mascaras", name:"Máscara The Amazing Spider-Man · Black (ojos imantados)", price:299, old:350, info:"Incluye caja", imgs:["black-stealth-1.webp?v=3","black-stealth-2.webp?v=3","black-stealth-3.webp?v=3"]},
+  {id:"m5", cat:"mascaras", name:"Máscara Tom Holland · Red (ojos movibles)", price:99.90, old:130, info:"Incluye caja", imgs:["red-hero-1.webp?v=3","red-hero-2.webp?v=3","red-hero-3.webp?v=3"]},
   {id:"m6", cat:"mascaras", name:"Lanza Telarañas Electrónico",          price:99.90, old:139, info:"Precio por unidad. Incluye caja, guante, cable de carga USB, desarmador y ventosas", imgs:["lanza-telaranas-1.webp?v=3","lanza-telaranas-2.webp?v=3","lanza-telaranas-3.webp?v=3"]},
   /* ---------- CARROS ---------- */
   {id:"c1", cat:"carros", name:"Set Cars · Camión Mack y autos", price:489.95, info:"Caja de colección y bolsa de regalo", badge:"Set completo", imgs:["cars-set-1.webp?v=3","cars-set-2.webp?v=3","cars-set-3.webp?v=3","cars-set-4.webp?v=3"]},
