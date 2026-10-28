@@ -205,7 +205,7 @@ function webShot(){
   webRaf = requestAnimationFrame(frame);
 }
 function spin(){
-  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin")); if (typeof spinning!=="undefined") spinning=false;
+  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin")); ring.querySelectorAll(".slide.zooming").forEach(x=>x.classList.remove("zooming")); ring.classList.remove("zoom"); if (typeof spinning!=="undefined") spinning=false;
   if (firstSpin) firstSpin = false;
   ring.style.transform = `translateZ(${-ring.dataset.r}px) rotateY(${-cur*STEP}deg)`;
   const idx = ((cur % N) + N) % N;
@@ -282,8 +282,8 @@ function smokeFrame(now){
 function tapSpin(s){
   const sp = s.querySelector(".spin");
   const on = !sp.classList.contains("zin");
-  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin"));
-  if (on){ sp.classList.add("zin"); spinning = true; document.querySelector(".hero").classList.add("paused"); }
+  ring.querySelectorAll(".spin.zin").forEach(x=>x.classList.remove("zin")); ring.querySelectorAll(".slide.zooming").forEach(x=>x.classList.remove("zooming")); ring.classList.remove("zoom");
+  if (on){ sp.classList.add("zin"); s.classList.add("zooming"); ring.classList.add("zoom"); spinning = true; document.querySelector(".hero").classList.add("paused"); }
   else { spinning = false; if (!paused) document.querySelector(".hero").classList.remove("paused"); restart(); }
 }
 addEventListener("resize", layout);
