@@ -120,7 +120,8 @@ public final class DialerService extends Service {
 
     private Notification notificacion() {
         App app = App.get();
-        String titulo = app.engine.esPrueba() ? "Llamada de prueba en curso" : "Campaña de llamadas en curso";
+        String titulo = app.engine.esPrueba() ? "Llamada de prueba en curso"
+                : app.engine.esManual() ? "Llamada manual en curso" : "Campaña de llamadas en curso";
         if (!app.engine.conectado()) titulo += " · conectando…";
         int flags = Build.VERSION.SDK_INT >= 23 ? PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT : PendingIntent.FLAG_UPDATE_CURRENT;
         PendingIntent abrir = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), flags);

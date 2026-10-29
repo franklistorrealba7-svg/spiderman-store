@@ -38,6 +38,7 @@ public final class Engine {
     private final Object lockConexion = new Object();
     private volatile boolean corriendo;
     private volatile boolean esPrueba;
+    private volatile boolean esManual;
     private volatile boolean forzarReconexion;
     private int fallasSeguidas;
     private final List<Thread> lineas = new ArrayList<>();
@@ -71,6 +72,7 @@ public final class Engine {
 
     public boolean corriendo() { return corriendo; }
     public boolean esPrueba() { return esPrueba; }
+    public boolean esManual() { return esManual; }
     public boolean conectado() { Sip s = sip; return !forzarReconexion && s != null && s.registrado(); }
     public List<Cliente> clientes() { synchronized (clientes) { return new ArrayList<>(clientes); } }
     public List<String> registro() { synchronized (registro) { return new ArrayList<>(registro); } }
@@ -113,7 +115,7 @@ public final class Engine {
     }
 
     public boolean enHorario() {
-        if (esPrueba || cfg.b("ignorar_horario")) return true;
+        if (esPrueba || esManual || cfg.b("ignorar_horario")) return true;
         Calendar c = Calendar.getInstance(LIMA);
         int m = c.get(Calendar.HOUR_OF_DAY) * 60 + c.get(Calendar.MINUTE);
         int ini = aMinutos(cfg.s("hora_inicio")), fin = aMinutos(cfg.s("hora_fin"));
@@ -167,11 +169,50 @@ public final class Engine {
         if (corriendo && sip != null) { forzarReconexion = true; log("Cambió la red: reconectando con la nueva conexión..."); }
     }
 
-    private List<Cliente> fuente() { return esPrueba ? listaPrueba : clientes; }
+    private List<Cliente> fuente() { return esPrueba || esManual ? listaPrueba : clientes; }
+
+    /**
+     * Llamada real a un número escrito a mano. Se agrega a la lista de clientes y al historial.
+     * Si hay una campaña en curso, pasa primero en la cola. Devuelve un mensaje para la pantalla, o null si el número no es válido.
+     */
+    public synchronized String llamarManual(String nombre, String numero) {
+        String n = Clientes.limpiarNumero(numero);
+        if (n == null) return null;
+        Cliente c = null;
+        synchronized (clientes) {
+            for (Cliente x : clientes) if (x.telefono.equals(n)) { c = x; break; }
+            if (c == null) c = new Cliente(nombre == null ? "" : nombre.trim(), n);
+            else clientes.remove(c);
+            clientes.add(0, c); // primero en la lista
+            c.estado = "Pendiente";
+            c.intentos = 0;
+            c.proximo = 0;
+        }
+        host.clienteCambio(c);
+        String quien = (c.nombre.isEmpty() ? "" : c.nombre + " ") + n;
+        if (corriendo && !esPrueba && !esManual) {
+            log("📞 Llamada manual a " + quien + ": va primero en la cola.");
+            return "Se llamará a " + quien + " apenas termine la llamada en curso";
+        }
+        if (corriendo) return "Espera a que termine la llamada actual";
+        synchronized (listaPrueba) { listaPrueba.clear(); listaPrueba.add(c); }
+        log("📞 Llamada manual a " + quien);
+        esManual = true;
+        iniciar(false);
+        return "Llamando a " + quien;
+    }
+
+    /** Campaña normal con toda la lista. */
+    public synchronized void iniciarCampana() {
+        if (corriendo) return;
+        esManual = false;
+        iniciar(false);
+    }
 
     public synchronized void iniciar(boolean prueba) {
         if (corriendo) return;
         esPrueba = prueba;
+        if (prueba) esManual = false;
         corriendo = true;
         List<Cliente> origen;
         synchronized (fuente()) { origen = new ArrayList<>(fuente()); }
@@ -209,7 +250,8 @@ public final class Engine {
         Sip s = sip;
         sip = null;
         if (s != null) s.stop();
-        log(esPrueba ? "Prueba terminada." : "Campaña terminada.");
+        log(esPrueba ? "Prueba terminada." : esManual ? "Llamada manual terminada." : "Campaña terminada.");
+        esManual = false;
         host.estadoCambio();
     }
 
@@ -286,7 +328,7 @@ public final class Engine {
             c.detalle = recortar(String.valueOf(e.getMessage()));
             log("Error con " + c.telefono + ": " + e.getMessage());
         }
-        if ("No contestó".equals(resultado) && c.intentos <= cfg.i("reintentos") && !esPrueba) {
+        if ("No contestó".equals(resultado) && c.intentos <= cfg.i("reintentos") && !esPrueba && !esManual) {
             c.estado = "Reintentar";
             c.proximo = System.currentTimeMillis() + cfg.i("min_entre_reintentos") * 60_000L;
         } else {

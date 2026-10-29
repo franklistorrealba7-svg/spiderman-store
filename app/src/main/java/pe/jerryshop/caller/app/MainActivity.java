@@ -67,7 +67,7 @@ public final class MainActivity extends Activity {
     // Campaña
     private TextView estado, resumen, vivoTitulo, logCorto;
     private Button btnIniciar, btnDetener, btnEscuchar, btnControl;
-    private EditText desde, hasta, numPrueba, decir;
+    private EditText desde, hasta, numPrueba, decir, manualNombre, manualNumero;
     private CheckBox cualquierHora;
     // Clientes
     private final List<Cliente> lista = new ArrayList<>();
@@ -189,6 +189,19 @@ public final class MainActivity extends Activity {
         cualquierHora.setChecked(app.cfg.b("ignorar_horario"));
         t2.addView(cualquierHora);
 
+        LinearLayout tm = tarjeta(col);
+        tm.addView(subtitulo("Llamar a un cliente (manual)"));
+        TextView ayuda = texto("Llamada real: queda en Clientes y en el historial. Si hay una campaña en curso, va primero.", 13, GRIS, false);
+        tm.addView(ayuda);
+        manualNombre = entrada("", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        manualNombre.setHint("Nombre (opcional), ej. María");
+        tm.addView(manualNombre);
+        LinearLayout fm = fila(tm);
+        manualNumero = entrada("", InputType.TYPE_CLASS_PHONE);
+        manualNumero.setHint("Celular, ej. 987654321");
+        fm.addView(manualNumero, peso());
+        fm.addView(boton("📞 Llamar", true, v -> llamarManual()));
+
         LinearLayout t3 = tarjeta(col);
         t3.addView(subtitulo("Llamada de prueba"));
         LinearLayout fp = fila(t3);
@@ -265,7 +278,7 @@ public final class MainActivity extends Activity {
                 ? "\n\nAhora está fuera de ese horario: empezará sola a las " + app.cfg.s("hora_inicio") + ". Deja el celular cargando." : "";
         new AlertDialog.Builder(this).setTitle("Iniciar campaña")
                 .setMessage("Se llamará a " + pend + " clientes " + cuando + "." + extra)
-                .setPositiveButton("Iniciar", (d, w) -> { app.engine.iniciar(false); DialerService.actualizar(this); pedirBateria(); })
+                .setPositiveButton("Iniciar", (d, w) -> { app.engine.iniciarCampana(); DialerService.actualizar(this); pedirBateria(); })
                 .setNegativeButton("Cancelar", null).show();
     }
 
@@ -276,6 +289,20 @@ public final class MainActivity extends Activity {
         if (!app.engine.probar(numPrueba.getText().toString())) { toast("Escribe un celular de 9 dígitos, ej. 987654321"); return; }
         DialerService.actualizar(this);
         mostrar(4);
+    }
+
+    private void llamarManual() {
+        if (faltanDatos()) return;
+        if (app.engine.corriendo() && (app.engine.esPrueba() || app.engine.esManual())) {
+            toast("Espera a que termine la llamada actual");
+            return;
+        }
+        String r = app.engine.llamarManual(manualNombre.getText().toString(), manualNumero.getText().toString());
+        if (r == null) { toast("Escribe un celular de 9 dígitos, ej. 987654321"); return; }
+        manualNombre.setText("");
+        manualNumero.setText("");
+        DialerService.actualizar(this);
+        toast(r);
     }
 
     private void alternarEscucha() {
@@ -572,7 +599,7 @@ public final class MainActivity extends Activity {
         if (!corre) st = "⏸  Detenida";
         else if (!e.conectado()) st = "🔄  Conectando con el SIP…";
         else if (!e.enHorario()) st = "🕘  Esperando horario (" + app.cfg.s("hora_inicio") + ")";
-        else st = e.esPrueba() ? "📞  Llamada de prueba en curso" : "🟢  Campaña en curso";
+        else st = e.esPrueba() ? "📞  Llamada de prueba en curso" : e.esManual() ? "📞  Llamada manual en curso" : "🟢  Campaña en curso";
         estado.setText(st);
         resumen.setText(e.resumen());
         btnIniciar.setEnabled(!corre);
