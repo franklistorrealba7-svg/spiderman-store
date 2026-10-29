@@ -1,0 +1,43 @@
+name: Compilar APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: "8.7"
+
+      - name: Compilar
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Renombrar APK
+        run: cp app/build/outputs/apk/release/app-release.apk JerryCaller-v1.${{ github.run_number }}.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JerryCaller-apk
+          path: JerryCaller-v1.${{ github.run_number }}.apk
+
+      - name: Publicar versión
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.${{ github.run_number }}
+          name: JerryCaller v1.${{ github.run_number }}
+          files: JerryCaller-v1.${{ github.run_number }}.apk
+          body: "Descarga el archivo .apk desde el celular e instálalo (permite 'instalar apps desconocidas')."

@@ -1,0 +1,1 @@
+-keep class pe.jerryshop.caller.** { *; }
