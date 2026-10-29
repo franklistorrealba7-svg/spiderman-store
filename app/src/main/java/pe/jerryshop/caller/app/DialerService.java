@@ -34,14 +34,19 @@ public final class DialerService extends Service {
     private final Handler h = new Handler(Looper.getMainLooper());
     private Network ultimaRed;
     private long ultimoGuardado;
+    private static volatile boolean activo;
 
     /** Arranca el servicio si hay campaña/prueba en curso; lo detiene si no. */
     public static void actualizar(Context c) {
         App app = App.get();
         if (app == null) return;
+        if (activo || !app.engine.corriendo()) return; // ya está corriendo: no volver a arrancarlo desde segundo plano
         Intent i = new Intent(c, DialerService.class);
-        if (app.engine.corriendo()) {
+        try {
             if (Build.VERSION.SDK_INT >= 26) c.startForegroundService(i); else c.startService(i);
+            activo = true;
+        } catch (Exception e) {
+            app.engine.log("⚠ Android no dejó iniciar el modo segundo plano: abre la app y vuelve a tocar Iniciar.");
         }
     }
 
@@ -50,6 +55,7 @@ public final class DialerService extends Service {
         if (intent != null && DETENER.equals(intent.getAction())) {
             App.get().engine.detener();
         }
+        activo = true;
         crearCanal();
         Notification n = notificacion();
         if (Build.VERSION.SDK_INT >= 29) startForeground(ID, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
@@ -133,6 +139,7 @@ public final class DialerService extends Service {
 
     @Override
     public void onDestroy() {
+        activo = false;
         h.removeCallbacks(tick);
         if (wake != null && wake.isHeld()) wake.release();
         if (wifi != null && wifi.isHeld()) wifi.release();
