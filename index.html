@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Venti Joyas</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -29,6 +30,7 @@
   --body:"Jost", "Helvetica Neue", Arial, sans-serif;
   --r:14px;
   --shadow:0 10px 30px rgba(26,16,32,.08);
+  --bird:url(bird-gold.png);
   color-scheme: light;
 }
 *{box-sizing:border-box}
@@ -54,7 +56,8 @@ header.site{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;bo
 nav.main{display:flex;gap:22px;margin-left:auto;white-space:nowrap;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
 nav.main a{text-decoration:none;opacity:.85;padding:6px 0;border-bottom:1px solid transparent}
 nav.main a:hover{opacity:1;border-color:var(--gold)}
-.cartbtn{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:.85rem;letter-spacing:.04em}
+.cartbtn{margin-left:auto;background:transparent;border:1px solid rgba(234,193,114,.5);color:#fff;border-radius:999px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:.15s}
+.cartbtn:hover{background:rgba(234,193,114,.12);border-color:var(--gold)}
 nav.main + .cartbtn{margin-left:0}
 .cartbtn .n{background:var(--gold);color:var(--ink);border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.75rem;font-weight:600}
 .search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:6px 14px;flex:1;max-width:260px;min-width:140px}
@@ -65,9 +68,10 @@ nav.main + .cartbtn{margin-left:0}
 /* ---------- hero ---------- */
 .hero{position:relative;overflow:hidden;background:radial-gradient(900px 500px at 85% 20%,rgba(234,193,114,.35),transparent 60%),linear-gradient(135deg,#1c1915,#2e2820 70%,#3a3124);color:#fff}
 .hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(234,193,114,.06) 0 1px,transparent 1px 34px);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-4%;top:-6%;width:46%;max-width:560px;aspect-ratio:1;background:var(--bird) center/contain no-repeat;opacity:.07;pointer-events:none;transform:rotate(-8deg)}
 .hero-in{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:56px 0 48px;position:relative}
 .eyebrow{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;opacity:.9;display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.eyebrow::before{content:"";width:22px;height:22px;background:var(--bird) center/contain no-repeat;flex:0 0 22px}
 .hero h1{font-size:clamp(2.6rem,6vw,5rem);margin:14px 0 10px;font-weight:700}
 .hero h1 em{font-style:italic;color:var(--gold);font-weight:600}
 .hero p{font-size:1.05rem;max-width:48ch;opacity:.95;margin:0 0 26px;font-weight:300}
@@ -103,7 +107,8 @@ nav.main + .cartbtn{margin-left:0}
 /* ---------- sections ---------- */
 section{padding:56px 0}
 .sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:26px}
-.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem)}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);position:relative;padding-left:0}
+.sec-head h2::after{content:"";display:block;width:56px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-top:10px}
 .sec-head p{margin:6px 0 0;color:var(--muted);font-size:.95rem}
 .sec-head a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--brand);border-bottom:1px solid currentColor;padding-bottom:2px;white-space:nowrap}
 
@@ -119,14 +124,15 @@ section{padding:56px 0}
 .cat .t h3{font-size:1.8rem;margin-top:4px}
 
 /* brands strip */
-.brands{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px 28px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--display);font-size:1.25rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-weight:600}
+.brands{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px 28px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--display);font-size:1.25rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-weight:600;position:relative}
+.brands::before{content:"";position:absolute;left:50%;top:-11px;width:22px;height:22px;transform:translateX(-50%);background:var(--ivory) var(--bird) center/contain no-repeat;padding:0 8px;box-sizing:content-box}
 
 const refOf=items=>items.length===1&&items[0].q===1?sku(items[0].p):"VJ-PED-"+String(Date.now()).slice(-6);
 
 /* pay modal */
 function openPay(items){
   const tot=items.reduce((a,{p,q})=>a+p.now*q,0), ref=refOf(items);
-  document.getElementById("pmItems").innerHTML=items.map(({p,q})=>`<div class="pm-it"><img src="img/c/${p.img}.webp" alt=""><div><div class="s">SKU ${sku(p)}</div>${q}× ${p.b} ${p.n}</div><b>${S(p.now*q)}</b></div>`).join("");
+  document.getElementById("pmItems").innerHTML=items.map(({p,q})=>`<div class="pm-it"><img src="${p.img}.webp" alt=""><div><div class="s">SKU ${sku(p)}</div>${q}× ${p.b} ${p.n}</div><b>${S(p.now*q)}</b></div>`).join("");
   document.getElementById("pmTotal").textContent=S(tot);
   document.getElementById("pmRef").textContent=ref;document.getElementById("pmRef2").textContent=ref;
   const det=items.map(({p,q})=>`[${sku(p)}] ${q}× ${p.b} ${p.n}`).join(", ");
@@ -142,8 +148,9 @@ document.getElementById("payAll").addEventListener("click",()=>{const items=[...
 
 /* filters */
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-.chip{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 16px;font-size:.82rem;letter-spacing:.05em;color:var(--text)}
-.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 18px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);transition:.15s}
+.chip:hover{border-color:var(--brand);color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--gold);border-color:var(--ink)}
 .count{color:var(--muted);font-size:.85rem;align-self:center;margin-left:auto}
 
 /* product grid */
@@ -161,21 +168,22 @@ document.getElementById("payAll").addEventListener("click",()=>{const items=[...
 .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
 .brand{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:6px;align-items:center}
 .sku{font-size:.62rem;letter-spacing:.08em;color:var(--brand);border:1px solid var(--line);border-radius:4px;padding:2px 6px;font-variant-numeric:tabular-nums;white-space:nowrap}
-.name{font-family:var(--display);font-size:1.2rem;font-weight:600;line-height:1.15;color:var(--ink)}
+.name{font-family:var(--display);font-size:1.15rem;font-weight:600;line-height:1.2;color:var(--ink);text-wrap:balance;min-height:2.4em}
 .fam{font-size:.8rem;color:var(--muted)}
 .price{display:flex;align-items:baseline;gap:10px;margin-top:auto;padding-top:8px;font-variant-numeric:tabular-nums}
 .price .now{font-size:1.5rem;font-weight:600;color:var(--brand)}
 .price .was{text-decoration:line-through;color:var(--muted);font-size:.9rem}
 .pts{font-size:.72rem;color:var(--gold-2);letter-spacing:.05em}
-.actions{display:flex;gap:8px;margin-top:10px}
-.btn{flex:1;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:10px;padding:11px 10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:background .15s}
-.btn:hover{background:var(--brand-2);border-color:var(--brand-2)}
-.btn.pay{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.btn.pay:hover{background:var(--brand);border-color:var(--brand);color:#fff}
-.btn.wa{background:#1f9d55;border-color:#1f9d55;text-align:center;text-decoration:none;display:grid;place-items:center}
-.btn.wa:hover{background:#178447;border-color:#178447}
-.addlink{background:none;border:0;color:var(--muted);font-size:.78rem;padding:8px 0 0;text-align:left;letter-spacing:.03em}
-.addlink:hover{color:var(--ink)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.btn{height:42px;border-radius:999px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--ink);background:var(--ink);color:var(--gold);text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s,border-color .15s,color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.pay{background:linear-gradient(135deg,#f3d791,#d8b158);border-color:#d8b158;color:var(--ink)}
+.btn.pay:hover{background:linear-gradient(135deg,#f7dfa3,#e2bd66)}
+.btn.wa{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.wa svg{width:15px;height:15px;fill:#1fa65a}
+.btn.wa:hover{border-color:var(--ink);background:var(--paper)}
+.addlink{background:none;border:0;color:var(--brand);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 0 0;text-align:center;width:100%}
+.addlink:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
 
 /* joyas & carteras */
@@ -191,6 +199,7 @@ document.getElementById("payAll").addEventListener("click",()=>{const items=[...
 /* loyalty */
 .loy{background:var(--ink);color:#fff;position:relative;overflow:hidden}
 .loy::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(233,198,74,.22),transparent 65%);top:-200px;right:-120px}
+.loy::after{content:"";position:absolute;right:4%;bottom:-6%;width:34%;max-width:420px;aspect-ratio:1;background:var(--bird) center/contain no-repeat;opacity:.08;pointer-events:none}
 .loy-in{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative}
 .loy h2{font-size:clamp(2rem,4vw,3rem)}
 .loy h2 em{color:var(--gold);font-style:italic}
@@ -215,12 +224,21 @@ document.getElementById("payAll").addEventListener("click",()=>{const items=[...
 .step .num{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.25rem}
 .step h3{font-family:var(--body);font-size:1rem;font-weight:600;margin-bottom:4px}
 .step p{margin:0;color:var(--muted);font-size:.9rem}
-.pay{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;justify-content:center}
-.pay span{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:10px 18px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
-.pay span b{color:var(--brand);font-weight:600}
+.paywrap{margin-top:36px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;text-align:center;position:relative}
+.paywrap::before{content:"";position:absolute;right:14px;top:10px;width:70px;height:70px;background:var(--bird) center/contain no-repeat;opacity:.18}
+.pay-h{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brand);margin-bottom:18px}
+.pay{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.pb{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:96px}
+.pb .pi{width:72px;height:44px;border-radius:8px;background:#fff;border:1px solid var(--line);display:grid;place-items:center}
+.pb .pi svg{width:44px;height:28px;fill:#1c1915}
+.pb .pt{height:44px;min-width:72px;padding:0 14px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.95rem;color:#fff;letter-spacing:.01em}
+.pt.bank{background:var(--ink);color:var(--gold);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.pb small{font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+.pay-n{margin:18px 0 0;font-size:.78rem;color:var(--muted)}
 
 /* footer */
-footer{background:var(--ink);color:#fff;padding:48px 0 100px}
+footer{background:var(--ink);color:#fff;padding:48px 0 100px;position:relative;overflow:hidden}
+footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;height:320px;background:var(--bird) center/contain no-repeat;opacity:.05;pointer-events:none}
 .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
 .foot h4{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;font-weight:500}
 .foot a{display:block;text-decoration:none;opacity:.8;margin-bottom:8px;font-size:.92rem}
@@ -229,10 +247,18 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 .social{display:flex;gap:10px;margin-top:14px}
 .social a{width:40px;height:40px;border:1px solid rgba(255,255,255,.25);border-radius:50%;display:grid;place-items:center;margin:0;opacity:1}
 .social svg{width:18px;height:18px;fill:#fff}
-.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:18px;font-size:.78rem;opacity:.6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.copy{border-top:1px solid rgba(234,193,114,.18);margin-top:36px;padding-top:18px;font-size:.78rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;opacity:.85}
+.copy .cl{display:flex;align-items:center;gap:10px;letter-spacing:.04em}
+.copy .cl img{width:26px;height:26px;border-radius:50%}
+.copy .cl b{color:var(--gold);font-weight:600}
+.paymini{display:flex;gap:6px;align-items:center}
+.paymini .pi{width:40px;height:26px;border-radius:5px;background:#fff;display:grid;place-items:center}
+.paymini .pi svg{width:24px;height:16px;fill:#1c1915}
+.paymini .pt{height:26px;padding:0 9px;border-radius:5px;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.7rem;color:#fff;letter-spacing:.02em}
+.pt.yape{background:#742284}.pt.plin{background:#00b3b0}
 
 /* WhatsApp float */
-.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--wa);color:#fff;border-radius:999px;padding:12px 18px 12px 14px;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.9rem;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;background:#1fa65a;color:#fff;border-radius:999px;padding:12px 20px 12px 14px;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 10px 30px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25)}
 .wa-float svg{width:24px;height:24px;fill:#fff}
 
 /* cart drawer */
@@ -250,15 +276,17 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 .ci .br{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 .ci .pr{color:var(--brand);font-weight:600;font-variant-numeric:tabular-nums}
 .qty{display:flex;align-items:center;gap:6px}
-.qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--paper)}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--paper);font-size:1rem;line-height:1}
+.qty button:hover{border-color:var(--brand);color:var(--brand)}
 .df{padding:16px 20px;border-top:1px solid var(--line);background:var(--paper);display:grid;gap:10px}
 .tot{display:flex;justify-content:space-between;font-size:1.1rem}
 .tot b{font-size:1.5rem;color:var(--ink);font-family:var(--display);font-variant-numeric:tabular-nums}
 .ptsline{display:flex;justify-content:space-between;font-size:.85rem;color:var(--gold-2)}
-.wa-btn{background:var(--wa);color:#fff;border:0;border-radius:12px;padding:15px;font-weight:600;font-size:.95rem;display:flex;justify-content:center;gap:10px;align-items:center;text-decoration:none}
+.wa-btn{background:#1fa65a;color:#fff;border:0;border-radius:999px;padding:14px;font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:center;gap:10px;align-items:center;text-decoration:none;font-family:inherit;transition:.15s}
+.wa-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .wa-btn svg{width:20px;height:20px;fill:#fff}
 .wa-btn[aria-disabled="true"],.wa-btn:disabled{opacity:.45;pointer-events:none}
-.pay-all{background:var(--gold);color:var(--ink);cursor:pointer}
+.pay-all{background:linear-gradient(135deg,#f3d791,#d8b158);color:var(--ink);cursor:pointer}
 .toast{position:fixed;left:50%;bottom:84px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.85rem;opacity:0;transition:.2s;z-index:65;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -280,7 +308,7 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 .pm-total b{font-family:var(--display);font-size:2rem;color:var(--ink)}
 .pm-ref{display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border-radius:10px;padding:10px 14px;font-size:.85rem}
 .pm-ref code{font-family:var(--body);font-weight:600;letter-spacing:.1em;color:var(--gold);flex:1;font-size:1rem}
-.pm-ref button{background:var(--gold);color:var(--ink);border:0;border-radius:6px;padding:6px 12px;font-weight:600;font-size:.78rem}
+.pm-ref button{background:var(--gold);color:var(--ink);border:0;border-radius:999px;padding:7px 14px;font-weight:600;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
 .pm-opts{display:grid;gap:12px}
 .pm-opt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
 .pm-oh{display:flex;align-items:center;gap:10px}
@@ -289,7 +317,7 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 .pm-badge.card{background:var(--ink);color:var(--gold)}
 .pm-opt ol{margin:0;padding-left:20px;font-size:.88rem;color:var(--text);display:grid;gap:4px}
 .pm-opt p{margin:0;font-size:.88rem;color:var(--muted)}
-.wa-btn.alt{background:var(--ink)}
+.wa-btn.alt{background:var(--ink);color:var(--gold)}
 .pm-note{margin:0;font-size:.78rem;color:var(--muted);text-align:center}
 
 /* ---------- responsive ---------- */
@@ -324,9 +352,11 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
   .brand{flex-wrap:wrap}
   .sku{font-size:.58rem}
   .body{padding:12px}
-  .name{font-size:1.05rem}
+  .name{font-size:1rem;min-height:2.4em}
   .price .now{font-size:1.25rem}
-  .btn{padding:10px 4px;font-size:.66rem;letter-spacing:.05em}
+  .actions{grid-template-columns:1fr;gap:6px}
+  .btn{height:38px;font-size:.64rem;letter-spacing:.1em;gap:6px}
+  .btn.wa svg{width:13px;height:13px}
   .loy-in{grid-template-columns:1fr}
   .dual{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
@@ -342,11 +372,11 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 </head>
 <body>
 
-<div class="topbar">✨ Accesorios de lujo 💎 · Cyber Day hasta <b>60% dscto.</b> · envíos a todo el Perú</div>
+<div class="topbar">Accesorios de lujo · Cyber Day hasta <b>60% dscto.</b> · envíos a todo el Perú</div>
 
 <header class="site">
   <div class="wrap hdr">
-    <a class="logo" href="#inicio"><img src="img/logo.webp" alt="Venti Joyas"><span>VENTI JOYAS</span></a>
+    <a class="logo" href="#inicio"><img src="logo.webp" alt="Venti Joyas"><span>VENTI JOYAS</span></a>
     <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar perfume, marca o nota…" aria-label="Buscar"></label>
     <nav class="main" id="nav">
       <a href="#mujer" data-f="Mujer">Mujer</a>
@@ -396,9 +426,9 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
   <div class="wrap">
     <div class="sec-head"><div><h2>Elige tu fragancia</h2><p>Explora por colección</p></div></div>
     <div class="cats">
-      <a class="cat" href="#catalogo" data-f="Mujer"><img src="img/c/p5.webp" alt=""><div class="t"><small>22 fragancias</small><h3>Femeninas</h3></div></a>
-      <a class="cat" href="#catalogo" data-f="Hombre"><img src="img/c/p29.webp" alt=""><div class="t"><small>11 fragancias</small><h3>Masculinas</h3></div></a>
-      <a class="cat" href="#catalogo" data-f="Sets"><img src="img/c/p9.webp" alt=""><div class="t"><small>Ideales para regalo</small><h3>Sets &amp; Estuches</h3></div></a>
+      <a class="cat" href="#catalogo" data-f="Mujer"><img src="p5.webp" alt=""><div class="t"><small>22 fragancias</small><h3>Femeninas</h3></div></a>
+      <a class="cat" href="#catalogo" data-f="Hombre"><img src="p29.webp" alt=""><div class="t"><small>11 fragancias</small><h3>Masculinas</h3></div></a>
+      <a class="cat" href="#catalogo" data-f="Sets"><img src="p9.webp" alt=""><div class="t"><small>Ideales para regalo</small><h3>Sets &amp; Estuches</h3></div></a>
     </div>
   </div>
 </section>
@@ -407,7 +437,7 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 
 <section id="catalogo">
   <div class="wrap">
-    <div class="sec-head"><div><h2 id="gridTitle">Ofertas Cyber Day</h2><p>Precios en soles · stock sujeto a confirmación</p></div><a href="#comprar">Cómo comprar</a></div>
+    <div class="sec-head"><div><h2 id="gridTitle">Ofertas Cyber Day</h2><p>Perfumes 100% originales · stock sujeto a confirmación</p></div><a href="#comprar">Cómo comprar</a></div>
     <div class="filters" id="filters">
       <button class="chip" data-f="Todos" aria-pressed="true">Todos</button>
       <button class="chip" data-f="Mujer" aria-pressed="false">Mujer</button>
@@ -426,7 +456,7 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
     <div class="sec-head"><div><h2>Joyas &amp; Carteras</h2><p>Nuestras colecciones de accesorios de lujo, en catálogo digital</p></div></div>
     <div class="dual">
       <a class="dual-card" href="https://www.canva.com/design/DAHMJTHDK84/RnhbTyP00tk0x4i8GTPDSA/view" target="_blank" rel="noopener">
-        <div class="dual-ic"><img src="img/logo.webp" alt=""></div>
+        <div class="dual-ic"><img src="logo.webp" alt=""></div>
         <div><small>Catálogo</small><h3>Joyas</h3><p>Aretes, collares, anillos y pulseras seleccionadas. Ver colección completa.</p></div>
         <span class="arrow">→</span>
       </a>
@@ -471,14 +501,14 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
       <div class="step"><div class="num">5</div><div><h3>Tu comprobante</h3><p>Generamos tu comprobante de pago con tus datos.</p></div></div>
       <div class="step"><div class="num">6</div><div><h3>Enviamos tu pedido</h3><p>Por Shalom o InDriver a nivel nacional.</p></div></div>
     </div>
-    <div class="pay"><span><b>Yape</b> 933 038 532</span><span><b>Transferencia</b> bancaria</span><span><b>Tarjeta</b> con link de pago</span></div>
+    <div class="paywrap"><div class="pay-h">Medios de pago</div><div class="pay"><span class="pb"><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/></svg></i><small>Visa</small></span><span class="pb"><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z"/></svg></i><small>Mastercard</small></span><span class="pb"><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.015 14.378c0-.32-.135-.496-.344-.622-.21-.12-.464-.135-.81-.135h-1.543v2.82h.675v-1.027h.72c.24 0 .39.024.478.125.12.13.104.38.104.55v.35h.66v-.555c-.002-.25-.017-.376-.108-.516-.06-.08-.18-.18-.33-.234l.02-.008c.18-.072.48-.297.48-.747zm-.87.407l-.028-.002c-.09.053-.195.058-.33.058h-.81v-.63h.824c.12 0 .24 0 .33.05.098.048.156.147.15.255 0 .12-.045.215-.134.27zM20.297 15.837H19v.6h1.304c.676 0 1.05-.278 1.05-.884 0-.28-.066-.448-.187-.582-.153-.133-.392-.193-.73-.207l-.376-.015c-.104 0-.18 0-.255-.03-.09-.03-.15-.105-.15-.21 0-.09.017-.166.09-.21.083-.046.177-.066.272-.06h1.23v-.602h-1.35c-.704 0-.958.437-.958.84 0 .9.776.855 1.407.87.104 0 .18.015.225.06.046.03.082.106.082.18 0 .077-.035.15-.08.18-.06.053-.15.07-.277.07zM0 0v10.096L.81 8.22h1.75l.225.464V8.22h2.043l.45 1.02.437-1.013h6.502c.295 0 .56.057.756.236v-.23h1.787v.23c.307-.17.686-.23 1.12-.23h2.606l.24.466v-.466h1.918l.254.465v-.466h1.858v3.948H20.87l-.36-.6v.585h-2.353l-.256-.63h-.583l-.27.614h-1.213c-.48 0-.84-.104-1.08-.24v.24h-2.89v-.884c0-.12-.03-.12-.105-.135h-.105v1.036H6.067v-.48l-.21.48H4.69l-.202-.48v.465H2.235l-.256-.624H1.4l-.256.624H0V24h23.786v-7.108c-.27.135-.613.18-.973.18H21.09v-.255c-.21.165-.57.255-.914.255H14.71v-.9c0-.12-.018-.12-.12-.12h-.075v1.022h-1.8v-1.066c-.298.136-.643.15-.928.136h-.214v.915h-2.18l-.54-.617-.57.6H4.742v-3.93h3.61l.518.602.554-.6h2.412c.28 0 .74.03.942.225v-.24h2.177c.202 0 .644.045.903.225v-.24h3.265v.24c.163-.164.508-.24.803-.24h1.89v.24c.194-.15.464-.24.84-.24h1.176V0H0zM21.156 14.955c.004.005.006.012.01.016.01.01.024.01.032.02l-.042-.035zM23.828 13.082h.065v.555h-.065zM23.865 15.03v-.005c-.03-.025-.046-.048-.075-.07-.15-.153-.39-.215-.764-.225l-.36-.012c-.12 0-.194-.007-.27-.03-.09-.03-.15-.105-.15-.21 0-.09.03-.16.09-.204.076-.045.15-.05.27-.05h1.223v-.588h-1.283c-.69 0-.96.437-.96.84 0 .9.78.855 1.41.87.104 0 .18.015.224.06.046.03.076.106.076.18 0 .07-.034.138-.09.18-.045.056-.136.07-.27.07h-1.288v.605h1.287c.42 0 .734-.118.9-.36h.03c.09-.134.135-.3.135-.523 0-.24-.045-.39-.135-.526zM18.597 14.208v-.583h-2.235V16.458h2.235v-.585h-1.57v-.57h1.533v-.584h-1.532v-.51M13.51 8.787h.685V11.6h-.684zM13.126 9.543l-.007.006c0-.314-.13-.5-.34-.624-.217-.125-.47-.135-.81-.135H10.43v2.82h.674v-1.034h.72c.24 0 .39.03.487.12.122.136.107.378.107.548v.354h.677v-.553c0-.25-.016-.375-.11-.516-.09-.107-.202-.19-.33-.237.172-.07.472-.3.472-.75zm-.855.396h-.015c-.09.054-.195.056-.33.056H11.1v-.623h.825c.12 0 .24.004.33.05.09.04.15.128.15.25s-.047.22-.134.266zM15.92 9.373h.632v-.6h-.644c-.464 0-.804.105-1.02.33-.286.3-.362.69-.362 1.11 0 .512.123.833.36 1.074.232.238.645.31.97.31h.78l.255-.627h1.39l.262.627h1.36v-2.11l1.272 2.11h.95l.002.002V8.786h-.684v1.963l-1.18-1.96h-1.02V11.4L18.11 8.744h-1.004l-.943 2.22h-.3c-.177 0-.362-.03-.468-.134-.125-.15-.186-.36-.186-.662 0-.285.08-.51.194-.63.133-.135.272-.165.516-.165zm1.668-.108l.464 1.118v.002h-.93l.466-1.12zM2.38 10.97l.254.628H4V9.393l.972 2.205h.584l.973-2.202.015 2.202h.69v-2.81H6.118l-.807 1.904-.876-1.905H3.343v2.663L2.205 8.787h-.997L.01 11.597h.72l.26-.626h1.39zm-.688-1.705l.46 1.118-.003.002h-.915l.457-1.12zM11.856 13.62H9.714l-.85.923-.825-.922H5.346v2.82H8l.855-.932.824.93h1.302v-.94h.838c.6 0 1.17-.164 1.17-.945l-.006-.003c0-.78-.598-.93-1.128-.93zM7.67 15.853l-.014-.002H6.02v-.557h1.47v-.574H6.02v-.51H7.7l.733.82-.764.824zm2.642.33l-1.03-1.147 1.03-1.108v2.253zm1.553-1.258h-.885v-.717h.885c.24 0 .42.098.42.344 0 .243-.15.372-.42.372zM9.967 9.373v-.586H7.73V11.6h2.237v-.58H8.4v-.564h1.527V9.88H8.4v-.507"/></svg></i><small>American Express</small></span><span class="pb"><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.506 11.982a6.026 6.026 0 0 0-3.866-5.618V17.6a6.025 6.025 0 0 0 3.866-5.618zM8.33 17.598V6.365a6.03 6.03 0 0 0-3.863 5.617 6.028 6.028 0 0 0 3.863 5.616zm2.156-15.113A9.497 9.497 0 0 0 .99 11.982a9.495 9.495 0 0 0 9.495 9.494c5.245 0 9.495-4.25 9.496-9.494a9.499 9.499 0 0 0-9.496-9.497Zm-.023 19.888C4.723 22.4 0 17.75 0 12.09 0 5.905 4.723 1.626 10.463 1.627h2.69C18.822 1.627 24 5.903 24 12.09c0 5.658-5.176 10.283-10.848 10.283"/></svg></i><small>Diners Club</small></span><span class="pb"><i class="pt yape">Yape</i><small>933 038 532</small></span><span class="pb"><i class="pt plin">Plin</i><small>Billetera móvil</small></span><span class="pb"><i class="pt bank">Transferencia</i><small>Bancaria</small></span></div><p class="pay-n">Tarjetas mediante link de pago seguro · Yape y transferencia con confirmación por WhatsApp</p></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
     <div>
-      <a class="logo" href="#inicio" style="margin-bottom:14px"><img src="img/logo.webp" alt=""><span>VENTI JOYAS</span></a>
+      <a class="logo" href="#inicio" style="margin-bottom:14px"><img src="logo.webp" alt=""><span>VENTI JOYAS</span></a>
       <p>Accesorios de lujo, joyas, carteras y perfumes 100% originales. Pedidos por WhatsApp, pago con Yape o tarjeta y envíos a todo el Perú.</p>
       <div class="social">
         <a href="https://www.instagram.com/veintidue.shop" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1.7.7 1.3 1.1 2.1 1.4.8.3 1.6.5 2.9.6C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6.8-.3 1.5-.7 2.1-1.4.7-.7 1.1-1.3 1.4-2.1.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a>
@@ -490,14 +520,14 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
     <div><h4>Ayuda</h4><a href="#comprar">Cómo comprar</a><a href="#comprar">Medios de pago</a><a href="#puntos">Puntos Venti</a><a href="#comprar">Envíos a todo el Perú</a></div>
     <div><h4>Contacto</h4><a href="https://api.whatsapp.com/send?phone=51933038532" target="_blank" rel="noopener">WhatsApp 933 038 532</a><a href="https://www.instagram.com/veintidue.shop" target="_blank" rel="noopener">@veintidue.shop</a><a href="https://www.tiktok.com/@ventidue.joyas" target="_blank" rel="noopener">TikTok @ventidue.joyas</a></div>
   </div>
-  <div class="wrap copy"><span>© 2026 Venti Joyas · Veintidue · Accesorios de lujo y perfumes originales</span><span>Precios en soles (S/) · Promoción Cyber Day sujeta a stock</span></div>
+  <div class="wrap copy"><span class="cl"><img src="logo.webp" alt="">© 2026 Veintidue · Todos los derechos reservados · Marca registrada <b>®</b></span><span class="paymini"><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/></svg></i><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z"/></svg></i><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.015 14.378c0-.32-.135-.496-.344-.622-.21-.12-.464-.135-.81-.135h-1.543v2.82h.675v-1.027h.72c.24 0 .39.024.478.125.12.13.104.38.104.55v.35h.66v-.555c-.002-.25-.017-.376-.108-.516-.06-.08-.18-.18-.33-.234l.02-.008c.18-.072.48-.297.48-.747zm-.87.407l-.028-.002c-.09.053-.195.058-.33.058h-.81v-.63h.824c.12 0 .24 0 .33.05.098.048.156.147.15.255 0 .12-.045.215-.134.27zM20.297 15.837H19v.6h1.304c.676 0 1.05-.278 1.05-.884 0-.28-.066-.448-.187-.582-.153-.133-.392-.193-.73-.207l-.376-.015c-.104 0-.18 0-.255-.03-.09-.03-.15-.105-.15-.21 0-.09.017-.166.09-.21.083-.046.177-.066.272-.06h1.23v-.602h-1.35c-.704 0-.958.437-.958.84 0 .9.776.855 1.407.87.104 0 .18.015.225.06.046.03.082.106.082.18 0 .077-.035.15-.08.18-.06.053-.15.07-.277.07zM0 0v10.096L.81 8.22h1.75l.225.464V8.22h2.043l.45 1.02.437-1.013h6.502c.295 0 .56.057.756.236v-.23h1.787v.23c.307-.17.686-.23 1.12-.23h2.606l.24.466v-.466h1.918l.254.465v-.466h1.858v3.948H20.87l-.36-.6v.585h-2.353l-.256-.63h-.583l-.27.614h-1.213c-.48 0-.84-.104-1.08-.24v.24h-2.89v-.884c0-.12-.03-.12-.105-.135h-.105v1.036H6.067v-.48l-.21.48H4.69l-.202-.48v.465H2.235l-.256-.624H1.4l-.256.624H0V24h23.786v-7.108c-.27.135-.613.18-.973.18H21.09v-.255c-.21.165-.57.255-.914.255H14.71v-.9c0-.12-.018-.12-.12-.12h-.075v1.022h-1.8v-1.066c-.298.136-.643.15-.928.136h-.214v.915h-2.18l-.54-.617-.57.6H4.742v-3.93h3.61l.518.602.554-.6h2.412c.28 0 .74.03.942.225v-.24h2.177c.202 0 .644.045.903.225v-.24h3.265v.24c.163-.164.508-.24.803-.24h1.89v.24c.194-.15.464-.24.84-.24h1.176V0H0zM21.156 14.955c.004.005.006.012.01.016.01.01.024.01.032.02l-.042-.035zM23.828 13.082h.065v.555h-.065zM23.865 15.03v-.005c-.03-.025-.046-.048-.075-.07-.15-.153-.39-.215-.764-.225l-.36-.012c-.12 0-.194-.007-.27-.03-.09-.03-.15-.105-.15-.21 0-.09.03-.16.09-.204.076-.045.15-.05.27-.05h1.223v-.588h-1.283c-.69 0-.96.437-.96.84 0 .9.78.855 1.41.87.104 0 .18.015.224.06.046.03.076.106.076.18 0 .07-.034.138-.09.18-.045.056-.136.07-.27.07h-1.288v.605h1.287c.42 0 .734-.118.9-.36h.03c.09-.134.135-.3.135-.523 0-.24-.045-.39-.135-.526zM18.597 14.208v-.583h-2.235V16.458h2.235v-.585h-1.57v-.57h1.533v-.584h-1.532v-.51M13.51 8.787h.685V11.6h-.684zM13.126 9.543l-.007.006c0-.314-.13-.5-.34-.624-.217-.125-.47-.135-.81-.135H10.43v2.82h.674v-1.034h.72c.24 0 .39.03.487.12.122.136.107.378.107.548v.354h.677v-.553c0-.25-.016-.375-.11-.516-.09-.107-.202-.19-.33-.237.172-.07.472-.3.472-.75zm-.855.396h-.015c-.09.054-.195.056-.33.056H11.1v-.623h.825c.12 0 .24.004.33.05.09.04.15.128.15.25s-.047.22-.134.266zM15.92 9.373h.632v-.6h-.644c-.464 0-.804.105-1.02.33-.286.3-.362.69-.362 1.11 0 .512.123.833.36 1.074.232.238.645.31.97.31h.78l.255-.627h1.39l.262.627h1.36v-2.11l1.272 2.11h.95l.002.002V8.786h-.684v1.963l-1.18-1.96h-1.02V11.4L18.11 8.744h-1.004l-.943 2.22h-.3c-.177 0-.362-.03-.468-.134-.125-.15-.186-.36-.186-.662 0-.285.08-.51.194-.63.133-.135.272-.165.516-.165zm1.668-.108l.464 1.118v.002h-.93l.466-1.12zM2.38 10.97l.254.628H4V9.393l.972 2.205h.584l.973-2.202.015 2.202h.69v-2.81H6.118l-.807 1.904-.876-1.905H3.343v2.663L2.205 8.787h-.997L.01 11.597h.72l.26-.626h1.39zm-.688-1.705l.46 1.118-.003.002h-.915l.457-1.12zM11.856 13.62H9.714l-.85.923-.825-.922H5.346v2.82H8l.855-.932.824.93h1.302v-.94h.838c.6 0 1.17-.164 1.17-.945l-.006-.003c0-.78-.598-.93-1.128-.93zM7.67 15.853l-.014-.002H6.02v-.557h1.47v-.574H6.02v-.51H7.7l.733.82-.764.824zm2.642.33l-1.03-1.147 1.03-1.108v2.253zm1.553-1.258h-.885v-.717h.885c.24 0 .42.098.42.344 0 .243-.15.372-.42.372zM9.967 9.373v-.586H7.73V11.6h2.237v-.58H8.4v-.564h1.527V9.88H8.4v-.507"/></svg></i><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.506 11.982a6.026 6.026 0 0 0-3.866-5.618V17.6a6.025 6.025 0 0 0 3.866-5.618zM8.33 17.598V6.365a6.03 6.03 0 0 0-3.863 5.617 6.028 6.028 0 0 0 3.863 5.616zm2.156-15.113A9.497 9.497 0 0 0 .99 11.982a9.495 9.495 0 0 0 9.495 9.494c5.245 0 9.495-4.25 9.496-9.494a9.499 9.499 0 0 0-9.496-9.497Zm-.023 19.888C4.723 22.4 0 17.75 0 12.09 0 5.905 4.723 1.626 10.463 1.627h2.69C18.822 1.627 24 5.903 24 12.09c0 5.658-5.176 10.283-10.848 10.283"/></svg></i><i class="pt yape">Yape</i><i class="pt plin">Plin</i></span></div>
 </footer>
 
 <a class="wa-float" href="https://api.whatsapp.com/send?phone=51933038532&amp;text=%22%C2%A1Hola!%20VEINTIDUE%2C%20Quiero%20saber%20m%C3%A1s%20sobre%20las%20joyas.%20%C2%BFC%C3%B3mo%20puedo%20hacer%20mi%20compra%3F%20%E2%9C%A8%22" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7a11.8 11.8 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 2.2 12C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg><span>Pedir por WhatsApp</span></a>
 
 <div class="ov" id="ov"></div>
 <aside class="drawer" id="drawer" aria-label="Mi pedido">
-  <div class="dh"><h3>Mi pedido</h3><button id="closeCart" aria-label="Cerrar">×</button></div>
+  <div class="dh"><h3><img src="bird-gold.png" alt="" style="width:26px;height:26px;vertical-align:-4px;margin-right:8px">Mi pedido</h3><button id="closeCart" aria-label="Cerrar">×</button></div>
   <div class="dl" id="cartList"></div>
   <div class="df">
     <div class="ptsline"><span>Puntos Venti que acumulas</span><span id="cartPts">0 pts</span></div>
@@ -509,7 +539,7 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
 
 <div class="ov" id="pov"></div>
 <div class="modal" id="pmodal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
-  <div class="mh"><div><small>Pago directo</small><h3 id="pmTitle">Pagar ahora</h3></div><button id="pmClose" aria-label="Cerrar">×</button></div>
+  <div class="mh"><div><small>Pago directo</small><h3 id="pmTitle"><img src="bird-gold.png" alt="" style="width:24px;height:24px;vertical-align:-3px;margin-right:8px">Pagar ahora</h3></div><button id="pmClose" aria-label="Cerrar">×</button></div>
   <div class="mb">
     <div class="pm-items" id="pmItems"></div>
     <div class="pm-total"><span>Total a pagar</span><b id="pmTotal">S/ 0</b></div>
@@ -522,7 +552,7 @@ footer{background:var(--ink);color:#fff;padding:48px 0 100px}
       </div>
       <div class="pm-opt">
         <div class="pm-oh"><span class="pm-badge card">Tarjeta</span><b>Link de pago seguro</b></div>
-        <p>Te enviamos un link de pago con tarjeta de crédito o débito (Visa, Mastercard). Transferencia bancaria también disponible.</p>
+        <p>Te enviamos un link de pago seguro con tarjeta de crédito o débito. Transferencia bancaria también disponible.</p><div class="paymini" style="margin-top:4px"><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/></svg></i><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z"/></svg></i><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.015 14.378c0-.32-.135-.496-.344-.622-.21-.12-.464-.135-.81-.135h-1.543v2.82h.675v-1.027h.72c.24 0 .39.024.478.125.12.13.104.38.104.55v.35h.66v-.555c-.002-.25-.017-.376-.108-.516-.06-.08-.18-.18-.33-.234l.02-.008c.18-.072.48-.297.48-.747zm-.87.407l-.028-.002c-.09.053-.195.058-.33.058h-.81v-.63h.824c.12 0 .24 0 .33.05.098.048.156.147.15.255 0 .12-.045.215-.134.27zM20.297 15.837H19v.6h1.304c.676 0 1.05-.278 1.05-.884 0-.28-.066-.448-.187-.582-.153-.133-.392-.193-.73-.207l-.376-.015c-.104 0-.18 0-.255-.03-.09-.03-.15-.105-.15-.21 0-.09.017-.166.09-.21.083-.046.177-.066.272-.06h1.23v-.602h-1.35c-.704 0-.958.437-.958.84 0 .9.776.855 1.407.87.104 0 .18.015.225.06.046.03.082.106.082.18 0 .077-.035.15-.08.18-.06.053-.15.07-.277.07zM0 0v10.096L.81 8.22h1.75l.225.464V8.22h2.043l.45 1.02.437-1.013h6.502c.295 0 .56.057.756.236v-.23h1.787v.23c.307-.17.686-.23 1.12-.23h2.606l.24.466v-.466h1.918l.254.465v-.466h1.858v3.948H20.87l-.36-.6v.585h-2.353l-.256-.63h-.583l-.27.614h-1.213c-.48 0-.84-.104-1.08-.24v.24h-2.89v-.884c0-.12-.03-.12-.105-.135h-.105v1.036H6.067v-.48l-.21.48H4.69l-.202-.48v.465H2.235l-.256-.624H1.4l-.256.624H0V24h23.786v-7.108c-.27.135-.613.18-.973.18H21.09v-.255c-.21.165-.57.255-.914.255H14.71v-.9c0-.12-.018-.12-.12-.12h-.075v1.022h-1.8v-1.066c-.298.136-.643.15-.928.136h-.214v.915h-2.18l-.54-.617-.57.6H4.742v-3.93h3.61l.518.602.554-.6h2.412c.28 0 .74.03.942.225v-.24h2.177c.202 0 .644.045.903.225v-.24h3.265v.24c.163-.164.508-.24.803-.24h1.89v.24c.194-.15.464-.24.84-.24h1.176V0H0zM21.156 14.955c.004.005.006.012.01.016.01.01.024.01.032.02l-.042-.035zM23.828 13.082h.065v.555h-.065zM23.865 15.03v-.005c-.03-.025-.046-.048-.075-.07-.15-.153-.39-.215-.764-.225l-.36-.012c-.12 0-.194-.007-.27-.03-.09-.03-.15-.105-.15-.21 0-.09.03-.16.09-.204.076-.045.15-.05.27-.05h1.223v-.588h-1.283c-.69 0-.96.437-.96.84 0 .9.78.855 1.41.87.104 0 .18.015.224.06.046.03.076.106.076.18 0 .07-.034.138-.09.18-.045.056-.136.07-.27.07h-1.288v.605h1.287c.42 0 .734-.118.9-.36h.03c.09-.134.135-.3.135-.523 0-.24-.045-.39-.135-.526zM18.597 14.208v-.583h-2.235V16.458h2.235v-.585h-1.57v-.57h1.533v-.584h-1.532v-.51M13.51 8.787h.685V11.6h-.684zM13.126 9.543l-.007.006c0-.314-.13-.5-.34-.624-.217-.125-.47-.135-.81-.135H10.43v2.82h.674v-1.034h.72c.24 0 .39.03.487.12.122.136.107.378.107.548v.354h.677v-.553c0-.25-.016-.375-.11-.516-.09-.107-.202-.19-.33-.237.172-.07.472-.3.472-.75zm-.855.396h-.015c-.09.054-.195.056-.33.056H11.1v-.623h.825c.12 0 .24.004.33.05.09.04.15.128.15.25s-.047.22-.134.266zM15.92 9.373h.632v-.6h-.644c-.464 0-.804.105-1.02.33-.286.3-.362.69-.362 1.11 0 .512.123.833.36 1.074.232.238.645.31.97.31h.78l.255-.627h1.39l.262.627h1.36v-2.11l1.272 2.11h.95l.002.002V8.786h-.684v1.963l-1.18-1.96h-1.02V11.4L18.11 8.744h-1.004l-.943 2.22h-.3c-.177 0-.362-.03-.468-.134-.125-.15-.186-.36-.186-.662 0-.285.08-.51.194-.63.133-.135.272-.165.516-.165zm1.668-.108l.464 1.118v.002h-.93l.466-1.12zM2.38 10.97l.254.628H4V9.393l.972 2.205h.584l.973-2.202.015 2.202h.69v-2.81H6.118l-.807 1.904-.876-1.905H3.343v2.663L2.205 8.787h-.997L.01 11.597h.72l.26-.626h1.39zm-.688-1.705l.46 1.118-.003.002h-.915l.457-1.12zM11.856 13.62H9.714l-.85.923-.825-.922H5.346v2.82H8l.855-.932.824.93h1.302v-.94h.838c.6 0 1.17-.164 1.17-.945l-.006-.003c0-.78-.598-.93-1.128-.93zM7.67 15.853l-.014-.002H6.02v-.557h1.47v-.574H6.02v-.51H7.7l.733.82-.764.824zm2.642.33l-1.03-1.147 1.03-1.108v2.253zm1.553-1.258h-.885v-.717h.885c.24 0 .42.098.42.344 0 .243-.15.372-.42.372zM9.967 9.373v-.586H7.73V11.6h2.237v-.58H8.4v-.564h1.527V9.88H8.4v-.507"/></svg></i><i class="pi"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.506 11.982a6.026 6.026 0 0 0-3.866-5.618V17.6a6.025 6.025 0 0 0 3.866-5.618zM8.33 17.598V6.365a6.03 6.03 0 0 0-3.863 5.617 6.028 6.028 0 0 0 3.863 5.616zm2.156-15.113A9.497 9.497 0 0 0 .99 11.982a9.495 9.495 0 0 0 9.495 9.494c5.245 0 9.495-4.25 9.496-9.494a9.499 9.499 0 0 0-9.496-9.497Zm-.023 19.888C4.723 22.4 0 17.75 0 12.09 0 5.905 4.723 1.626 10.463 1.627h2.69C18.822 1.627 24 5.903 24 12.09c0 5.658-5.176 10.283-10.848 10.283"/></svg></i></div>
         <a class="wa-btn alt" id="pmCardWa" href="#" target="_blank" rel="noopener">Solicitar link de pago</a>
       </div>
     </div>
@@ -572,6 +602,7 @@ const WA="51933038532";
 const WAB="https://api.whatsapp.com/send?phone="+WA+"&text=";
 const BC={"Michael Kors":"MK","Versace":"VS","Moschino":"MO","Pepe Jeans":"PJ","Women'Secret":"WS"};
 const sku=p=>`VJ-${BC[p.b]}-${String(p.id).padStart(3,"0")}`;
+const nm=s=>s.replace(/ (\d+) ml/g,"\u00a0$1\u00a0ml").replace(/ × /g,"\u00a0×\u00a0").replace(/(\d) ×/g,"$1\u00a0×");
 const S=n=>"S/ "+n.toLocaleString("es-PE");
 const pts=n=>Math.floor(n/100)*100;
 const off=p=>p.was?Math.round((1-p.now/p.was)*100):0;
@@ -595,15 +626,15 @@ function render(){
   <article class="card" id="sku-${sku(p)}">
     <div class="ph">
       <div class="tags">${p.was?`<span class="tag off">-${off(p)}%</span>`:""}${p.flag==="lim"?`<span class="tag lim">Stock limitado</span>`:""}${p.flag==="last"?`<span class="tag last">Últimos sets</span>`:""}</div>
-      <img src="img/c/${p.img}.webp" alt="${p.b} ${p.n}" loading="lazy">
+      <img src="${p.img}.webp" alt="${p.b} ${p.n}" loading="lazy">
     </div>
     <div class="body">
       <div class="brand">${p.b}<span class="sku">SKU ${sku(p)}</span></div>
-      <div class="name">${p.n}</div>
+      <div class="name">${nm(p.n)}</div>
       <div class="fam">${p.g} · ${p.f}</div>
       <div class="price"><span class="now">${S(p.now)}</span>${p.was?`<span class="was">${S(p.was)}</span>`:""}</div>
       <div class="pts">+${pts(p.now)} puntos Venti</div>
-      <div class="actions"><button class="btn pay" data-pay="${p.id}">Pagar ahora</button><a class="btn wa" href="${waLink([{p,q:1}])}" target="_blank" rel="noopener" aria-label="Comprar ${p.n} por WhatsApp">WhatsApp</a></div>
+      <div class="actions"><button class="btn pay" data-pay="${p.id}">Pagar ahora</button><a class="btn wa" href="${waLink([{p,q:1}])}" target="_blank" rel="noopener" aria-label="Comprar ${p.n} por WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7a11.8 11.8 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 2.2 12C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg>WhatsApp</a></div>
       <button class="addlink" data-add="${p.id}">+ Agregar a mi pedido</button>
     </div>
   </article>`).join(""):`<div class="empty">No encontramos productos con ese criterio. Prueba otra marca o nota.</div>`;
@@ -619,7 +650,7 @@ const refOf=items=>items.length===1&&items[0].q===1?sku(items[0].p):"VJ-PED-"+St
 /* pay modal */
 function openPay(items){
   const tot=items.reduce((a,{p,q})=>a+p.now*q,0), ref=refOf(items);
-  document.getElementById("pmItems").innerHTML=items.map(({p,q})=>`<div class="pm-it"><img src="img/c/${p.img}.webp" alt=""><div><div class="s">SKU ${sku(p)}</div>${q}× ${p.b} ${p.n}</div><b>${S(p.now*q)}</b></div>`).join("");
+  document.getElementById("pmItems").innerHTML=items.map(({p,q})=>`<div class="pm-it"><img src="${p.img}.webp" alt=""><div><div class="s">SKU ${sku(p)}</div>${q}× ${p.b} ${p.n}</div><b>${S(p.now*q)}</b></div>`).join("");
   document.getElementById("pmTotal").textContent=S(tot);
   document.getElementById("pmRef").textContent=ref;document.getElementById("pmRef2").textContent=ref;
   const det=items.map(({p,q})=>`[${sku(p)}] ${q}× ${p.b} ${p.n}`).join(", ");
@@ -666,7 +697,7 @@ function drawCart(){
   document.getElementById("cartPts").textContent=pts(tot).toLocaleString("es-PE")+" pts";
   const list=document.getElementById("cartList");
   list.innerHTML=items.length?items.map(({p,q})=>`
-   <div class="ci"><img src="img/c/${p.img}.webp" alt=""><div><div class="br">${p.b} · ${sku(p)}</div><div class="nm">${p.n}</div><div class="pr">${S(p.now*q)}</div></div>
+   <div class="ci"><img src="${p.img}.webp" alt=""><div><div class="br">${p.b} · ${sku(p)}</div><div class="nm">${p.n}</div><div class="pr">${S(p.now*q)}</div></div>
    <div class="qty"><button data-dec="${p.id}" aria-label="Quitar uno">−</button><span>${q}</span><button data-inc="${p.id}" aria-label="Agregar uno">+</button></div></div>`).join("")
    :`<p style="color:var(--muted);text-align:center;padding:30px 0">Tu pedido está vacío.<br>Agrega perfumes desde el catálogo.</p>`;
   const wa=document.getElementById("waSend");
@@ -694,7 +725,7 @@ ci.addEventListener("input",calc);calc();
 /* hero carousel */
 (function(){
   const track=document.getElementById("track"),dots=document.getElementById("cDots"),cap=document.getElementById("cCap");
-  track.innerHTML=P.map((p,i)=>`<div class="slide${i===0?" on":""}" data-i="${i}"><img src="img/c/${p.img}.webp" alt="${p.b} ${p.n}" ${i>1?'loading="lazy"':''}></div>`).join("");
+  track.innerHTML=P.map((p,i)=>`<div class="slide${i===0?" on":""}" data-i="${i}"><img src="${p.img}.webp" alt="${p.b} ${p.n}" ${i>1?'loading="lazy"':''}></div>`).join("");
   dots.innerHTML=P.map((p,i)=>`<button data-go="${i}" aria-label="${p.b} ${p.n}" aria-current="${i===0}"></button>`).join("");
   let i=0,timer;
   const slides=[...track.children],ds=[...dots.children];
