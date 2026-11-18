@@ -28,7 +28,7 @@
 *{box-sizing:border-box}
 html,body{margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{background:var(--ivory);color:var(--text);font-family:var(--body);font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{background:var(--ivory);color:var(--text);font-family:var(--body);font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font-family:inherit;cursor:pointer}
@@ -40,16 +40,19 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;margin:0;te
 @media (max-width:560px){.tb-l{display:none}.topbar{font-size:.66rem;letter-spacing:.06em}}
 
 header.site{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
-.hdr{display:flex;align-items:center;gap:18px;padding:12px 0;position:relative}
+.hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:14px 0 0;position:relative}
+.hdr .logo{grid-column:2;grid-row:1;justify-self:center}
+.hdr .cartbtn{grid-column:3;grid-row:1;justify-self:end}
+.hdr .burger{grid-column:1;grid-row:1;justify-self:start}
+nav.main{grid-column:1/-1;grid-row:2;justify-content:center;padding:8px 0 0}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
 .logo img{height:44px;width:44px;border-radius:50%}
-.logo span{font-family:var(--display);font-size:1.4rem;letter-spacing:.14em;font-weight:600;white-space:nowrap}
-nav.main{display:flex;gap:22px;margin-left:auto;white-space:nowrap;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.logo span{font-family:var(--display);font-size:1.5rem;letter-spacing:.18em;font-weight:600;white-space:nowrap}
+nav.main{display:flex;gap:26px;white-space:nowrap;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase}
 nav.main a{text-decoration:none;opacity:.85;padding:6px 0;border-bottom:1px solid transparent}
 nav.main a:hover{opacity:1;border-color:var(--gold)}
-.cartbtn{margin-left:auto;background:transparent;border:1px solid rgba(234,193,114,.5);color:#fff;border-radius:999px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:.15s;white-space:nowrap;flex:0 0 auto}
+.cartbtn{background:transparent;border:1px solid rgba(234,193,114,.5);color:#fff;border-radius:999px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:.15s;white-space:nowrap;flex:0 0 auto}
 .cartbtn:hover{background:rgba(234,193,114,.12);border-color:var(--gold)}
-nav.main + .cartbtn{margin-left:0}
 .cartbtn .n{background:var(--gold);color:var(--ink);border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.75rem;font-weight:600}
 .burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;line-height:1;padding:4px}
 
@@ -67,7 +70,7 @@ nav.main + .cartbtn{margin-left:0}
 .cta.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 .hero-art{position:relative;display:grid;place-items:center}
-.carousel{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;overflow:hidden}
+.carousel{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;overflow:hidden;contain:paint}
 .carousel::before{content:"";position:absolute;left:50%;bottom:6%;width:62%;height:12%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(234,193,114,.35),transparent 70%);filter:blur(6px);pointer-events:none}
 .track{position:absolute;inset:0}
 .slide{position:absolute;inset:0;display:grid;place-items:center;padding:6% 10% 17%;opacity:0;transform:translateX(40px) scale(.96);transition:opacity .6s,transform .6s;pointer-events:none}
@@ -77,7 +80,7 @@ nav.main + .cartbtn{margin-left:0}
 .arr{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(28,25,21,.5);color:#fff;font-size:1.5rem;line-height:1;display:grid;place-items:center;z-index:2;backdrop-filter:blur(4px)}
 .arr:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 .arr.prev{left:4px}.arr.next{right:4px}
-.cap{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:.85rem;letter-spacing:.06em;color:#fff;opacity:.95;padding:0 48px;text-wrap:balance}
+.cap{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:.85rem;letter-spacing:.06em;color:#fff;opacity:.95;padding:0 48px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cap b{color:var(--gold);font-weight:600;margin-left:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .cap small{display:block;font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
 .dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:5px;flex-wrap:wrap;padding:0 40px}
@@ -111,6 +114,7 @@ section{padding:56px 0}
 .brands::before{content:"";position:absolute;left:50%;top:-11px;width:22px;height:22px;transform:translateX(-50%);background:var(--ivory) var(--bird) center/contain no-repeat;padding:0 8px;box-sizing:content-box}
 
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;align-items:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
 .search{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:0 14px;height:40px;flex:1 1 260px;color:var(--muted)}
 .search input{background:transparent;border:0;color:var(--text);outline:0;width:100%;font-family:inherit;font-size:.88rem}
 .search:focus-within{border-color:var(--brand)}
@@ -128,26 +132,28 @@ section{padding:56px 0}
 .card:hover .ph img{transform:scale(1.05)}
 .card .ph .view{position:absolute;left:50%;bottom:12px;transform:translate(-50%,8px);opacity:0;background:var(--ink);color:var(--gold);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:999px;transition:.2s;pointer-events:none}
 .card:hover .ph .view{opacity:1;transform:translate(-50%,0)}
-.tags{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px;z-index:1}
-.tag{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:6px;font-weight:600}
+.tags{position:absolute;top:10px;left:10px;display:flex;gap:6px;z-index:1}
+.tag{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:999px;font-weight:600}
 .tag.off{background:var(--sale);color:#fff}
 .tag.lim{background:var(--ink);color:var(--gold)}
 .tag.last{background:var(--gold);color:var(--ink)}
 .tag.new{background:var(--ok);color:#fff}
 .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1;border-top:1px solid var(--line)}
-.brand{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:6px;align-items:center;flex-wrap:wrap}
+.brand{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:6px;align-items:center;white-space:nowrap;overflow:hidden}
 .sku{font-size:.6rem;letter-spacing:.08em;color:var(--brand);border:1px solid var(--line);border-radius:4px;padding:2px 6px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .name{font-family:var(--display);font-size:1.15rem;font-weight:600;line-height:1.2;color:var(--ink);text-wrap:balance;min-height:2.4em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.fam{font-size:.78rem;color:var(--muted)}
+.card .ph{padding:6%}
+.card .ph img{position:static;width:100%;height:100%}
+.fam{font-size:.78rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .price{display:flex;align-items:baseline;gap:10px;margin-top:auto;padding-top:8px;font-variant-numeric:tabular-nums}
 .price .now{font-size:1.5rem;font-weight:600;color:var(--brand)}
 .price .was{text-decoration:line-through;color:var(--muted);font-size:.9rem}
-.pts{font-size:.7rem;color:var(--gold-2);letter-spacing:.05em}
+.pts{font-size:.7rem;color:var(--gold-2);letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pts .fl{font-style:normal;color:var(--sale);font-weight:500}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
 .btn{height:42px;border-radius:999px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--ink);background:var(--ink);color:var(--gold);text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s,border-color .15s,color .15s;padding:0 8px}
 .btn:hover{transform:translateY(-1px)}
-.btn.pay{background:linear-gradient(135deg,#f3d791,#d8b158);border-color:#d8b158;color:var(--ink)}
-.btn.pay:hover{background:linear-gradient(135deg,#f7dfa3,#e2bd66)}
+.btn.btn.pay:hover{background:linear-gradient(135deg,#f7dfa3,#e2bd66)}
 .btn.wa{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.wa svg{width:15px;height:15px;fill:var(--wa)}
 .btn.wa:hover{border-color:var(--ink);background:var(--paper)}
@@ -184,18 +190,8 @@ section{padding:56px 0}
 .step .num{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.25rem}
 .step h3{font-family:var(--body);font-size:1rem;font-weight:600;margin-bottom:4px}
 .step p{margin:0;color:var(--muted);font-size:.9rem}
-.paywrap{margin-top:36px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;text-align:center;position:relative}
-.paywrap::before{content:"";position:absolute;right:14px;top:10px;width:70px;height:70px;background:var(--bird) center/contain no-repeat;opacity:.18}
-.pay-h{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--brand);margin-bottom:18px}
-.pay{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.pb{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:96px}
-.pb .pi{width:72px;height:44px;border-radius:8px;background:#fff;border:1px solid var(--line);display:grid;place-items:center}
-.pb .pi svg{width:44px;height:28px;fill:#1c1915}
-.pb .pt{height:44px;min-width:72px;padding:0 14px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.95rem;color:#fff;letter-spacing:.01em}
-.pt.yape{background:#742284}.pt.plin{background:#00b3b0}
-.pt.bank{background:var(--ink);color:var(--gold);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
-.pb small{font-size:.72rem;color:var(--muted);letter-spacing:.04em}
-.pay-n{margin:18px 0 0;font-size:.78rem;color:var(--muted)}
+.paytext{margin:30px auto 0;text-align:center;max-width:60ch;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);padding-top:22px}
+.paytext b{color:var(--ink);font-weight:500}
 
 footer{background:var(--ink);color:#fff;padding:48px 0 100px;position:relative;overflow:hidden}
 footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;height:320px;background:var(--bird) center/contain no-repeat;opacity:.05;pointer-events:none}
@@ -211,10 +207,6 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 .copy .cl{display:flex;align-items:center;gap:10px;letter-spacing:.04em;flex-wrap:wrap}
 .copy .cl img{width:26px;height:26px;border-radius:50%}
 .copy .cl b{color:var(--gold);font-weight:600}
-.paymini{display:flex;gap:6px;align-items:center}
-.paymini .pi{width:40px;height:26px;border-radius:5px;background:#fff;display:grid;place-items:center}
-.paymini .pi svg{width:24px;height:16px;fill:#1c1915}
-.paymini .pt{height:26px;padding:0 9px;border-radius:5px;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.7rem;color:#fff;letter-spacing:.02em}
 
 .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--wa);color:#fff;border-radius:999px;padding:12px 20px 12px 14px;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 10px 30px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25)}
 .wa-float svg{width:24px;height:24px;fill:#fff}
@@ -303,33 +295,44 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   .brands{justify-content:center;gap:12px 36px;font-size:1.05rem;letter-spacing:.22em}
   .grid{grid-template-columns:repeat(3,1fr)}
   .foot{grid-template-columns:1fr 1fr}
-  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--ink);flex-direction:column;gap:0;padding:8px 16px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .hdr{grid-template-columns:44px 1fr 44px;padding:10px 0}
+  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--ink);flex-direction:column;gap:0;padding:8px 16px 16px;border-bottom:1px solid rgba(255,255,255,.1);text-align:center}
   nav.main.open{display:flex}
   nav.main a{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-  .burger{display:block;margin-left:auto}
-  .cartbtn{margin-left:0}
+  .burger{display:block}
+  .cartbtn{padding:0;width:44px;height:44px;justify-content:center;position:relative}
   .cartbtn .lbl{display:none}
+  .cartbtn .n{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;font-size:.68rem}
 }
 @media (max-width:760px){
-  .hero-in{grid-template-columns:1fr;padding:40px 0 36px}
+  .hero-in{grid-template-columns:1fr;padding:34px 0 36px;text-align:center}
+  .eyebrow{justify-content:center}
+  .hero-ctas{justify-content:center}
+  .hero p{margin-inline:auto}
   .hero-art{order:-1}
   .carousel{max-width:340px}
   .slide{padding:3% 10% 24%}
-  .cap{font-size:.74rem;bottom:26px;padding:0 44px}
+  .cap{font-size:.74rem;bottom:24px;padding:0 40px}
+  .cap small{display:none}
   .dots{display:none}.ctr{display:block}
   .eyebrow{font-size:.68rem;letter-spacing:.22em}
   .badge60{width:100px;height:100px;right:2%}
   .badge60 b{font-size:2rem}
   .trust{flex-wrap:wrap}
-  .trust div{flex:1 1 50%;border-bottom:1px solid rgba(255,255,255,.1)}
-  .logo span{font-size:1rem;letter-spacing:.1em}
-  .hdr{gap:10px}
-  .logo img{height:38px;width:38px}
+  .trust div{flex:1 1 50%;border-bottom:1px solid rgba(255,255,255,.1);white-space:nowrap;font-size:.68rem;padding:12px 6px}
+  .logo span{font-size:1.02rem;letter-spacing:.14em}
+  .hdr{gap:6px}
+  .logo img{height:36px;width:36px}
   .cats{grid-template-columns:1fr}
   .cat{min-height:170px}
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .body{padding:12px}
-  .name{font-size:1rem;min-height:2.4em;-webkit-line-clamp:3}
+  .name{font-size:1rem;min-height:2.4em;-webkit-line-clamp:2}
+  .sku{display:none}
+  .gg{display:none}
+  .brand{justify-content:center;text-align:center}
+  .name,.fam,.price,.pts{text-align:center;justify-content:center}
+  .tag{font-size:.56rem;padding:3px 7px}
   .price .now{font-size:1.25rem}
   .actions{grid-template-columns:1fr;gap:6px}
   .btn{height:38px;font-size:.62rem;letter-spacing:.1em;gap:6px}
@@ -339,16 +342,24 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   .loy-in{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .sec-head{flex-direction:column;align-items:start}
+  .filters{gap:8px}
+  .search{flex:1 1 100%}
+  .chips{display:flex;gap:8px;overflow-x:auto;flex:1 1 100%;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .sortsel{flex:1 1 auto}
+  .count{margin-left:0}
   section{padding:40px 0}
   .wa-float span{display:none}
   .wa-float{padding:14px}
-  .foot{grid-template-columns:1fr}
-  .pay{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 6px}
-  .pb{min-width:0}
-  .pb .pi,.pb .pt{width:100%;min-width:0;padding:0 6px}
-  .pb .pt{font-size:.85rem}
-  .pt.bank{font-size:.6rem;letter-spacing:.08em}
-  .copy{justify-content:center;text-align:center}
+  .foot{grid-template-columns:1fr;text-align:center}
+  .foot .logo{justify-content:center}
+  .foot p{margin:0 auto}
+  .social{justify-content:center}
+  .sec-head p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .eyebrow{white-space:nowrap}
+  .hero p{font-size:.95rem}
+            .copy{justify-content:center;text-align:center}
   .qv-in{grid-template-columns:1fr}
   .qv-ph{min-height:260px;padding:16px;border-radius:0}
   .qv-ph img{max-height:280px}
@@ -403,9 +414,9 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   </div>
   <div class="trust">
     <div><b>100%</b> originales</div>
-    <div>Envíos a <b>todo el Perú</b></div>
-    <div>Pagos con <b>Yape</b> y tarjeta</div>
-    <div>Acumula <b>puntos</b> por compra</div>
+    <div>Envío a <b>todo el Perú</b></div>
+    <div><b>Yape</b> y tarjeta</div>
+    <div><b>Puntos</b> por compra</div>
   </div>
 </section>
 
@@ -427,12 +438,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
     <div class="sec-head"><div><h2 id="gridTitle">Catálogo Cyber Day</h2><p>Perfumes 100% originales · stock sujeto a confirmación</p></div><a href="#comprar">Cómo comprar</a></div>
     <div class="filters" id="filters">
       <label class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar marca, perfume o nota" aria-label="Buscar"></label>
-      <button class="chip" data-f="Todos" aria-pressed="true">Todos</button>
-      <button class="chip" data-f="Mujer" aria-pressed="false">Mujer</button>
-      <button class="chip" data-f="Hombre" aria-pressed="false">Hombre</button>
-      <button class="chip" data-f="Sets" aria-pressed="false">Sets</button>
-      <button class="chip" data-f="Ofertas" aria-pressed="false">Con descuento</button>
-      <button class="chip" data-f="Menos150" aria-pressed="false">Hasta S/150</button>
+      <div class="chips"><button class="chip" data-f="Todos" aria-pressed="true">Todos</button><button class="chip" data-f="Mujer" aria-pressed="false">Mujer</button><button class="chip" data-f="Hombre" aria-pressed="false">Hombre</button><button class="chip" data-f="Sets" aria-pressed="false">Sets</button><button class="chip" data-f="Ofertas" aria-pressed="false">Con descuento</button><button class="chip" data-f="Menos150" aria-pressed="false">Hasta S/150</button></div>
       <select class="sortsel" id="sort" aria-label="Ordenar"><option value="rel">Destacados</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option><option value="off">Mayor descuento</option><option value="new">Novedades</option></select>
       <span class="count" id="count"></span>
     </div>
@@ -468,7 +474,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
       <div class="step"><div class="num">5</div><div><h3>Tu comprobante</h3><p>Generamos tu comprobante de pago con tus datos.</p></div></div>
       <div class="step"><div class="num">6</div><div><h3>Enviamos tu pedido</h3><p>Por Shalom o InDriver a nivel nacional.</p></div></div>
     </div>
-    <div class="paywrap"><div class="pay-h">Medios de pago</div><div class="pay" id="payRow"></div><p class="pay-n">Tarjetas mediante link de pago seguro · Yape, Plin y transferencia con confirmación por WhatsApp</p></div>
+    <p class="paytext">Aceptamos <b>Yape</b>, <b>Plin</b>, transferencia bancaria y tarjetas de crédito o débito mediante link de pago seguro.</p>
   </div>
 </section>
 
@@ -483,7 +489,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
     <div><h4>Ayuda</h4><a href="#comprar">Cómo comprar</a><a href="#comprar">Medios de pago</a><a href="#puntos">Puntos Venti</a><a href="#comprar">Envíos a todo el Perú</a></div>
     <div><h4>Contacto</h4><a href="https://api.whatsapp.com/send?phone=51933038532" target="_blank" rel="noopener">WhatsApp 933 038 532</a><a href="https://www.instagram.com/veintidue.shop" target="_blank" rel="noopener">@veintidue.shop</a><a href="https://www.tiktok.com/@ventidue.joyas" target="_blank" rel="noopener">TikTok @ventidue.joyas</a></div>
   </div>
-  <div class="wrap copy"><span class="cl"><img src="/logo.webp" alt=""><span>© 2026 Veintidue · Todos los derechos reservados · Marca registrada <b>®</b></span></span><span class="paymini" id="payMini"></span></div>
+  <div class="wrap copy"><span class="cl"><img src="/logo.webp" alt=""><span>© 2026 Veintidue · Todos los derechos reservados · Marca registrada <b>®</b></span></span></div>
 </footer>
 
 <a class="wa-float" href="https://api.whatsapp.com/send?phone=51933038532&amp;text=%C2%A1Hola!%20VENTI%20PERFUMES%2C%20quiero%20hacer%20un%20pedido%20%E2%9C%A8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path id="waPath" d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7a11.8 11.8 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 2.2 12C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg><span>Pedir por WhatsApp</span></a>
@@ -516,8 +522,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
       <div class="pm-opt">
         <div class="pm-oh"><span class="pm-badge card">Tarjeta</span><b>Link de pago seguro</b></div>
         <p>Te enviamos un link de pago seguro con tarjeta de crédito o débito. Transferencia bancaria y Plin también disponibles.</p>
-        <div class="paymini" id="payMini2"></div>
-        <a class="wa-btn alt" id="pmCardWa" href="#" target="_blank" rel="noopener">Solicitar link de pago</a>
+                <a class="wa-btn alt" id="pmCardWa" href="#" target="_blank" rel="noopener">Solicitar link de pago</a>
       </div>
     </div>
     <p class="pm-note">Confirmamos stock antes del cobro. Generamos tu comprobante con tus datos y enviamos por Shalom o InDriver a todo el Perú.</p>
@@ -544,12 +549,7 @@ const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const byId=id=>P.find(x=>x.id===id);
 const titles={Todos:"Catálogo Cyber Day",Mujer:"Fragancias femeninas",Hombre:"Fragancias masculinas",Sets:"Sets y estuches",Ofertas:"Con descuento",Menos150:"Hasta S/150"};
 const WASVG='<svg viewBox="0 0 24 24"><use href="#waPath"/></svg>';
-const PAYS=[["visa","Visa"],["mastercard","Mastercard"],["americanexpress","American Express"],["dinersclub","Diners Club"]];
 const ICONS={"visa": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z\"/></svg>", "mastercard": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z\"/></svg>", "americanexpress": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.015 14.378c0-.32-.135-.496-.344-.622-.21-.12-.464-.135-.81-.135h-1.543v2.82h.675v-1.027h.72c.24 0 .39.024.478.125.12.13.104.38.104.55v.35h.66v-.555c-.002-.25-.017-.376-.108-.516-.06-.08-.18-.18-.33-.234l.02-.008c.18-.072.48-.297.48-.747zm-.87.407l-.028-.002c-.09.053-.195.058-.33.058h-.81v-.63h.824c.12 0 .24 0 .33.05.098.048.156.147.15.255 0 .12-.045.215-.134.27zM20.297 15.837H19v.6h1.304c.676 0 1.05-.278 1.05-.884 0-.28-.066-.448-.187-.582-.153-.133-.392-.193-.73-.207l-.376-.015c-.104 0-.18 0-.255-.03-.09-.03-.15-.105-.15-.21 0-.09.017-.166.09-.21.083-.046.177-.066.272-.06h1.23v-.602h-1.35c-.704 0-.958.437-.958.84 0 .9.776.855 1.407.87.104 0 .18.015.225.06.046.03.082.106.082.18 0 .077-.035.15-.08.18-.06.053-.15.07-.277.07zM0 0v10.096L.81 8.22h1.75l.225.464V8.22h2.043l.45 1.02.437-1.013h6.502c.295 0 .56.057.756.236v-.23h1.787v.23c.307-.17.686-.23 1.12-.23h2.606l.24.466v-.466h1.918l.254.465v-.466h1.858v3.948H20.87l-.36-.6v.585h-2.353l-.256-.63h-.583l-.27.614h-1.213c-.48 0-.84-.104-1.08-.24v.24h-2.89v-.884c0-.12-.03-.12-.105-.135h-.105v1.036H6.067v-.48l-.21.48H4.69l-.202-.48v.465H2.235l-.256-.624H1.4l-.256.624H0V24h23.786v-7.108c-.27.135-.613.18-.973.18H21.09v-.255c-.21.165-.57.255-.914.255H14.71v-.9c0-.12-.018-.12-.12-.12h-.075v1.022h-1.8v-1.066c-.298.136-.643.15-.928.136h-.214v.915h-2.18l-.54-.617-.57.6H4.742v-3.93h3.61l.518.602.554-.6h2.412c.28 0 .74.03.942.225v-.24h2.177c.202 0 .644.045.903.225v-.24h3.265v.24c.163-.164.508-.24.803-.24h1.89v.24c.194-.15.464-.24.84-.24h1.176V0H0zM21.156 14.955c.004.005.006.012.01.016.01.01.024.01.032.02l-.042-.035zM23.828 13.082h.065v.555h-.065zM23.865 15.03v-.005c-.03-.025-.046-.048-.075-.07-.15-.153-.39-.215-.764-.225l-.36-.012c-.12 0-.194-.007-.27-.03-.09-.03-.15-.105-.15-.21 0-.09.03-.16.09-.204.076-.045.15-.05.27-.05h1.223v-.588h-1.283c-.69 0-.96.437-.96.84 0 .9.78.855 1.41.87.104 0 .18.015.224.06.046.03.076.106.076.18 0 .07-.034.138-.09.18-.045.056-.136.07-.27.07h-1.288v.605h1.287c.42 0 .734-.118.9-.36h.03c.09-.134.135-.3.135-.523 0-.24-.045-.39-.135-.526zM18.597 14.208v-.583h-2.235V16.458h2.235v-.585h-1.57v-.57h1.533v-.584h-1.532v-.51M13.51 8.787h.685V11.6h-.684zM13.126 9.543l-.007.006c0-.314-.13-.5-.34-.624-.217-.125-.47-.135-.81-.135H10.43v2.82h.674v-1.034h.72c.24 0 .39.03.487.12.122.136.107.378.107.548v.354h.677v-.553c0-.25-.016-.375-.11-.516-.09-.107-.202-.19-.33-.237.172-.07.472-.3.472-.75zm-.855.396h-.015c-.09.054-.195.056-.33.056H11.1v-.623h.825c.12 0 .24.004.33.05.09.04.15.128.15.25s-.047.22-.134.266zM15.92 9.373h.632v-.6h-.644c-.464 0-.804.105-1.02.33-.286.3-.362.69-.362 1.11 0 .512.123.833.36 1.074.232.238.645.31.97.31h.78l.255-.627h1.39l.262.627h1.36v-2.11l1.272 2.11h.95l.002.002V8.786h-.684v1.963l-1.18-1.96h-1.02V11.4L18.11 8.744h-1.004l-.943 2.22h-.3c-.177 0-.362-.03-.468-.134-.125-.15-.186-.36-.186-.662 0-.285.08-.51.194-.63.133-.135.272-.165.516-.165zm1.668-.108l.464 1.118v.002h-.93l.466-1.12zM2.38 10.97l.254.628H4V9.393l.972 2.205h.584l.973-2.202.015 2.202h.69v-2.81H6.118l-.807 1.904-.876-1.905H3.343v2.663L2.205 8.787h-.997L.01 11.597h.72l.26-.626h1.39zm-.688-1.705l.46 1.118-.003.002h-.915l.457-1.12zM11.856 13.62H9.714l-.85.923-.825-.922H5.346v2.82H8l.855-.932.824.93h1.302v-.94h.838c.6 0 1.17-.164 1.17-.945l-.006-.003c0-.78-.598-.93-1.128-.93zM7.67 15.853l-.014-.002H6.02v-.557h1.47v-.574H6.02v-.51H7.7l.733.82-.764.824zm2.642.33l-1.03-1.147 1.03-1.108v2.253zm1.553-1.258h-.885v-.717h.885c.24 0 .42.098.42.344 0 .243-.15.372-.42.372zM9.967 9.373v-.586H7.73V11.6h2.237v-.58H8.4v-.564h1.527V9.88H8.4v-.507\"/></svg>", "dinersclub": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.506 11.982a6.026 6.026 0 0 0-3.866-5.618V17.6a6.025 6.025 0 0 0 3.866-5.618zM8.33 17.598V6.365a6.03 6.03 0 0 0-3.863 5.617 6.028 6.028 0 0 0 3.863 5.616zm2.156-15.113A9.497 9.497 0 0 0 .99 11.982a9.495 9.495 0 0 0 9.495 9.494c5.245 0 9.495-4.25 9.496-9.494a9.499 9.499 0 0 0-9.496-9.497Zm-.023 19.888C4.723 22.4 0 17.75 0 12.09 0 5.905 4.723 1.626 10.463 1.627h2.69C18.822 1.627 24 5.903 24 12.09c0 5.658-5.176 10.283-10.848 10.283\"/></svg>", "instagram": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1.7.7 1.3 1.1 2.1 1.4.8.3 1.6.5 2.9.6C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6.8-.3 1.5-.7 2.1-1.4.7-.7 1.1-1.3 1.4-2.1.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z\"/></svg>", "tiktok": "<svg viewBox=\"0 0 24 24\"><path d=\"M12.5 0h4.1c.3 2.6 1.8 4.6 4.4 4.9v4.1c-1.6 0-3.1-.5-4.4-1.4v8.3c0 4.5-3.6 8.1-8.1 8.1S.4 20.4.4 15.9c0-4.9 4.4-8.7 9.4-8V12a3.9 3.9 0 0 0-5.3 3.9 3.9 3.9 0 0 0 3.9 3.9c2.2 0 4.1-1.8 4.1-4V0z\"/></svg>"};
-function payIcons(big){return PAYS.map(([k,t])=>big?`<span class="pb"><i class="pi">${ICONS[k]}</i><small>${t}</small></span>`:`<i class="pi">${ICONS[k]}</i>`).join("")+(big?`<span class="pb"><i class="pt yape">Yape</i><small>933 038 532</small></span><span class="pb"><i class="pt plin">Plin</i><small>Billetera móvil</small></span><span class="pb"><i class="pt bank">Transferencia</i><small>Bancaria</small></span>`:`<i class="pt yape">Yape</i><i class="pt plin">Plin</i>`);}
-document.getElementById("payRow").innerHTML=payIcons(true);
-document.getElementById("payMini").innerHTML=payIcons(false);
-document.getElementById("payMini2").innerHTML=payIcons(false);
 document.getElementById("social").innerHTML=`<a href="https://www.instagram.com/veintidue.shop" target="_blank" rel="noopener" aria-label="Instagram">${ICONS.instagram}</a><a href="https://www.tiktok.com/@ventidue.joyas" target="_blank" rel="noopener" aria-label="TikTok">${ICONS.tiktok}</a><a href="https://api.whatsapp.com/send?phone=51933038532" target="_blank" rel="noopener" aria-label="WhatsApp">${WASVG}</a>`;
 
 /* ---------- catálogo ---------- */
@@ -576,16 +576,16 @@ function list(){
 function card(p){
   return `<article class="card" id="sku-${esc(p.sku)}">
     <div class="ph" data-view="${esc(p.id)}">
-      <div class="tags">${off(p)?`<span class="tag off">-${off(p)}%</span>`:""}${p.flag==="lim"?`<span class="tag lim">Stock limitado</span>`:""}${p.flag==="last"?`<span class="tag last">Últimos sets</span>`:""}${p.flag==="new"?`<span class="tag new">Nuevo</span>`:""}</div>
+      <div class="tags">${off(p)?`<span class="tag off">-${off(p)}%</span>`:""}${p.flag==="new"?`<span class="tag new">Nuevo</span>`:""}</div>
       <img src="${esc(p.img)}" alt="${esc(p.brand+" "+p.name)}" loading="lazy">
       <span class="view">Ver detalle</span>
     </div>
     <div class="body">
       <div class="brand">${esc(p.brand)}<span class="sku">SKU ${esc(p.sku)}</span></div>
       <div class="name" title="${esc(p.name)}">${nm(esc(p.sn||p.name))}</div>
-      <div class="fam">${esc(p.g)}${p.f?" · "+esc(p.f):""}</div>
+      <div class="fam"><span class="gg">${esc(p.g)}${p.f?" · ":""}</span>${esc(p.f)}</div>
       <div class="price"><span class="now">${S(p.now)}</span>${off(p)?`<span class="was">${S(p.was)}</span>`:""}</div>
-      <div class="pts">+${pts(p.now)} puntos Venti</div>
+      <div class="pts">${p.flag==="lim"?`<em class="fl">Stock limitado</em> · `:""}${p.flag==="last"?`<em class="fl">Últimas unidades</em> · `:""}+${pts(p.now)} pts Venti</div>
       <div class="actions"><button class="btn pay" data-pay="${esc(p.id)}">Pagar ahora</button><a class="btn wa" href="${waLink([{p,q:1}])}" target="_blank" rel="noopener" aria-label="Comprar por WhatsApp">${WASVG}WhatsApp</a></div>
       <button class="addlink" data-add="${esc(p.id)}">+ Agregar <span class="al-x">a mi pedido</span></button>
     </div>

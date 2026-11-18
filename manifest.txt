@@ -1,13 +1,4 @@
-admin.html
-api/_lib.js
-api/products.js
-api/sales.js
-api/upload.js
-bird-gold.png
-data/seed.json
-favicon.png
 index.html
-logo.webp
 manifest.txt
 p10.webp
 p11.webp
@@ -35,8 +26,7 @@ p5.webp
 p6.webp
 p7.webp
 p8.webp
-package.json
-vercel.json
+seed.json
 w-p10.webp
 w-p11.webp
 w-p12.webp
