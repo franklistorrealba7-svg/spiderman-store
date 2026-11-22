@@ -3,21 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Venti Perfumes</title>
-<meta name="description" content="Venti Perfumes · Veintidue: perfumes 100% originales (Versace, Michael Kors, Moschino, Pepe Jeans) con hasta 60% de descuento. Pago con Yape o tarjeta y envíos a todo el Perú.">
+<title>Veintidue Perfumes · Perfumes originales en Perú</title>
+<meta name="description" content="Veintidue Perfumes: perfumes 100% originales (Versace, Michael Kors, Moschino, Pepe Jeans) con hasta 60% de descuento. Pago con Yape o tarjeta y envíos a todo el Perú.">
 <meta name="theme-color" content="#1c1915">
-<meta property="og:title" content="Venti Perfumes · Perfumes originales con hasta 60% dscto.">
+<meta property="og:title" content="Veintidue Perfumes · Perfumes originales con hasta 60% dscto.">
 <meta property="og:description" content="Perfumes 100% originales. Pago con Yape o tarjeta y envíos a todo el Perú.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ventiperfumes.vercel.app/">
-<meta property="og:site_name" content="Venti Perfumes">
+<meta property="og:site_name" content="Veintidue Perfumes">
+<link rel="canonical" href="https://ventiperfumes.vercel.app/">
 <meta property="og:locale" content="es_PE">
 <meta property="og:image" content="https://ventiperfumes.vercel.app/og.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="/logo.webp">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Venti Perfumes","url":"https://ventiperfumes.vercel.app/","image":"https://ventiperfumes.vercel.app/og.jpg","telephone":"+51933038532","priceRange":"S/ 69 - S/ 376","currenciesAccepted":"PEN","paymentAccepted":"Yape, Plin, transferencia, tarjeta","areaServed":"PE","sameAs":["https://www.instagram.com/veintidue.shop/","https://www.tiktok.com/@ventidue.joyas"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Store","name":"Veintidue Perfumes","url":"https://ventiperfumes.vercel.app/","image":"https://ventiperfumes.vercel.app/og.jpg","telephone":"+51933038532","priceRange":"S/ 69 - S/ 376","currenciesAccepted":"PEN","paymentAccepted":"Yape, Plin, transferencia, tarjeta","areaServed":"PE","sameAs":["https://www.instagram.com/veintidue.shop/","https://www.tiktok.com/@ventidue.joyas"]}</script>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Venti Perfumes: dorado del colibrí sobre marfil; carbón cálido para header, hero y footer; bronce para precios. Tienda vertical: hero con carrusel → colecciones → catálogo (2→4 col) → puntos → cómo comprar. */
+  /* Veintidue Perfumes: dorado del colibrí sobre marfil; carbón cálido para header, hero y footer; bronce para precios. Tienda vertical: hero con carrusel → colecciones → catálogo (2→4 col) → puntos → cómo comprar. */
   --ink:#1c1915; --ink-2:#2a251e; --ivory:#fbf8f2; --paper:#ffffff; --mist:#f3ecdd; --line:#e8dfcc;
   --text:#2b261f; --muted:#857a68; --brand:#b08a3e; --brand-2:#8a6a2a; --gold:#eac172; --gold-2:#b08a3e;
   --sale:#b23a3a; --ok:#1f8a5b; --wa:#1fa65a;
@@ -43,12 +44,20 @@ button{font-family:inherit;cursor:pointer}
 h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;margin:0;text-wrap:balance}
 .wrap{width:min(1200px,100% - 32px);margin-inline:auto}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
-.topbar{background:var(--gold);color:var(--ink);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 12px;font-weight:500}
-.topbar b{font-weight:600;border-bottom:1px solid var(--ink)}
-@media (max-width:560px){.tb-l{display:none}.topbar{font-size:.66rem;letter-spacing:.06em}}
+.topbar{background:#e9c37a;color:var(--ink);height:34px;overflow:hidden;position:relative;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;contain:paint}
+.tk{display:flex;width:max-content;height:100%;align-items:center;animation:tk var(--tkd,70s) linear infinite;will-change:transform}
+.tk span{display:inline-flex;align-items:center;white-space:nowrap;padding:0 18px}
+.tk span::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.55;margin-left:36px}
+.topbar:hover .tk,.topbar:focus-within .tk{animation-play-state:paused}
+@keyframes tk{to{transform:translateX(-50%)}}
+.topbar.static .tk{animation:none;width:100%;justify-content:center}
+.topbar.static .tk span{position:absolute;left:0;right:0;justify-content:center;padding:0 12px;opacity:0;transition:opacity .6s}
+.topbar.static .tk span.on{opacity:1}
+.topbar.static .tk span::after{display:none}
+@media (max-width:560px){.topbar{height:32px;font-size:.62rem;letter-spacing:.12em}}
 
 header.site{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
-.hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:14px 0 0;position:relative}
+.hdr{padding-top:env(safe-area-inset-top);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:14px 0 0;position:relative}
 .hdr .logo{grid-column:2;grid-row:1;justify-self:center}
 .hdr .cartbtn{grid-column:3;grid-row:1;justify-self:end}
 .hdr .burger{grid-column:1;grid-row:1;justify-self:start}
@@ -78,26 +87,29 @@ nav.main a:hover{opacity:1;border-color:var(--gold)}
 .cta.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 .hero-art{position:relative;display:grid;place-items:center}
-.carousel{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;overflow:hidden;contain:paint}
-.carousel::before{content:"";position:absolute;left:50%;bottom:6%;width:62%;height:12%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(234,193,114,.35),transparent 70%);filter:blur(6px);pointer-events:none}
-.track{position:absolute;inset:0}
-.slide{position:absolute;inset:0;display:grid;place-items:center;padding:6% 10% 17%;opacity:0;transform:translateX(40px) scale(.96);transition:opacity .6s,transform .6s;pointer-events:none}
+.carousel{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;overflow:hidden;contain:paint;display:flex;flex-direction:column;outline:none;border-radius:4px}
+.carousel:focus-visible{box-shadow:0 0 0 2px var(--gold)}
+.track{position:relative;flex:1 1 auto;min-height:0;margin:5% 11% 0}
+.track::before{content:"";position:absolute;left:50%;bottom:-2%;width:70%;height:14%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(234,193,114,.32),transparent 70%);filter:blur(6px);pointer-events:none}
+.slide{position:absolute;inset:0;opacity:0;transform:translateX(40px) scale(.96);transition:opacity .6s,transform .6s;pointer-events:none}
 .slide.on{opacity:1;transform:none;pointer-events:auto;z-index:1}
 .slide.off{transform:translateX(-40px) scale(.96)}
-.slide img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 28px 36px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(234,193,114,.12));cursor:pointer}
+.slide img{width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 28px 36px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(234,193,114,.12));cursor:pointer}
 .arr{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(28,25,21,.5);color:#fff;font-size:1.5rem;line-height:1;display:grid;place-items:center;z-index:2;backdrop-filter:blur(4px)}
 .arr:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 .arr.prev{left:4px}.arr.next{right:4px}
-.cap{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:.85rem;letter-spacing:.06em;color:#fff;opacity:.95;padding:0 48px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cap{flex:0 0 auto;text-align:center;font-size:.86rem;letter-spacing:.05em;color:#fff;opacity:.95;padding:14px 16px 0;min-height:3.4em;line-height:1.35}
+.cap .cn{display:inline-block;max-width:calc(100% - 76px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}
 .cap b{color:var(--gold);font-weight:600;margin-left:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .cap small{display:block;font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
-.dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:5px;flex-wrap:wrap;padding:0 40px}
-.dots button{width:6px;height:6px;border-radius:50%;border:0;background:rgba(255,255,255,.3);padding:0}
-.dots button[aria-current="true"]{background:var(--gold);width:18px;border-radius:3px}
-.ctr{display:none;position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:.68rem;letter-spacing:.3em;color:var(--gold);font-variant-numeric:tabular-nums}
-.badge60{position:absolute;top:0;right:0;z-index:3;width:128px;height:128px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-content:center;text-align:center;font-weight:600;line-height:1;transform:rotate(8deg);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.cnav{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 0 12px}
+.ctr{font-size:.66rem;letter-spacing:.3em;color:var(--gold);font-variant-numeric:tabular-nums}
+.prog{width:72px;height:2px;background:rgba(255,255,255,.18);border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--gold);width:var(--w,4%);transition:width .4s}
+.badge60{position:absolute;top:2px;right:2px;z-index:3;width:98px;height:98px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-content:center;text-align:center;font-weight:600;line-height:1;transform:rotate(8deg);box-shadow:0 12px 30px rgba(0,0,0,.25)}
 .badge60 small{font-size:.65rem;letter-spacing:.15em;display:block}
-.badge60 b{font-family:var(--display);font-size:2.6rem;display:block;margin:4px 0}
+.badge60 b{font-family:var(--display);font-size:2rem;display:block;margin:3px 0}
+.badge60 small{font-size:.56rem}
 .trust{display:flex;background:var(--ink);color:#fff}
 .trust div{flex:1;text-align:center;padding:14px 10px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;border-right:1px solid rgba(255,255,255,.1)}
 .trust div:last-child{border:0}
@@ -218,9 +230,10 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 .copy .cl img{width:26px;height:26px;border-radius:50%}
 .copy .cl b{color:var(--gold);font-weight:600}
 
-.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--wa);color:#fff;border-radius:999px;padding:12px 20px 12px 14px;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 10px 30px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25)}
+.wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;background:var(--wa);color:#fff;border-radius:999px;padding:12px 20px 12px 14px;display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 10px 30px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25)}
 .wa-float svg{width:24px;height:24px;fill:#fff}
 
+.nav-ov{position:fixed;inset:0;background:rgba(20,16,12,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}.nav-ov.on{opacity:1;pointer-events:auto}
 .ov{position:fixed;inset:0;background:rgba(26,16,32,.55);z-index:70;opacity:0;pointer-events:none;transition:opacity .2s}
 .ov.open{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--ivory);z-index:80;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
@@ -248,6 +261,10 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 .wa-btn[aria-disabled="true"],.wa-btn:disabled{opacity:.45;pointer-events:none}
 .pay-all{background:linear-gradient(135deg,#f3d791,#d8b158);color:var(--ink);cursor:pointer}
 .wa-btn.alt{background:var(--ink);color:var(--gold)}
+@media (max-width:350px){
+  .logo span{font-size:.6rem;letter-spacing:.08em}
+  .logo img{width:30px;height:30px}
+}
 .mbar{display:none}
 @media (max-width:760px){
  .mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:#fff;border-radius:999px;padding:8px 8px 8px 18px;box-shadow:0 12px 30px rgba(0,0,0,.28);border:1px solid rgba(226,189,102,.35);animation:mbUp .3s ease-out}
@@ -284,6 +301,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 .pm-ref button{background:var(--gold);color:var(--ink);border:0;border-radius:999px;padding:7px 14px;font-weight:600;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
 .pm-opts{display:grid;gap:12px}
 .pm-opt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.pm-note{font-size:.8rem;color:var(--muted);margin:10px 0 0;line-height:1.5}.pm-note a{color:var(--brand)}
 .pm-oh{display:flex;align-items:center;gap:10px}
 .pm-badge{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;padding:5px 10px;border-radius:6px;font-weight:600}
 .pm-badge.yape{background:#742284;color:#fff}
@@ -331,15 +349,14 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   .hero-ctas{justify-content:center}
   .hero p{margin-inline:auto}
   .hero-art{order:-1}
-  .carousel{max-width:340px}
-  .slide{padding:3% 10% 24%}
-  .cap{font-size:.74rem;bottom:24px;padding:0 40px}
-  .cap small{display:none}
-  .dots{display:none}.ctr{display:block}
+  .carousel{max-width:360px}
+  .track{margin:7% 12% 0}
+  .cap{font-size:.8rem;padding:12px 12px 0}
   .eyebrow{font-size:.68rem;letter-spacing:.22em}
   .hero .lead{text-align:justify;text-align-last:center;hyphens:auto;-webkit-hyphens:auto;max-width:30ch;margin-left:auto;margin-right:auto;font-size:.92rem;line-height:1.6;color:rgba(255,255,255,.82)}
-  .badge60{width:100px;height:100px;right:2%}
-  .badge60 b{font-size:2rem}
+  .badge60{width:78px;height:78px;right:0;top:0}
+  .badge60 b{font-size:1.5rem}
+  .badge60 small{font-size:.5rem}
   .trust{flex-wrap:wrap}
   .trust div{flex:1 1 50%;border-bottom:1px solid rgba(255,255,255,.1);white-space:nowrap;font-size:.68rem;padding:12px 6px}
   .logo span{font-size:1.02rem;letter-spacing:.14em}
@@ -350,6 +367,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .body{padding:12px}
   .name{font-size:1rem;min-height:2.4em;-webkit-line-clamp:2}
+  .logo span{font-size:.74rem;letter-spacing:.12em}
   .sku{display:none}
   .gg{display:none}
   .brand{justify-content:center;text-align:center}
@@ -381,7 +399,8 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   .foot .logo{justify-content:center}
   .foot p{margin:0 auto}
   .social{justify-content:center}
-  .sec-head p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .sec-head p{max-width:100%}
+  .sec-head>div{min-width:0;max-width:100%}
   .eyebrow{white-space:nowrap}
   .hero p{font-size:.95rem}
             .copy{justify-content:center;text-align:center}
@@ -396,11 +415,11 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 </head>
 <body>
 
-<div class="topbar"><span class="tb-l">Perfumes 100% originales · </span>Cyber Day hasta <b>60% dscto.</b> · envíos a todo el Perú</div>
+<div class="topbar" id="topbar" aria-label="Avisos de la tienda"><div class="tk" id="tk"></div></div>
 
 <header class="site">
   <div class="wrap hdr">
-    <a class="logo" href="#inicio"><img src="/logo.webp" alt="Venti Perfumes"><span>VENTI PERFUMES</span></a>
+    <a class="logo" href="#inicio"><img src="/logo.webp" alt="Veintidue Perfumes"><span>VEINTIDUE PERFUMES</span></a>
     <nav class="main" id="nav">
       <a href="#catalogo" data-f="Mujer">Mujer</a>
       <a href="#catalogo" data-f="Hombre">Hombre</a>
@@ -410,31 +429,31 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
       <a href="#comprar">Cómo comprar</a>
     </nav>
     <button class="cartbtn" id="openCart" aria-label="Abrir carrito"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="lbl">Mi pedido</span><span class="n" id="cartN">0</span></button>
-    <button class="burger" id="burger" aria-label="Menú">☰</button>
+    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false" aria-controls="nav">☰</button>
   </div>
 </header>
+<div class="nav-ov" id="navOv"></div>
 
 <section class="hero" id="inicio" style="padding:0">
   <div class="wrap hero-in">
     <div>
-      <div class="eyebrow">Venti Perfumes · Veintidue</div>
-      <h1>Perfumes originales <em>Cyber Day</em></h1>
+      <div class="eyebrow">Veintidue Perfumes</div>
+      <h1>Perfumes originales <em data-camp>Cyber Day</em></h1>
       <p class="lead">Fragancias 100% originales con hasta 60% de descuento. Paga con Yape o tarjeta, o pide por WhatsApp. Envíos a todo el Perú.</p>
       <div class="hero-ctas">
         <a class="cta" href="#catalogo">Ver catálogo</a>
-        <a class="cta ghost" href="https://api.whatsapp.com/send?phone=51933038532&amp;text=%C2%A1Hola!%20VENTI%20PERFUMES%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20perfumes%20%E2%9C%A8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.1.6 2.8.5a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3Z"/></svg>Pedir por WhatsApp</a>
+        <a class="cta ghost" href="https://api.whatsapp.com/send?phone=51933038532&amp;text=%C2%A1Hola!%20VEINTIDUE%20PERFUMES%2C%20quiero%20saber%20m%C3%A1s%20sobre%20sus%20perfumes%20%E2%9C%A8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.1.6 2.8.5a2.4 2.4 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3Z"/></svg>Pedir por WhatsApp</a>
       </div>
     </div>
     <div class="hero-art">
-      <div class="carousel" id="carousel" aria-label="Productos destacados">
+      <div class="carousel" id="carousel" role="region" aria-roledescription="carrusel" aria-label="Productos destacados" tabindex="0">
         <div class="track" id="track"></div>
         <button class="arr prev" id="cPrev" aria-label="Anterior">‹</button>
         <button class="arr next" id="cNext" aria-label="Siguiente">›</button>
-        <div class="cap" id="cCap"></div>
-        <div class="dots" id="cDots"></div>
-        <div class="ctr" id="cCtr"></div>
+        <div class="cap" id="cCap" aria-live="polite"></div>
+        <div class="cnav"><span class="ctr" id="cCtr"></span><span class="prog" aria-hidden="true"><i id="cProg"></i></span></div>
       </div>
-      <div class="badge60"><small>Hasta</small><b>60%</b><small>dscto.</small></div>
+      <div class="badge60" data-camp title="Descuento máximo de la campaña; cada producto muestra su descuento real"><small>Hasta</small><b>60%</b><small>dscto.</small></div>
     </div>
   </div>
   <div class="trust">
@@ -475,14 +494,14 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   <div class="wrap loy-in">
     <div>
       <div class="eyebrow">Programa de fidelidad</div>
-      <h2 style="margin-top:12px">Puntos <em>Venti</em></h2>
+      <h2 style="margin-top:12px">Puntos <em>Veintidue</em></h2>
       <p class="lead">Cada compra suma. Acumula puntos con tus pedidos y cámbialos por regalos exclusivos de la casa.</p>
       <div class="rule"><b>100</b><span><strong>puntos por cada S/100</strong> de compra (1 punto por sol).<br>Se acumulan automáticamente con tu número de WhatsApp.</span></div>
       <div class="calc"><label for="calcIn">Si compras S/</label><input id="calcIn" type="number" min="0" step="10" value="300" inputmode="numeric"><span>acumulas</span><output id="calcOut" for="calcIn">300 puntos</output></div>
     </div>
     <div class="tiers">
-      <div class="tier"><div class="n">500<small>puntos</small></div><div class="g">Neceser Venti<small>Para llevar tus esenciales</small></div><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M3 11h18"/></svg></div></div>
-      <div class="tier"><div class="n">1 000<small>puntos</small></div><div class="g">Polo Venti<small>Edición de la casa</small></div><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4l4 2 4-2 4 3-2 3-2-1v11H8V9L6 10 4 7z"/></svg></div></div>
+      <div class="tier"><div class="n">500<small>puntos</small></div><div class="g">Neceser Veintidue<small>Para llevar tus esenciales</small></div><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M3 11h18"/></svg></div></div>
+      <div class="tier"><div class="n">1 000<small>puntos</small></div><div class="g">Polo Veintidue<small>Edición de la casa</small></div><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4l4 2 4-2 4 3-2 3-2-1v11H8V9L6 10 4 7z"/></svg></div></div>
       <div class="tier"><div class="n">5 000<small>puntos</small></div><div class="g">Un perfume original<small>Elige entre fragancias seleccionadas</small></div><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h12l4 5-10 11L2 9z"/><path d="M2 9h20M9 4l3 5 3-5M9 9l3 11 3-11"/></svg></div></div>
     </div>
   </div>
@@ -506,25 +525,25 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 <footer>
   <div class="wrap foot">
     <div>
-      <a class="logo" href="#inicio" style="margin-bottom:14px"><img src="/logo.webp" alt=""><span style="font-size:1.2rem">VENTI PERFUMES</span></a>
+      <a class="logo" href="#inicio" style="margin-bottom:14px"><img src="/logo.webp" alt=""><span style="font-size:1.1rem">VEINTIDUE PERFUMES</span></a>
       <p>Perfumes 100% originales. Pedidos por WhatsApp, pago con Yape o tarjeta y envíos a todo el Perú.</p>
       <div class="social" id="social"></div>
     </div>
     <div><h4>Tienda</h4><a href="#catalogo" data-f="Mujer">Fragancias femeninas</a><a href="#catalogo" data-f="Hombre">Fragancias masculinas</a><a href="#catalogo" data-f="Sets">Sets y estuches</a><a href="#catalogo" data-f="Ofertas">Ofertas Cyber Day</a></div>
-    <div><h4>Ayuda</h4><a href="#comprar">Cómo comprar</a><a href="#comprar">Medios de pago</a><a href="#puntos">Puntos Venti</a><a href="#comprar">Envíos a todo el Perú</a></div>
+    <div><h4>Ayuda</h4><a href="#comprar">Cómo comprar</a><a href="#comprar">Medios de pago</a><a href="#puntos">Puntos Veintidue</a><a href="#comprar">Envíos a todo el Perú</a></div>
     <div><h4>Contacto</h4><a href="https://api.whatsapp.com/send?phone=51933038532" target="_blank" rel="noopener">Escríbenos por WhatsApp</a><a href="https://www.instagram.com/veintidue.shop" target="_blank" rel="noopener">@veintidue.shop</a><a href="https://www.tiktok.com/@ventidue.joyas" target="_blank" rel="noopener">TikTok @ventidue.joyas</a></div>
   </div>
-  <div class="wrap copy"><span class="cl"><img src="/logo.webp" alt=""><span>© 2026 Veintidue · Todos los derechos reservados</span></span></div>
+  <div class="wrap copy"><span class="cl"><img src="/logo.webp" alt=""><span>© <span id="yr">2026</span> Veintidue Perfumes · Todos los derechos reservados</span></span></div>
 </footer>
 
-<a class="wa-float" href="https://api.whatsapp.com/send?phone=51933038532&amp;text=%C2%A1Hola!%20VENTI%20PERFUMES%2C%20quiero%20hacer%20un%20pedido%20%E2%9C%A8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path id="waPath" d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7a11.8 11.8 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 2.2 12C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg><span>Pedir por WhatsApp</span></a>
+<a class="wa-float" href="https://api.whatsapp.com/send?phone=51933038532&amp;text=%C2%A1Hola!%20VEINTIDUE%20PERFUMES%2C%20quiero%20hacer%20un%20pedido%20%E2%9C%A8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path id="waPath" d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7a11.8 11.8 0 0 0 5.7 1.5c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 0 1 2.2 12C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg><span>Pedir por WhatsApp</span></a>
 
 <div class="ov" id="ov"></div>
 <aside class="drawer" id="drawer" aria-label="Mi pedido">
   <div class="dh"><h3><img src="/bird-gold.png" alt="">Mi pedido</h3><button id="closeCart" aria-label="Cerrar">×</button></div>
   <div class="dl" id="cartList"></div>
   <div class="df">
-    <div class="ptsline"><span>Puntos Venti que acumulas</span><span id="cartPts">0 pts</span></div>
+    <div class="ptsline"><span>Puntos Veintidue que acumulas</span><span id="cartPts">0 pts</span></div>
     <div class="tot"><span>Total</span><b id="cartTot">S/ 0</b></div>
     <button class="wa-btn pay-all" id="payAll" disabled>Pagar pedido con Yape / tarjeta</button>
     <a class="wa-btn" id="waSend" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg viewBox="0 0 24 24"><use href="#waPath"/></svg>Enviar pedido por WhatsApp</a>
@@ -537,6 +556,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
   <div class="mb">
     <div class="pm-items" id="pmItems"></div>
     <div class="pm-total"><span>Total a pagar</span><b id="pmTotal">S/ 0</b></div>
+    <p class="pm-note">Stock sujeto a confirmación: si prefieres, <a id="pmConfirm" href="#" target="_blank" rel="noopener">confirma disponibilidad por WhatsApp</a> antes de pagar. Tu pago se valida manualmente y te enviamos la confirmación.</p>
     <div class="pm-ref"><span>Referencia de pago</span><code id="pmRef">VP-000</code><button id="pmCopy" type="button">Copiar</button></div>
     <div class="pm-opts">
       <div class="pm-opt">
@@ -563,6 +583,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 <div class="mbar" id="mbar" hidden><div class="mb-i"><span class="mb-n" id="mbN"></span><span class="mb-t" id="mbT"></span></div><button class="mb-btn" id="mbOpen">Ver mi pedido</button></div>
 
 <script>
+const CONFIG={campaign:{active:true,name:"Cyber Day",maxOff:60},messages:["Perfumes 100% originales","Envíos a todo el Perú","Paga con Yape, Plin o tarjeta"]};
 /* ---------- datos ---------- */
 const SEED = {products:[]};
 let P = SEED.products.filter(p=>p.active!==false);
@@ -573,7 +594,7 @@ const off=p=>p.was&&p.was>p.now?Math.round((1-p.now/p.was)*100):0;
 const nm=s=>String(s||"").replace(/ (\d+) ml/g," $1 ml").replace(/ × /g," × ").replace(/(\d) ×/g,"$1 ×");
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const byId=id=>P.find(x=>x.id===id);
-const titles={Todos:"Catálogo Cyber Day",Mujer:"Fragancias femeninas",Hombre:"Fragancias masculinas",Sets:"Sets y estuches",Ofertas:"Con descuento",Menos150:"Hasta S/150"};
+const titles={Todos:(CONFIG.campaign.active?"Catálogo "+CONFIG.campaign.name:"Catálogo"),Mujer:"Fragancias femeninas",Hombre:"Fragancias masculinas",Sets:"Sets y estuches",Ofertas:"Con descuento",Menos150:"Hasta S/150"};
 const WASVG='<svg viewBox="0 0 24 24"><use href="#waPath"/></svg>';
 const ICONS={"visa": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z\"/></svg>", "mastercard": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z\"/></svg>", "americanexpress": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.015 14.378c0-.32-.135-.496-.344-.622-.21-.12-.464-.135-.81-.135h-1.543v2.82h.675v-1.027h.72c.24 0 .39.024.478.125.12.13.104.38.104.55v.35h.66v-.555c-.002-.25-.017-.376-.108-.516-.06-.08-.18-.18-.33-.234l.02-.008c.18-.072.48-.297.48-.747zm-.87.407l-.028-.002c-.09.053-.195.058-.33.058h-.81v-.63h.824c.12 0 .24 0 .33.05.098.048.156.147.15.255 0 .12-.045.215-.134.27zM20.297 15.837H19v.6h1.304c.676 0 1.05-.278 1.05-.884 0-.28-.066-.448-.187-.582-.153-.133-.392-.193-.73-.207l-.376-.015c-.104 0-.18 0-.255-.03-.09-.03-.15-.105-.15-.21 0-.09.017-.166.09-.21.083-.046.177-.066.272-.06h1.23v-.602h-1.35c-.704 0-.958.437-.958.84 0 .9.776.855 1.407.87.104 0 .18.015.225.06.046.03.082.106.082.18 0 .077-.035.15-.08.18-.06.053-.15.07-.277.07zM0 0v10.096L.81 8.22h1.75l.225.464V8.22h2.043l.45 1.02.437-1.013h6.502c.295 0 .56.057.756.236v-.23h1.787v.23c.307-.17.686-.23 1.12-.23h2.606l.24.466v-.466h1.918l.254.465v-.466h1.858v3.948H20.87l-.36-.6v.585h-2.353l-.256-.63h-.583l-.27.614h-1.213c-.48 0-.84-.104-1.08-.24v.24h-2.89v-.884c0-.12-.03-.12-.105-.135h-.105v1.036H6.067v-.48l-.21.48H4.69l-.202-.48v.465H2.235l-.256-.624H1.4l-.256.624H0V24h23.786v-7.108c-.27.135-.613.18-.973.18H21.09v-.255c-.21.165-.57.255-.914.255H14.71v-.9c0-.12-.018-.12-.12-.12h-.075v1.022h-1.8v-1.066c-.298.136-.643.15-.928.136h-.214v.915h-2.18l-.54-.617-.57.6H4.742v-3.93h3.61l.518.602.554-.6h2.412c.28 0 .74.03.942.225v-.24h2.177c.202 0 .644.045.903.225v-.24h3.265v.24c.163-.164.508-.24.803-.24h1.89v.24c.194-.15.464-.24.84-.24h1.176V0H0zM21.156 14.955c.004.005.006.012.01.016.01.01.024.01.032.02l-.042-.035zM23.828 13.082h.065v.555h-.065zM23.865 15.03v-.005c-.03-.025-.046-.048-.075-.07-.15-.153-.39-.215-.764-.225l-.36-.012c-.12 0-.194-.007-.27-.03-.09-.03-.15-.105-.15-.21 0-.09.03-.16.09-.204.076-.045.15-.05.27-.05h1.223v-.588h-1.283c-.69 0-.96.437-.96.84 0 .9.78.855 1.41.87.104 0 .18.015.224.06.046.03.076.106.076.18 0 .07-.034.138-.09.18-.045.056-.136.07-.27.07h-1.288v.605h1.287c.42 0 .734-.118.9-.36h.03c.09-.134.135-.3.135-.523 0-.24-.045-.39-.135-.526zM18.597 14.208v-.583h-2.235V16.458h2.235v-.585h-1.57v-.57h1.533v-.584h-1.532v-.51M13.51 8.787h.685V11.6h-.684zM13.126 9.543l-.007.006c0-.314-.13-.5-.34-.624-.217-.125-.47-.135-.81-.135H10.43v2.82h.674v-1.034h.72c.24 0 .39.03.487.12.122.136.107.378.107.548v.354h.677v-.553c0-.25-.016-.375-.11-.516-.09-.107-.202-.19-.33-.237.172-.07.472-.3.472-.75zm-.855.396h-.015c-.09.054-.195.056-.33.056H11.1v-.623h.825c.12 0 .24.004.33.05.09.04.15.128.15.25s-.047.22-.134.266zM15.92 9.373h.632v-.6h-.644c-.464 0-.804.105-1.02.33-.286.3-.362.69-.362 1.11 0 .512.123.833.36 1.074.232.238.645.31.97.31h.78l.255-.627h1.39l.262.627h1.36v-2.11l1.272 2.11h.95l.002.002V8.786h-.684v1.963l-1.18-1.96h-1.02V11.4L18.11 8.744h-1.004l-.943 2.22h-.3c-.177 0-.362-.03-.468-.134-.125-.15-.186-.36-.186-.662 0-.285.08-.51.194-.63.133-.135.272-.165.516-.165zm1.668-.108l.464 1.118v.002h-.93l.466-1.12zM2.38 10.97l.254.628H4V9.393l.972 2.205h.584l.973-2.202.015 2.202h.69v-2.81H6.118l-.807 1.904-.876-1.905H3.343v2.663L2.205 8.787h-.997L.01 11.597h.72l.26-.626h1.39zm-.688-1.705l.46 1.118-.003.002h-.915l.457-1.12zM11.856 13.62H9.714l-.85.923-.825-.922H5.346v2.82H8l.855-.932.824.93h1.302v-.94h.838c.6 0 1.17-.164 1.17-.945l-.006-.003c0-.78-.598-.93-1.128-.93zM7.67 15.853l-.014-.002H6.02v-.557h1.47v-.574H6.02v-.51H7.7l.733.82-.764.824zm2.642.33l-1.03-1.147 1.03-1.108v2.253zm1.553-1.258h-.885v-.717h.885c.24 0 .42.098.42.344 0 .243-.15.372-.42.372zM9.967 9.373v-.586H7.73V11.6h2.237v-.58H8.4v-.564h1.527V9.88H8.4v-.507\"/></svg>", "dinersclub": "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.506 11.982a6.026 6.026 0 0 0-3.866-5.618V17.6a6.025 6.025 0 0 0 3.866-5.618zM8.33 17.598V6.365a6.03 6.03 0 0 0-3.863 5.617 6.028 6.028 0 0 0 3.863 5.616zm2.156-15.113A9.497 9.497 0 0 0 .99 11.982a9.495 9.495 0 0 0 9.495 9.494c5.245 0 9.495-4.25 9.496-9.494a9.499 9.499 0 0 0-9.496-9.497Zm-.023 19.888C4.723 22.4 0 17.75 0 12.09 0 5.905 4.723 1.626 10.463 1.627h2.69C18.822 1.627 24 5.903 24 12.09c0 5.658-5.176 10.283-10.848 10.283\"/></svg>", "instagram": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 2.9.3.8.7 1.5 1.4 2.1.7.7 1.3 1.1 2.1 1.4.8.3 1.6.5 2.9.6C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c1.3-.1 2.2-.3 2.9-.6.8-.3 1.5-.7 2.1-1.4.7-.7 1.1-1.3 1.4-2.1.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-2.9-.3-.8-.7-1.5-1.4-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z\"/></svg>", "tiktok": "<svg viewBox=\"0 0 24 24\"><path d=\"M12.5 0h4.1c.3 2.6 1.8 4.6 4.4 4.9v4.1c-1.6 0-3.1-.5-4.4-1.4v8.3c0 4.5-3.6 8.1-8.1 8.1S.4 20.4.4 15.9c0-4.9 4.4-8.7 9.4-8V12a3.9 3.9 0 0 0-5.3 3.9 3.9 3.9 0 0 0 3.9 3.9c2.2 0 4.1-1.8 4.1-4V0z\"/></svg>"};
 document.getElementById("social").innerHTML=`<a href="https://www.instagram.com/veintidue.shop" target="_blank" rel="noopener" aria-label="Instagram">${ICONS.instagram}</a><a href="https://www.tiktok.com/@ventidue.joyas" target="_blank" rel="noopener" aria-label="TikTok">${ICONS.tiktok}</a><a href="https://api.whatsapp.com/send?phone=51933038532" target="_blank" rel="noopener" aria-label="WhatsApp">${WASVG}</a>`;
@@ -589,7 +610,7 @@ function list(){
     if(filter==="Sets"&&!p.set)return false;
     if(filter==="Ofertas"&&!off(p))return false;
     if(filter==="Menos150"&&p.now>150)return false;
-    if(q&&!(p.brand+" "+p.name+" "+p.f+" "+p.no+" "+p.desc+" "+p.sku).toLowerCase().includes(q))return false;
+    if(q&&!norm(p.brand+" "+p.name+" "+p.f+" "+p.no+" "+p.desc+" "+p.sku).includes(norm(q)))return false;
     return true;
   });
   if(sort==="asc")l.sort((a,b)=>a.now-b.now);
@@ -628,7 +649,7 @@ function render(){
 function waLink(items){
   const lines=items.map(({p,q})=>`• [${p.sku}] ${q}× ${p.brand} ${p.name} — ${S(p.now*q)}`);
   const tot=items.reduce((a,{p,q})=>a+p.now*q,0);
-  const msg=`¡Hola! VENTI PERFUMES ✨ Quiero comprar:\n${lines.join("\n")}\n\nTotal: ${S(tot)}\nReferencia: ${refOf(items)}\n¿Me confirman stock y forma de pago (Yape / transferencia / tarjeta)?`;
+  const msg=`¡Hola! VEINTIDUE PERFUMES ✨ Quiero comprar:\n${lines.join("\n")}\n\nTotal: ${S(tot)}\nReferencia: ${refOf(items)}\n¿Me confirman stock y forma de pago (Yape / transferencia / tarjeta)?`;
   return WAB+encodeURIComponent(msg);
 }
 const refOf=items=>items.length===1&&items[0].q===1?items[0].p.sku:"VP-PED-"+String(Date.now()).slice(-6);
@@ -636,8 +657,13 @@ function setFilter(f){filter=f;query="";document.getElementById("q").value="";do
 document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b)setFilter(b.dataset.f);});
 document.getElementById("sort").addEventListener("change",e=>{sort=e.target.value;render();});
 document.querySelectorAll("[data-f]:not(.chip)").forEach(a=>a.addEventListener("click",()=>{setFilter(a.dataset.f);document.getElementById("nav").classList.remove("open");}));
-document.getElementById("q").addEventListener("input",e=>{query=e.target.value;filter="Todos";document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.f==="Todos"));render();});
-document.getElementById("burger").addEventListener("click",()=>document.getElementById("nav").classList.toggle("open"));
+const norm=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+let qT;document.getElementById("q").addEventListener("input",e=>{clearTimeout(qT);qT=setTimeout(()=>{query=e.target.value;filter="Todos";document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.f==="Todos"));render();},160);});
+const navEl=document.getElementById("nav"),burger=document.getElementById("burger");
+const setNav=o=>{navEl.classList.toggle("open",o);burger.setAttribute("aria-expanded",o);document.getElementById("navOv").classList.toggle("on",o);};
+burger.addEventListener("click",()=>setNav(!navEl.classList.contains("open")));
+navEl.addEventListener("click",e=>{if(e.target.tagName==="A")setNav(false);});
+document.getElementById("navOv").addEventListener("click",()=>setNav(false));
 
 /* ---------- carrito ---------- */
 const cart=new Map();
@@ -687,8 +713,9 @@ function openPay(items){
   document.getElementById("pmTotal").textContent=S(tot);
   document.getElementById("pmRef").textContent=ref;document.getElementById("pmRef2").textContent=ref;
   const det=items.map(({p,q})=>`[${p.sku}] ${q}× ${p.brand} ${p.name}`).join(", ");
-  document.getElementById("pmYapeWa").href=WAB+encodeURIComponent(`¡Hola! VENTI PERFUMES ✨ Ya realicé el pago por Yape de ${S(tot)}.\nReferencia: ${ref}\nPedido: ${det}\nAdjunto mi comprobante 📎`);
-  document.getElementById("pmCardWa").href=WAB+encodeURIComponent(`¡Hola! VENTI PERFUMES ✨ Quiero pagar con tarjeta / transferencia.\nReferencia: ${ref}\nPedido: ${det}\nTotal: ${S(tot)}\n¿Me envían el link de pago?`);
+  document.getElementById("pmYapeWa").href=WAB+encodeURIComponent(`¡Hola! VEINTIDUE PERFUMES ✨ Ya realicé el pago por Yape de ${S(tot)}.\nReferencia: ${ref}\nPedido: ${det}\nAdjunto mi comprobante 📎`);
+  document.getElementById("pmConfirm").href=WAB+encodeURIComponent(`¡Hola! VEINTIDUE PERFUMES ✨ ¿Me confirman disponibilidad antes de pagar?\nReferencia: ${ref}`);
+  document.getElementById("pmCardWa").href=WAB+encodeURIComponent(`¡Hola! VEINTIDUE PERFUMES ✨ Quiero pagar con tarjeta / transferencia.\nReferencia: ${ref}\nPedido: ${det}\nTotal: ${S(tot)}\n¿Me envían el link de pago?`);
   closeView();document.getElementById("pmodal").classList.add("open");document.getElementById("pov").classList.add("open");
 }
 const closePay=()=>{document.getElementById("pmodal").classList.remove("open");document.getElementById("pov").classList.remove("open");};
@@ -711,7 +738,7 @@ function openView(id){
       ${p.desc?`<p class="desc">${esc(p.desc.replace(/\s*Notas de [^.]*\.?/i,""))}</p>`:""}
       ${p.no?`<div class="notes"><b>Notas:</b> ${esc(p.no)}</div>`:""}
       <div class="price"><span class="now">${S(p.now)}</span>${off(p)?`<span class="was">${S(p.was)}</span>`:""}</div>
-      <div class="pts">+${pts(p.now)} puntos Venti por unidad</div>
+      <div class="pts">+${pts(p.now)} puntos Veintidue por unidad</div>
       <div class="qv-row"><span style="font-size:.8rem;color:var(--muted)">Cantidad</span><div class="qty"><button id="qvDec" aria-label="Menos">−</button><span id="qvN">1</span><button id="qvInc" aria-label="Más">+</button></div></div>
       <div class="qv-acts"><button class="btn pay" id="qvPay">Pagar ahora</button><a class="btn wa" id="qvWa" href="${waLink([{p,q:1}])}" target="_blank" rel="noopener">${WASVG}WhatsApp</a></div>
       <button class="addlink" id="qvAdd">+ Agregar a mi pedido</button>
@@ -727,30 +754,41 @@ function openView(id){
 function closeView(){document.getElementById("qmodal").classList.remove("open");document.getElementById("qov").classList.remove("open");}
 document.getElementById("qClose").addEventListener("click",closeView);
 document.getElementById("qov").addEventListener("click",closeView);
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeView();closePay();closeC();}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeView();closePay();closeC();setNav(false);}});
 
 /* ---------- calculadora ---------- */
 const ci=document.getElementById("calcIn"),co=document.getElementById("calcOut");
-const calc=()=>co.textContent=pts(+ci.value||0).toLocaleString("es-PE")+" puntos";
+const calc=()=>{const v=Math.min(1e6,Math.max(0,Math.floor(+ci.value||0)));co.textContent=pts(v).toLocaleString("es-PE")+" puntos";};
 ci.addEventListener("input",calc);calc();
+
+/* ---------- configuración de campaña y avisos ---------- */
+(function(){
+  const msgs=CONFIG.messages.slice(); if(CONFIG.campaign.active)msgs.push(`${CONFIG.campaign.name} · Hasta ${CONFIG.campaign.maxOff}% de descuento`);
+  const tb=document.getElementById("topbar"),tk=document.getElementById("tk");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){tb.classList.add("static");tk.innerHTML=msgs.map((m,i)=>`<span class="${i?"":"on"}">${esc(m)}</span>`).join("");let i=0;setInterval(()=>{const s=tk.children;s[i].classList.remove("on");i=(i+1)%s.length;s[i].classList.add("on");},4500);}
+  else{const one=msgs.map(m=>`<span>${esc(m)}</span>`).join("");tk.innerHTML=one+one;tb.style.setProperty("--tkd",Math.max(40,msgs.join("").length*1.2)+"s");}
+  if(!CONFIG.campaign.active){document.querySelectorAll("[data-camp]").forEach(e=>e.hidden=true);document.querySelector(".hero h1").textContent="Perfumes originales";}
+  document.getElementById("yr").textContent=new Date().getFullYear();
+})();
 
 /* ---------- carrusel ---------- */
 let H=[],hi=0,timer;
 function buildCarousel(){
   H=P.filter(p=>p.hero);
-  const track=document.getElementById("track"),dots=document.getElementById("cDots"),cap=document.getElementById("cCap");
+  const track=document.getElementById("track"),cap=document.getElementById("cCap"),prog=document.getElementById("cProg");
   if(!H.length){document.getElementById("carousel").style.display="none";return;}
-  clearInterval(timer);hi=0;
+  clearInterval(timer);hi=0;const c0=document.getElementById("carousel");
   track.innerHTML=H.map((p,i)=>`<div class="slide${i===0?" on":""}" data-id="${esc(p.id)}"><img src="${esc(p.hero)}" alt="${esc(p.brand+" "+p.name)}" ${i>1?'loading="lazy"':''}></div>`).join("");
-  dots.innerHTML=H.map((p,i)=>`<button data-go="${i}" aria-label="${esc(p.brand+" "+p.name)}" aria-current="${i===0}"></button>`).join("");
-  const slides=[...track.children],ds=[...dots.children];
-  const show=n=>{slides[hi].classList.remove("on");slides[hi].classList.add("off");ds[hi].setAttribute("aria-current","false");setTimeout(()=>slides.forEach(s=>s.classList.remove("off")),600);hi=(n+H.length)%H.length;slides[hi].classList.add("on");ds[hi].setAttribute("aria-current","true");capt();};
-  const capt=()=>{const p=H[hi];cap.innerHTML=`<small>${esc(p.brand)}</small>${esc(p.sn||p.name)}<b>${S(p.now)}</b>`;document.getElementById("cCtr").textContent=String(hi+1).padStart(2,"0")+" / "+H.length;};
+  const slides=[...track.children];
+  const show=n=>{slides[hi].classList.remove("on");slides[hi].classList.add("off");setTimeout(()=>slides.forEach(s=>s.classList.remove("off")),600);hi=(n+H.length)%H.length;slides[hi].classList.add("on");capt();};
+  const capt=()=>{const p=H[hi];cap.innerHTML=`<small>${esc(p.brand)}</small><span class="cn">${esc(p.sn||p.name)}</span><b>${S(p.now)}</b>`;document.getElementById("cCtr").textContent=String(hi+1).padStart(2,"0")+" / "+H.length;prog.style.setProperty("--w",((hi+1)/H.length*100).toFixed(1)+"%");};
   capt();
   const start=()=>{clearInterval(timer);if(!matchMedia("(prefers-reduced-motion: reduce)").matches)timer=setInterval(()=>show(hi+1),3200);};
   document.getElementById("cNext").onclick=()=>{show(hi+1);start();};
   document.getElementById("cPrev").onclick=()=>{show(hi-1);start();};
-  dots.onclick=e=>{const b=e.target.closest("[data-go]");if(b){show(+b.dataset.go);start();}};
+  c0.onkeydown=e=>{if(e.key==="ArrowRight"){show(hi+1);start();e.preventDefault();}else if(e.key==="ArrowLeft"){show(hi-1);start();e.preventDefault();}else if(e.key==="Enter"){openView(H[hi].id);}};
+  c0.onfocus=()=>clearInterval(timer);c0.onblur=start;
   track.onclick=e=>{if(e.target.tagName==="IMG")openView(H[hi].id);};
   const c=document.getElementById("carousel");c.onmouseenter=()=>clearInterval(timer);c.onmouseleave=start;
   let x0=null;c.ontouchstart=e=>x0=e.touches[0].clientX;c.ontouchend=e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){show(dx<0?hi+1:hi-1);start();}x0=null;};
