@@ -584,6 +584,7 @@ footer::before{content:"";position:absolute;left:-60px;bottom:-40px;width:320px;
 <div class="mbar" id="mbar" hidden><div class="mb-i"><span class="mb-n" id="mbN"></span><span class="mb-t" id="mbT"></span></div><button class="mb-btn" id="mbOpen">Ver mi pedido</button></div>
 
 <script>
+const IMGV="6";const iv=u=>(u&&u.startsWith("/")&&!u.includes("?"))?u+"?v="+IMGV:u;
 const CONFIG={campaign:{active:true,name:"Cyber Day",maxOff:60},messages:["Perfumes 100% originales","Envíos a todo el Perú","Paga con Yape, Plin o tarjeta"]};
 /* ---------- datos ---------- */
 const SEED = {products:[]};
@@ -625,7 +626,7 @@ function card(p){
   return `<article class="card" id="sku-${esc(p.sku)}">
     <div class="ph" data-view="${esc(p.id)}">
       <div class="tags">${off(p)?`<span class="tag off">-${off(p)}%</span>`:""}${p.flag==="new"?`<span class="tag new">Nuevo</span>`:""}</div>
-      <img src="${esc(p.img)}" alt="${esc(p.brand+" "+p.name)}" loading="lazy" width="800" height="800" decoding="async" onload="this.classList.add('on')">
+      <img src="${esc(iv(p.img))}" alt="${esc(p.brand+" "+p.name)}" loading="lazy" width="800" height="800" decoding="async" onload="this.classList.add('on')">
       <span class="view">Ver detalle</span>
     </div>
     <div class="body">
@@ -683,7 +684,7 @@ function drawCart(){
   document.getElementById("cartTot").textContent=S(tot);
   document.getElementById("cartPts").textContent=pts(tot).toLocaleString("es-PE")+" pts";
   document.getElementById("cartList").innerHTML=items.length?items.map(({p,q})=>`
-   <div class="ci"><img src="${esc(p.img)}" alt=""><div><div class="br">${esc(p.brand)}</div><div class="nm">${esc(p.sn||p.name)}</div><div class="br">SKU ${esc(p.sku)}</div><div class="pr">${S(p.now*q)}</div></div>
+   <div class="ci"><img src="${esc(iv(p.img))}" alt=""><div><div class="br">${esc(p.brand)}</div><div class="nm">${esc(p.sn||p.name)}</div><div class="br">SKU ${esc(p.sku)}</div><div class="pr">${S(p.now*q)}</div></div>
    <div class="qty"><button data-dec="${esc(p.id)}" aria-label="Quitar uno">−</button><span>${q}</span><button data-inc="${esc(p.id)}" aria-label="Agregar uno">+</button></div></div>`).join("")
    :`<p style="color:var(--muted);text-align:center;padding:30px 0">Tu pedido está vacío.<br>Agrega perfumes desde el catálogo.</p>`;
   const wa=document.getElementById("waSend");
@@ -710,7 +711,7 @@ let tt;function toast(m){const t=document.getElementById("toast");t.textContent=
 /* ---------- pago ---------- */
 function openPay(items){
   const tot=items.reduce((a,{p,q})=>a+p.now*q,0), ref=refOf(items);
-  document.getElementById("pmItems").innerHTML=items.map(({p,q})=>`<div class="pm-it"><img src="${esc(p.img)}" alt=""><div><div class="s">SKU ${esc(p.sku)}</div>${q}× ${esc(p.brand)} ${esc(p.sn||p.name)}</div><b>${S(p.now*q)}</b></div>`).join("");
+  document.getElementById("pmItems").innerHTML=items.map(({p,q})=>`<div class="pm-it"><img src="${esc(iv(p.img))}" alt=""><div><div class="s">SKU ${esc(p.sku)}</div>${q}× ${esc(p.brand)} ${esc(p.sn||p.name)}</div><b>${S(p.now*q)}</b></div>`).join("");
   document.getElementById("pmTotal").textContent=S(tot);
   document.getElementById("pmRef").textContent=ref;document.getElementById("pmRef2").textContent=ref;
   const det=items.map(({p,q})=>`[${p.sku}] ${q}× ${p.brand} ${p.name}`).join(", ");
@@ -731,7 +732,7 @@ function openView(id){
   const p=byId(id);if(!p)return;qvId=id;qvQty=1;
   document.getElementById("qTitle").innerHTML=`<img src="/bird-gold.png" alt="">${esc(p.brand)}`;
   document.getElementById("qBody").innerHTML=`
-    <div class="qv-ph"><img src="${esc(p.img)}" alt="${esc(p.name)}"></div>
+    <div class="qv-ph"><img src="${esc(iv(p.img))}" alt="${esc(p.name)}"></div>
     <div class="qv-info">
       <div class="brand">${esc(p.brand)}<span class="sku">SKU ${esc(p.sku)}</span>${off(p)?`<span class="tag off">-${off(p)}%</span>`:""}${p.flag==="lim"?`<span class="tag lim">Stock limitado</span>`:""}</div>
       <h3>${nm(esc(p.name))}</h3>
@@ -780,7 +781,7 @@ function buildCarousel(){
   const track=document.getElementById("track"),cap=document.getElementById("cCap"),prog=document.getElementById("cProg");
   if(!H.length){document.getElementById("carousel").style.display="none";return;}
   clearInterval(timer);hi=0;const c0=document.getElementById("carousel");
-  track.innerHTML=H.map((p,i)=>`<div class="slide${i===0?" on":""}" data-id="${esc(p.id)}"><img src="${esc(p.hero)}" alt="${esc(p.brand+" "+p.name)}" ${i>1?'loading="lazy"':''}></div>`).join("");
+  track.innerHTML=H.map((p,i)=>`<div class="slide${i===0?" on":""}" data-id="${esc(p.id)}"><img src="${esc(iv(p.hero))}" alt="${esc(p.brand+" "+p.name)}" ${i>1?'loading="lazy"':''}></div>`).join("");
   const slides=[...track.children];
   const show=n=>{slides[hi].classList.remove("on");slides[hi].classList.add("off");setTimeout(()=>slides.forEach(s=>s.classList.remove("off")),600);hi=(n+H.length)%H.length;slides[hi].classList.add("on");capt();};
   const capt=()=>{const p=H[hi];cap.innerHTML=`<small>${esc(p.brand)}</small><span class="cn">${esc(p.sn||p.name)}</span><b>${S(p.now)}</b>`;document.getElementById("cCtr").textContent=String(hi+1).padStart(2,"0")+" / "+H.length;prog.style.setProperty("--w",((hi+1)/H.length*100).toFixed(1)+"%");};
